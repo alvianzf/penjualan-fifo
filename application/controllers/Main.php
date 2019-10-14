@@ -3,7 +3,11 @@
 class Main extends MY_Controller
 {
   protected $asides = [
-    'header'  => 'asides/header'
+    'header'  => 'asides/header',
+    'logout'  => 'asides/logout',
+    'sidebar' => 'asides/sidebar',
+    'topbar'  => 'asides/topbar',
+    'footer'  => 'asides/footer'
   ];
   
   public function __construct()
