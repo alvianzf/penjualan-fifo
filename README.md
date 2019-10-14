@@ -1,6 +1,6 @@
-# digilib-smk3
+# SIM Penjualan Bata dengan menggunakan metode FIFO
 
-#### Digital Library for SMK N 3 Tanjungpinang
+#### Information system for brick sales and purchasings
 
 created using Codeigniter 3 [link](https://github.com/bcit-ci/CodeIgniter)
 
