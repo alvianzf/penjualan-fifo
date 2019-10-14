@@ -53,4 +53,7 @@ $route['default_controller'] = 'Auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['main']        = 'main/index';
+$route['main']          = 'main/index';
+
+// API
+$route['v1/auth']       = 'v1/auth/login';

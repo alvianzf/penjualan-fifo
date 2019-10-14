@@ -2,6 +2,11 @@
 
 class Auth extends MY_Controller
 {
+
+    protected $asides = [
+        'header'  => 'asides/header',
+    ];
+
     public function __construct()
     {
         parent::__construct();
@@ -9,6 +14,6 @@ class Auth extends MY_Controller
 
     public function index()
     {
-        
+        // check('exit');exit;
     }
 }
