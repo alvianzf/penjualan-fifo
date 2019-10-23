@@ -11,13 +11,25 @@ class Migrate extends CI_Controller
 
     public function index()
     {
-        $this->data['version'] = $this->migration->current();
+        if (! $this->data['version'] = $this->migration->current()) {
+            check('Failed to migrate');
+            check($this->migration->error_string());
+        } else {
+            check ('Success!');
+            check('Migrated to: ');
+            check($this->migration->current());
+        }
     }
 
     public function reset()
     {
-        $version = '';
+        $version = 20191010000001;
 
-        $this->data['version'] = $this->migration->version($version);
+        if($this->data['version'] = $this->migration->version($version)) {
+            check('Reset successful');
+        } else {
+            check('reset failed!');
+            check($this->migration->error_string());
+        }
     }
 }
