@@ -23,13 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-// $config['base_url'] = 
-
-$protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? "https://" : "http://";
-
-$_SERVER['HTTP_HOST'] = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-
-$config['base_url'] = $protocol . $_SERVER['HTTP_HOST'];
+$config['base_url'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -69,8 +63,6 @@ $config['uri_protocol']	= 'REQUEST_URI';
 | For more information please see the user guide:
 |
 | https://codeigniter.com/user_guide/general/urls.html
-|
-| Note: This option is ignored for CLI requests.
 */
 $config['url_suffix'] = '';
 
@@ -94,7 +86,7 @@ $config['language']	= 'english';
 | This determines which character set is used by default in various methods
 | that require a character set to be provided.
 |
-| See https://secure.php.net/htmlspecialchars for a list of supported charsets.
+| See http://php.net/htmlspecialchars for a list of supported charsets.
 |
 */
 $config['charset'] = 'UTF-8';
@@ -139,12 +131,12 @@ $config['subclass_prefix'] = 'MY_';
 |
 |	$config['composer_autoload'] = '/path/to/vendor/autoload.php';
 |
-| For more information about Composer, please visit https://getcomposer.org/
+| For more information about Composer, please visit http://getcomposer.org/
 |
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
 */
-$config['composer_autoload'] = TRUE;
+$config['composer_autoload'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -164,8 +156,6 @@ $config['composer_autoload'] = TRUE;
 | and it will be executed as: ! preg_match('/^[<permitted_uri_chars>]+$/i
 |
 | DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
-|
-| Note: This option is ignored for CLI requests.
 |
 */
 $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
@@ -199,6 +189,20 @@ $config['directory_trigger'] = 'd';
 
 /*
 |--------------------------------------------------------------------------
+| Allow $_GET array
+|--------------------------------------------------------------------------
+|
+| By default CodeIgniter enables access to the $_GET array.  If for some
+| reason you would like to disable it, set 'allow_get_array' to FALSE.
+|
+| WARNING: This feature is DEPRECATED and currently available only
+|          for backwards compatibility purposes!
+|
+*/
+$config['allow_get_array'] = TRUE;
+
+/*
+|--------------------------------------------------------------------------
 | Error Logging Threshold
 |--------------------------------------------------------------------------
 |
@@ -227,7 +231,7 @@ $config['log_threshold'] = 0;
 |--------------------------------------------------------------------------
 |
 | Leave this BLANK unless you would like to set something other than the default
-| application/logs/ directory. Use a full server path.
+| application/logs/ directory. Use a full server path with trailing slash.
 |
 */
 $config['log_path'] = '';
@@ -275,7 +279,7 @@ $config['log_date_format'] = 'Y-m-d H:i:s';
 |--------------------------------------------------------------------------
 |
 | Leave this BLANK unless you would like to set something other than the default
-| application/views/errors/ directory.  Use a full server path.
+| application/views/errors/ directory.  Use a full server path with trailing slash.
 |
 */
 $config['error_views_path'] = '';
@@ -286,7 +290,7 @@ $config['error_views_path'] = '';
 |--------------------------------------------------------------------------
 |
 | Leave this BLANK unless you would like to set something other than the default
-| application/cache/ directory.  Use a full server path.
+| application/cache/ directory.  Use a full server path with trailing slash.
 |
 */
 $config['cache_path'] = '';
@@ -404,6 +408,34 @@ $config['cookie_httponly'] 	= FALSE;
 
 /*
 |--------------------------------------------------------------------------
+| Standardize newlines
+|--------------------------------------------------------------------------
+|
+| Determines whether to standardize newline characters in input data,
+| meaning to replace \r\n, \r, \n occurrences with the PHP_EOL value.
+|
+| WARNING: This feature is DEPRECATED and currently available only
+|          for backwards compatibility purposes!
+|
+*/
+$config['standardize_newlines'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Global XSS Filtering
+|--------------------------------------------------------------------------
+|
+| Determines whether the XSS filter is always active when GET, POST or
+| COOKIE data is encountered
+|
+| WARNING: This feature is DEPRECATED and currently available only
+|          for backwards compatibility purposes!
+|
+*/
+$config['global_xss_filtering'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
 | Cross Site Request Forgery
 |--------------------------------------------------------------------------
 | Enables a CSRF cookie token to be set. When set to TRUE, token will be
@@ -457,6 +489,20 @@ $config['compress_output'] = FALSE;
 |
 */
 $config['time_reference'] = 'local';
+
+/*
+|--------------------------------------------------------------------------
+| Rewrite PHP Short Tags
+|--------------------------------------------------------------------------
+|
+| If your PHP installation does not have short tag support enabled CI
+| can rewrite the tags on-the-fly, enabling you to utilize that syntax
+| in your view files.  Options are TRUE or FALSE (boolean)
+|
+| Note: You need to have eval() enabled for this to work.
+|
+*/
+$config['rewrite_short_tags'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------

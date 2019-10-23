@@ -1,1 +1,0 @@
-Revert back to: <?= $version ?>
