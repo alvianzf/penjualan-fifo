@@ -52,7 +52,7 @@ if (!function_exists('api')) {
 }
 
 
-if (!function_exists('asssets')) {
+if (!function_exists('assets_url')) {
   /**
    * Test
    *
@@ -61,7 +61,7 @@ if (!function_exists('asssets')) {
    * @param   ...
    * @return  ...
    */
-  function assetsi($string = null)
+  function assets_url($string = null)
   {
     // 
     return base_url() . 'assets/' . $string;
