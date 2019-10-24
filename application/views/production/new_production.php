@@ -48,16 +48,12 @@
                         <input type="date" id="tanggal" class="form-control form-control-user" placeholder="tanggal produksi"/>
                     </div>
                     <div class="col-md-6 card-body">
-                        <button id="submit" class="btn btn-primary btn-block">+ Tambah</button>
-                        <button id="reset" class="btn btn-danger btn-block"><i class="fa fa-trash fa-fw"></i> Reset</button>
+                        <button id="submit" class="btn btn-primary col-md-5">+ Tambah</button>
+                        <button id="reset" class="btn btn-danger col-md-5"><i class="fa fa-trash fa-fw"></i> Reset</button>
+                        <button id="list" class="btn  btn-success col-md-10"><i class="fa fa-list"></i> Daftar Barang</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-
-$('#tanggal').datetimepicker()
-</script>
