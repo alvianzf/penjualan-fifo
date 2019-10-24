@@ -25,4 +25,11 @@ class Auth extends REST_Controller
             return $this->response(false, 401);
         }
     }
+
+    public function logout_get()
+    {
+        unset($this->session->userdata['is_logged_in']);
+
+        return $this->response(true, 200);
+    }
 }

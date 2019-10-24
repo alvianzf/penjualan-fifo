@@ -20,17 +20,20 @@ class User_Model extends MY_Model
     public function login($args)
     {
         $data = $this->user_model->get_by('username', $args['username']);
-
-        $pass = hash('sha1', $args['password']);
-        $db_pass = $data->password;
-
-        if ($pass == $db_pass) {
-            $this->session->userdata['is_logged_in'] = true;
-            $this->session->userdata['current_user'] = $data;
-
-            return true;
+        if ($data) {
+            $pass = hash('sha1', $args['password']);
+            $db_pass = $data->password;
+        
+            if ($pass == $db_pass) {
+                $this->session->userdata['is_logged_in'] = true;
+                $this->session->userdata['current_user'] = $data;
+        
+                return true;
+            } else {
+                $this->session->userdata['is_logged_in'] = false;
+                return false;
+            }
         } else {
-            $this->session->userdata['is_logged_in'] = false;
             return false;
         }
     }
