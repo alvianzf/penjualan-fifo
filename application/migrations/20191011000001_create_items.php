@@ -34,7 +34,7 @@ class Migration_create_items extends CI_Migration
                     'constraint'    => 200,
                     'null'          => false
                 ],
-                'qty' => [
+                'jumlah' => [
                     'type'          => 'INT',
                     'constraint'    => 11,
                     'null'          => false

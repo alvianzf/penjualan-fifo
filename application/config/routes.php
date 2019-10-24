@@ -54,3 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['production/new'] = 'production/new_production';
+
+
+// API
+
+$route['v1/production']         = 'v1/production';
+$route['v1/production/insert']  = 'v1/production/insert';

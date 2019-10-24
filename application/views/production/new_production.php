@@ -36,8 +36,7 @@
                         <label for="jumlah_barang">
                             Jumlah Barang
                         </label>
-                        <input type="number" id="jumlah_barang" class="form-control form-control-user" />
-
+                        <input id="jumlah_barang" class="form-control form-control-user" />
                     </div>
                 </div>
                 <div class="row">
@@ -57,3 +56,35 @@
         </div>
     </div>
 </div>
+
+<script>
+
+$('#submit').click(() => {
+    kode_produksi   = $('#kode_barang').val();
+    nama_barang     = $('#nama_barang').val();
+    tipe_barang     = $('#tipe_barang').val();
+    jumlah          = $('#jumlah_barang').val();
+    created_at      = $('tanggal').val();
+
+    data = {kode_produksi, nama_barang, tipe_barang, jumlah, created_at}
+
+    $.post("<?= api('production/insert') ?>", data).then(res => {
+        console.log(res)
+        toastr.success('Berhasil menambahkan item '+ res.result.kode_produksi, 'Sukses');
+
+        $('#kode_barang').val('')    
+        $('#nama_barang').val('')    
+        $('#tipe_barang').val('')    
+        $('#jumlah_barang').val('')  
+        $('tanggal').val('')         
+    })
+    .catch(err => {
+        console.log(err.status)
+    })
+})
+
+$('#list').click(function(){
+    window.location.href = "<?= base_url('production/inventaris') ?>";
+})
+
+</script>
