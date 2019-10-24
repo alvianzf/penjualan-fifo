@@ -1,0 +1,17 @@
+/* Custom CSS by me */
+
+.toast-error {
+  background-color: red;
+}
+
+.toast-success {
+  background-color: lightgreen;
+}
+
+.toast-info {
+  background-color: lightblue;
+}
+
+.toast-warning {
+  background-color: yellow;
+}
