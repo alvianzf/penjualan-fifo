@@ -2,7 +2,8 @@
     <div class="card shadow col-md-12 border-left-success">
         <div class="card-body">
             <h4>Daftar Inventaris Bata</h4>
-
+        <div class="table">
+            
         <table id="table" class="table table-compact table-striped table-collapse col-md-12">
             <thead>
                 <tr>
@@ -21,6 +22,8 @@
             </tbody>
         </table>
 
+        </div>
+
         <hr>
 
         <button id="add" class="btn btn-info btn-block"><i class="fa fa-plus"></i> Tambah baru</button>
@@ -38,7 +41,7 @@ $(document).ready(function() {
                 processing: true,
                 responsive: true,
                 order: [0,'asc'],
-                // pageLength: 25,
+                pageLength: 10,
                 lengthChange: false,
                 // searching: false,
                 lengthMenu: [[25,50,100,200], [25,50,100,200]],
@@ -47,7 +50,7 @@ $(document).ready(function() {
                         next: '<i class="fas fa-caret-right"></i>',
                         previous: '<i class="fas fa-caret-left"></i>'
                     },
-                    info: 'Showing _START_ to _END_ of _TOTAL_ active audits'
+                    info: 'Menunjukkan _START_ sampai _END_ dari _TOTAL_ data'
                 },
                 ajax: {
                     url: "<?= site_url('dt/test')?>",

@@ -54,6 +54,10 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['production/new'] = 'production/new_production';
+$route['production/inventaris'] = 'production/inventaris';
+
+$route['sales/new-sales'] = 'sales/new_sales';
+$route['sales/transaksi'] = 'sales/transactions';
 
 
 // API

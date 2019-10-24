@@ -37,8 +37,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Produksi Bata</h6>
-            <a class="collapse-item <?= nav('new', $this->uri->segments) ?>"" href="<?= base_url('production/new') ?>">Produksi</a>
-            <a class="collapse-item <?= nav('inventaris', $this->uri->segments) ?>"" href="<?= base_url('production/inventaris') ?>">Inventaris</a>
+            <a class="collapse-item <?= nav('new', $this->uri->segments) ?>" href="<?= base_url('production/new') ?>">Produksi</a>
+            <a class="collapse-item <?= nav('inventaris', $this->uri->segments) ?>" href="<?= base_url('production/inventaris') ?>">Inventaris</a>
           </div>
         </div>
       </li>
@@ -52,14 +52,15 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item <?= nav('sales', $this->uri->segments) ?>">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#penjualan" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-hand-holding-usd"></i>
           <span>Penjualan</span>
         </a>
         <div id="penjualan" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="">Penjualan Baru</a>
+            <a class="collapse-item  <?= nav('new-sales', $this->uri->segments) ?>"  href="<?= base_url('sales/new-sales') ?>">Penjualan Baru</a>
+            <a class="collapse-item" href="">Daftar Transaksi</a>
           </div>
         </div>
       </li>
@@ -71,19 +72,20 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Managemen Pengguna
+        Administrasi Sistem
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-user"></i>
-          <span>Manajemen Pengguna</span>
+          <span>Admin</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="">Pengguna Baru</a>
             <a class="collapse-item" href="">Daftar Pengguna</a>
+            <a class="collapse-item" href="">Laporan</a>
           </div>
         </div>
       </li>
