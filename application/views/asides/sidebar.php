@@ -29,7 +29,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item <?= nav(['new', 'inventory'], $this->uri->segments) ?>">
+      <li class="nav-item <?= nav('production', $this->uri->segments) ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-industry"></i>
           <span>Produksi</span>
@@ -37,7 +37,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Produksi Bata</h6>
-            <a class="collapse-item" href="">Produksi</a>
+            <a class="collapse-item" href="<?= base_url('production/new') ?>">Produksi</a>
             <a class="collapse-item" href="">Inventaris</a>
           </div>
         </div>
@@ -53,11 +53,11 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#penjualan" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-hand-holding-usd"></i>
           <span>Penjualan</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="penjualan" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="">Penjualan Baru</a>
           </div>
