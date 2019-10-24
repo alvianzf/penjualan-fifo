@@ -23,18 +23,18 @@
       </div>
       <!-- End of Main Content -->
 
-    <?= @$yield_sticky_footer ?>
-
+      
     </div>
     <!-- End of Content Wrapper -->
-
+    
   </div>
+  <?= @$yield_sticky_footer ?>
   <!-- End of Page Wrapper -->
-
+  
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+  
 <?= @$yield_logout ?>
 <?= @$yield_footer ?>
