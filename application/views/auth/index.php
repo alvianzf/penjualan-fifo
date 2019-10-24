@@ -41,12 +41,12 @@
                   </div>
                   <form class="user">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Username">
+                      <input type="text" class="form-control form-control-user" id="username" aria-describedby="emailHelp" placeholder="Username">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input type="password" class="form-control form-control-user" id="password" placeholder="Password">
                     </div>
-                    <button id="login" class="btn btn-primary btn-user btn-block">
+                    <button type="button" id="login" class="btn btn-primary btn-user btn-block">
                       Login
                     </button>
                   </form>
@@ -75,3 +75,21 @@
 </body>
 
 </html>
+
+<script>
+
+$('#login').click(() => {
+  const username = $('#username').val();
+  const password = $('#password').val();
+
+  $.post("<?=api('auth/login')?>", {username, password})
+  .then((res) => 
+  {
+    if (res) {
+      window.location.href = 'dashboard';
+    }
+  })
+
+})
+
+</script>
