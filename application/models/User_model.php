@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit ('No direct script access allowed!');
 
-class User_Model extends CI_Model
+class User_Model extends MY_Model
 {
     protected $_table = 'users';
     // protected $has_many = [
@@ -14,12 +14,24 @@ class User_Model extends CI_Model
     {
         parent::__construct();
 
-        $this->load->model(['user_details_model', 'user_model']);
+        // $this->load->model('user_model');
     }
 
     public function login($args)
     {
-        // $data = $this->user_model->get_many_by('username', $args['username']);
-        // $data = $this->user_model->get_all();
+        $data = $this->user_model->get_by('username', $args['username']);
+
+        $pass = hash('sha1', $args['password']);
+        $db_pass = $data->password;
+
+        if ($pass == $db_pass) {
+            $this->session->userdata['is_logged_in'] = true;
+            $this->session->userdata['current_user'] = $data;
+
+            return true;
+        } else {
+            $this->session->userdata['is_logged_in'] = false;
+            return false;
+        }
     }
 }

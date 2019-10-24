@@ -32,6 +32,14 @@ class Dashboard extends MY_Controller
   public function __construct()
   {
     parent::__construct();
+    $this->load->model([
+      'user_model'
+    ]);
+
+    if (!@$this->session->userdata['is_logged_in']) {
+      redirect('/', 'refresh');
+    }
+
   }
 
   public function index()
