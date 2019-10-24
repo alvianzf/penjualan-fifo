@@ -13,6 +13,11 @@
   <!-- Custom scripts for all pages-->
   <script src="<?= assets_url() ?>js/sb-admin-2.min.js"></script>
 
+  <!-- Page level plugins -->
+  <script src="<?= assets_url() ?>vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?= assets_url() ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+
 </body>
 
 </html>

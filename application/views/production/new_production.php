@@ -69,8 +69,7 @@ $('#submit').click(() => {
     data = {kode_produksi, nama_barang, tipe_barang, jumlah, created_at}
 
     $.post("<?= api('production/insert') ?>", data).then(res => {
-        console.log(res)
-        toastr.success('Berhasil menambahkan item '+ res.result.kode_produksi, 'Sukses');
+        toastr.success('Berhasil menambahkan item '+ res.result.kode_produksi, res.result.nama_barang);
 
         $('#kode_barang').val('')    
         $('#nama_barang').val('')    
@@ -85,6 +84,17 @@ $('#submit').click(() => {
 
 $('#list').click(function(){
     window.location.href = "<?= base_url('production/inventaris') ?>";
+})
+
+$('#reset').click(() => {
+
+    $('#kode_barang').val('')    
+    $('#nama_barang').val('')    
+    $('#tipe_barang').val('')    
+    $('#jumlah_barang').val('')  
+    $('tanggal').val('') 
+
+    toastr.info('Data berhasil diset ulang', 'reset data');
 })
 
 </script>
