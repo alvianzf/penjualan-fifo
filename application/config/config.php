@@ -23,7 +23,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = '';
+if (isset($_SERVER['SERVER_SOFTWARE'])
+    && strpos($_SERVER['SERVER_SOFTWARE'], 'Google App Engine') !== false
+    && ENVIRONMENT == 'production'
+) {
+    $config['base_url'] = 'https://' . $_SERVER['HTTP_HOST']; // production
+} else {
+    $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? "https://" : "http://";
+
+    $_SERVER['HTTP_HOST'] = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+
+    $config['base_url'] = $protocol . $_SERVER['HTTP_HOST'];
+}
 
 /*
 |--------------------------------------------------------------------------
