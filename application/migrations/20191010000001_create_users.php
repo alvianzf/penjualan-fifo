@@ -61,6 +61,11 @@ class Migration_Create_Users extends CI_Migration
                     'unsigned'      => true,
                     'auto_increment'=> true
                 ],
+                'user_id' => [
+                    'type'          => 'MEDIUMINT',
+                    'constraint'    => 11,
+                    'unsigned'      => true,
+                ],
                 'name' => [
                     'type'          => 'VARCHAR',
                     'constraint'    => 200,
@@ -88,6 +93,7 @@ class Migration_Create_Users extends CI_Migration
                     [
                         [
                             'id'        => 1,
+                            'user_id'   => 1,
                             'name'      => 'John Travolta',
                             'position'  => 'Owner',
                             'contact_number'  => '081378202071',
@@ -95,6 +101,7 @@ class Migration_Create_Users extends CI_Migration
                         ],
                         [
                             'id'        => 2,
+                            'user_id'   => 2,
                             'name'      => 'John Appleseed',
                             'position'  => 'Admin',
                             'contact_number'  => '0878782881021',

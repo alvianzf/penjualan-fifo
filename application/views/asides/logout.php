@@ -21,10 +21,12 @@
 $('#logout').click(() => {
   $.get("<?=api('auth/logout')?>").then((res) => {
     if (res) {
+      toastr.success('Logged out');
       window.location.reload(true)
     }
   }).catch((err) => {
     console.log(err)
+    toastr.error('Gagal log out');
   })
 })
 </script>

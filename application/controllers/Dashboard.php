@@ -33,20 +33,21 @@ class Dashboard extends MY_Controller
   {
     parent::__construct();
     $this->load->model([
-      'user_model'
+      'user_model',
+      'user_data_model'
     ]);
 
     if (!@$this->session->userdata['is_logged_in']) {
       redirect('/', 'refresh');
     }
 
+
   }
 
   public function index()
   {
-    // 
   }
-
+  
 }
 
 

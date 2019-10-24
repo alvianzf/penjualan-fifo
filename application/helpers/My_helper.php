@@ -67,6 +67,23 @@ if (!function_exists('assets_url')) {
     return base_url() . 'assets/' . $string;
   }
 }
+
+
+if (!function_exists('nav')) {
+  /**
+   * Test
+   *
+   * This test helpers
+   *
+   * @param   ...
+   * @return  ...
+   */
+  function nav($nav = null, $array)
+  {
+    // 
+    return in_array($nav, $array) ? 'active' : null;
+  }
+}
 // ------------------------------------------------------------------------
 
 /* End of file My_helper_helper.php */
