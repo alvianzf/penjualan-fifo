@@ -24,6 +24,11 @@ class Migration_Create_Users extends CI_Migration
                     'constraint'    => 200,
                     'null'          => false
                 ],
+                'role' => [
+                    'type'          => 'VARCHAR',
+                    'constraint'    => 10,
+                    'null' 
+                ],
                 'created_at' => [
                     'type'          => 'INT',
                     'constraint'    => 11,
@@ -38,12 +43,14 @@ class Migration_Create_Users extends CI_Migration
                             'id'        => 1,
                             'username'  => 'admin',
                             'password'  => hash('sha1', 'admin'),
+                            'role'      => 'admin',
                             'created_at'      => time()
                         ],
                         [
                             'id'        => 2,
                             'username'  => 'user',
                             'password'  => hash('sha1', 'user'),
+                            'role'      => 'user',
                             'created_at'=> time()
                         ]
                     ]

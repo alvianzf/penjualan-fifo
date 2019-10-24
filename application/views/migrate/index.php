@@ -38,6 +38,9 @@
     display: block;
     padding: 10px;
     color: white;
+    z-index: 10;
+    overflow: hidden;
+    display: block;
 }
 
 .center-text {
@@ -48,5 +51,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    overflow: x, y;
+    display: block;
 }
 </style>
