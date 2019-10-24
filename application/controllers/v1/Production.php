@@ -100,4 +100,13 @@ class Production extends REST_Controller
         }
         return $this->response($response, $code);
     }
+
+    public function delete_get($id)
+    {
+        if ($this->items_model->delete($id)) {
+            return $this->response(true, 200);
+        } else{
+            return $this->response(false, 500);
+        }
+    }
 }

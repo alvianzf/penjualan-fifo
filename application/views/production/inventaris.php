@@ -2,7 +2,7 @@
     <div class="card shadow col-md-12 border-left-success">
         <div class="card-body">
             <h4>Daftar Inventaris Bata</h4>
-        <div class="table">
+        <div class="table-responsive">
             
         <table id="table" class="table table-compact table-striped table-collapse col-md-12">
             <thead>
@@ -12,6 +12,7 @@
                     <td>Tipe Barang</td>
                     <td>Jumlah</td>
                     <td>Tanggal Produksi</td>
+                    <td style="width: 15%"><i class="fa fa-cog"></i></td>
                 </tr>
             </thead>
             <tbody>
@@ -89,6 +90,12 @@ $(document).ready(function() {
                     searchable: true,
                     orderable: true
                 },
+                {
+                    data: 'id',
+                    render: function(id) {
+                        return `<a href="<?= base_url('production/edit/') ?>${id}"><i class="fa fa-edit"></i> edit</a>  <a onclick="deleteData(${id})"><i class="fa fa-trash"></i> Delete</a>`
+                    }
+                }
 
             ],
             initComplete: function(settings) {
@@ -101,4 +108,15 @@ $(document).ready(function() {
 $('#add').click(function() {
     window.location.href = "<?= base_url('production/new') ?>"
 })
+
+function deleteData(id){
+    $.get("<?= api('production/delete/') ?>" + id).then((res) => {
+        if (res) {
+            toastr.success('Berhasil menghapus data');
+            window.location.reload(true)
+        }
+    }).catch(err => {
+        console.log(err)
+    })
+}
 </script>

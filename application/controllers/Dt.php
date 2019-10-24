@@ -10,7 +10,7 @@ class Dt extends CI_Controller
 
     public function test()
     {
-        $this->datatables->select('kode_produksi, tipe_barang, nama_barang, jumlah, created_at')->from('production')
+        $this->datatables->select('id, kode_produksi, tipe_barang, nama_barang, jumlah, created_at')->from('production')
                         ->add_column('tanggal', '$1', 'human_time(created_at)');
 
         $this->output
