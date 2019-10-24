@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['production/new'] = 'production/new_production';
+$route['production/edit/(:any)'] = 'production/edit_production/$1';
 $route['production/inventaris'] = 'production/inventaris';
 
 $route['sales/new-sales'] = 'sales/new_sales';

@@ -32,10 +32,12 @@ class Production extends MY_Controller
   public function __construct()
   {
     parent::__construct();
-
     if (!@$this->session->userdata['is_logged_in']) {
       redirect('/', 'refresh');
     }
+
+    $this->load->model(['items_model', 'transactions_model']);
+
   }
 
   public function index()
@@ -46,6 +48,12 @@ class Production extends MY_Controller
   public function new_production ()
   {
     // 
+  }
+
+  public function edit_production ($id = null)
+  {
+    $this->data['id'] = $id;
+    $this->data['data'] = $this->items_model->get($id);
   }
 
   public function inventaris ()

@@ -63,4 +63,41 @@ class Production extends REST_Controller
         }
         return $this->response($response, $code);
     }
+
+    public function edit_post($id)
+    {
+        $kode_produksi = $this->post('kode_produksi');
+        $tipe_barang = $this->post('tipe_barang');
+        $nama_barang = $this->post('nama_barang');
+        $jumlah      = $this->post('jumlah');
+        $time        = strtotime($this->post('tanggal'));
+
+        $items = [
+            'kode_produksi' => $kode_produksi,
+            'tipe_barang'   => $tipe_barang,
+            'nama_barang'   => $nama_barang,
+            'jumlah'        => $jumlah,
+            'created_at'    => time()
+        ];
+        
+        $code = 200;
+        if($this->items_model->update($id, $items))
+        {
+            $response = [
+                'success'   => true,
+                'result'    => $items,
+                'error'     => null
+            ];
+            $code =200;
+        } else 
+        {
+            $response = [
+                'success'   => false,
+                'result'    => null,
+                'error'     => 'Failed to update data'
+            ];
+            $code = 500;
+        }
+        return $this->response($response, $code);
+    }
 }

@@ -37,7 +37,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Produksi Bata</h6>
-            <a class="collapse-item <?= nav('new', $this->uri->segments) ?>" href="<?= base_url('production/new') ?>">Produksi</a>
+            <a class="collapse-item <?= nav('new', $this->uri->segments) ?> <?= nav('edit', $this->uri->segments) ?>" href="<?= base_url('production/new') ?>">Produksi</a>
             <a class="collapse-item <?= nav('inventaris', $this->uri->segments) ?>" href="<?= base_url('production/inventaris') ?>">Inventaris</a>
           </div>
         </div>
