@@ -26,7 +26,7 @@ class User_Model extends MY_Model
             if ($pass == $db_pass) {
                 $this->session->userdata['is_logged_in'] = true;
                 $this->session->userdata['user_detail'] = $data;
-                $this->session->userdata['current_user'] = $data['user_data'][0];
+                $this->session->current_user = $data['user_data'][0];
                 return true;
             } else {
                 $this->session->userdata['is_logged_in'] = false;

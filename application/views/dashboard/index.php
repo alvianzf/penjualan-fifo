@@ -5,7 +5,7 @@
         <div class="card shadow border-left-primary md-12">
             <div class="card-body">
                 Sistem Penjualan Batu Bata berbasis web
-                <!-- <?= check($this->session->userdata) ?> -->
+                <!-- <?= check($this->session) ?> -->
             </div>
         </div>
     </div>
