@@ -64,4 +64,4 @@ $route['sales/transaksi'] = 'index.php/sales/transactions';
 // API
 $route['v1/production']         = 'index.php/v1/production';
 $route['v1/production/insert']  = 'index.php/v1/production/insert';
-$route['v1/auth/login']         = 'index.php//v1/auth/login'
+$route['v1/auth/login']         = 'index.php//v1/auth/login';
