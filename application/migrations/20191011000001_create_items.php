@@ -39,6 +39,16 @@ class Migration_create_items extends CI_Migration
                     'constraint'    => 11,
                     'null'          => false
                 ],
+                'satuan' => [
+                    'type'          => 'VARCHAR',
+                    'constraint'    => 20,
+                    'null'          => false
+                ],
+                'harga' => [
+                    'type'          => 'INT',
+                    'constraint'    => 11,
+                    'null'          => false
+                ],
                 'created_at' => [
                     'type'          => 'INT',
                     'constraint'    => 11,

@@ -31,7 +31,7 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item <?= nav('production', $this->uri->segments) ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-industry"></i>
+          <i class="fas fa-fw fa-hammer"></i>
           <span>Produksi</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -39,6 +39,21 @@
             <h6 class="collapse-header">Produksi Bata</h6>
             <a class="collapse-item <?= nav('new', $this->uri->segments) ?> <?= nav('edit', $this->uri->segments) ?>" href="<?= base_url('production/new') ?>">Produksi</a>
             <a class="collapse-item <?= nav('inventaris', $this->uri->segments) ?>" href="<?= base_url('production/inventaris') ?>">Inventaris</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item <?= nav('purchasing', $this->uri->segments) ?>">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#purchasing" aria-expanded="true" aria-controls="purchasing">
+          <i class="fas fa-fw fa-shopping-cart"></i>
+          <span>Pembelian</span>
+        </a>
+        <div id="purchasing" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Pembelian Bahan Baku</h6>
+            <a class="collapse-item <?= nav('new-purchase', $this->uri->segments) ?> <?= nav('edit-purchase', $this->uri->segments) ?>" href="<?= base_url('purchasing/new-purchase') ?>">Pembelian Baru</a>
+            <a class="collapse-item <?= nav('stock', $this->uri->segments) ?>" href="<?= base_url('purchasing/stock') ?>">Stok</a>
           </div>
         </div>
       </li>
