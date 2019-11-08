@@ -2,18 +2,18 @@
 
 require_once APPPATH. '/libraries/REST_Controller.php';
 
-class Production extends REST_Controller
+class Purchasing extends REST_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(['user_model', 'items_model']);
+        $this->load->model(['user_model', 'stock_model']);
     }
 
     public function index_get()
     {
         $response = [];
-        $items = $this->items_model->get_all();
+        $items = $this->stock_model->get_all();
         foreach($items as $item) {
             $item->tanggal = Date('m/d/Y', $item->created_at);
             
@@ -48,7 +48,7 @@ class Production extends REST_Controller
         ];
         
         $code = 200;
-        if($this->items_model->insert($items))
+        if($this->stock_model->insert($items))
         {
             $response = [
                 'success'   => true,
@@ -89,7 +89,7 @@ class Production extends REST_Controller
         ];
         
         $code = 200;
-        if($this->items_model->update($id, $items))
+        if($this->stock_model->update($id, $items))
         {
             $response = [
                 'success'   => true,
@@ -111,7 +111,7 @@ class Production extends REST_Controller
 
     public function delete_get($id)
     {
-        if ($this->items_model->delete($id)) {
+        if ($this->stock_model->delete($id)) {
             return $this->response(true, 200);
         } else{
             return $this->response(false, 500);
