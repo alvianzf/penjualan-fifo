@@ -1,27 +1,33 @@
 <div class="row">
     <div class="card shadow col-md-12 border-left-success">
         <div class="card-body">
-            <h4>Daftar Inventaris Bata</h4>
-        <div class="table-responsive">
-            
-        <table id="table" class="table table-compact table-striped table-collapse col-md-12">
-            <thead>
-                <tr>
-                    <td>Kode Produksi</td>
-                    <td>Nama Barang</td>
-                    <td>Tipe Barang</td>
-                    <td>Jumlah</td>
-                    <td>Tanggal Produksi</td>
-                    <td style="width: 15%"><i class="fa fa-cog"></i></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                </tr>
-            </tbody>
-        </table>
+
+            <div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4>Daftar Stok Barang Siap Jual</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <input id="cari" placeholder="Cari di tabel" class="form-control pull-right" />
+                    </div>
+                </div>
+            <hr />
+            <table id="table" class="table table-striped table-collapse table-condensed col-md-12" width="100%">
+                <thead>
+                    <tr>
+                        <td>Nama Barang</td>
+                        <td>Tipe Barang</td>
+                        <td>Jumlah</td>
+                        <td>Harga</td>
+                        <td>Total</td>
+                        <td>Tanggal Produksi</td>
+                        <td style="width: 10%"><i class="fa fa-cog"></i></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Purchase datatables -->
+                </tbody>
+            </table>
 
         </div>
 
@@ -36,7 +42,7 @@
 
 $(document).ready(function() {
 
-    toastr.info('All data loaded', 'Info');
+    toastr.info('Data telah dimuat', 'Info');
 
   $('#table').DataTable({
                 processing: true,
@@ -54,7 +60,7 @@ $(document).ready(function() {
                     info: 'Menunjukkan _START_ sampai _END_ dari _TOTAL_ data'
                 },
                 ajax: {
-                    url: "<?= site_url('dt/test')?>",
+                    url: "<?= site_url('dt/purchase')?>",
                     type: "POST",
                     // data: {
                     //     <?= $this->security->get_csrf_token_name() ?>: <?= json_encode($this->security->get_csrf_hash()) ?>
@@ -66,11 +72,6 @@ $(document).ready(function() {
                 }],
                 columns: [
                 {
-                    data: 'kode_produksi',
-                    searchale: true,
-                    orderable: true
-                },
-                {
                     data: 'nama_barang',
                     searchable: true,
                     orderable: true
@@ -81,9 +82,28 @@ $(document).ready(function() {
                     orderable: true
                 },
                 {
-                    data: 'jumlah',
+                    data: null,
                     searchable: true,
-                    orderable: true
+                    orderable: true,
+                    render: (data) => {
+                        return `${numberWithCommas(data.jumlah)} ${data.satuan}`
+                    }
+                },
+                {
+                    data: 'harga',
+                    searchable: true,
+                    orderable: true,
+                    render: harga => {
+                        return `Rp. ${numberWithCommas(harga)}`
+                    },
+                },
+                {
+                    data: null,
+                    searchable: true,
+                    orderable: true,
+                    render: (data) => {
+                        return `Rp. ${numberWithCommas(data.jumlah * data.harga)}`
+                    }
                 },
                 {
                     data: 'tanggal',
@@ -93,24 +113,24 @@ $(document).ready(function() {
                 {
                     data: 'id',
                     render: function(id) {
-                        return `<a href="<?= base_url('production/edit/') ?>${id}"><i class="fa fa-edit"></i> edit</a>  <a onclick="deleteData(${id})"><i class="fa fa-trash"></i> Delete</a>`
+                        return `<a href="<?= base_url('purchasing/edit-purchase/') ?>${id}"><i class="fa fa-edit"></i></a>&nbsp;  <a onclick="deleteData(${id})" href="#"><i class="fa fa-trash"></i></a>`
                     }
                 }
 
             ],
             initComplete: function(settings) {
-                // $('.dataTables_filter').hide()
+                $('.dataTables_filter').hide()
             }
             })
             .draw();
 });
 
 $('#add').click(function() {
-    window.location.href = "<?= base_url('production/new') ?>"
+    window.location.href = "<?= base_url('purchasing/new-purchase') ?>"
 })
 
 function deleteData(id){
-    $.get("<?= api('production/delete/') ?>" + id).then((res) => {
+    $.get("<?= api('purchasing/delete/') ?>" + id).then((res) => {
         if (res) {
             toastr.success('Berhasil menghapus data');
             window.location.reload(true)
@@ -119,4 +139,14 @@ function deleteData(id){
         console.log(err)
     })
 }
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+$('#cari').on('keyup', function() {
+
+    $('#table').DataTable()
+        .search($('#cari').val()).draw();
+})
 </script>

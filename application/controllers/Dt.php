@@ -8,9 +8,21 @@ class Dt extends CI_Controller
         $this->load->helper('datatables');
     }
 
-    public function test()
+    public function item()
     {
-        $this->datatables->select('id, kode_produksi, tipe_barang, nama_barang, jumlah, created_at')->from('production')
+        $this->datatables->select('id, kode_produksi, tipe_barang, nama_barang, jumlah, satuan, harga, created_at')->from('production')
+                        ->add_column('tanggal', '$1', 'human_time(created_at)');
+
+        $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output($this->datatables->generate('json', 'UTF-8', true));
+        
+    }
+
+    public function purchase()
+    {
+        $this->datatables->select('id, tipe_barang, nama_barang, jumlah, satuan, harga, created_at')->from('purchasing')
                         ->add_column('tanggal', '$1', 'human_time(created_at)');
 
         $this->output

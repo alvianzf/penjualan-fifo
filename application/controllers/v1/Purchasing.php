@@ -29,7 +29,6 @@ class Purchasing extends REST_Controller
 
     public function insert_post()
     {
-        $kode_produksi = $this->post('kode_produksi');
         $tipe_barang = $this->post('tipe_barang');
         $nama_barang = $this->post('nama_barang');
         $jumlah      = $this->post('jumlah');
@@ -38,7 +37,6 @@ class Purchasing extends REST_Controller
         $time        = strtotime($this->post('tanggal'));
 
         $items = [
-            'kode_produksi' => $kode_produksi,
             'tipe_barang'   =>  $tipe_barang,
             'nama_barang'   => $nama_barang,
             'jumlah'        => $jumlah,
@@ -70,7 +68,6 @@ class Purchasing extends REST_Controller
 
     public function edit_post($id)
     {
-        $kode_produksi = $this->post('kode_produksi');
         $tipe_barang = $this->post('tipe_barang');
         $nama_barang = $this->post('nama_barang');
         $jumlah      = $this->post('jumlah');
@@ -79,7 +76,6 @@ class Purchasing extends REST_Controller
         $time        = strtotime($this->post('tanggal'));
 
         $items = [
-            'kode_produksi' => $kode_produksi,
             'tipe_barang'   =>  $tipe_barang,
             'nama_barang'   => $nama_barang,
             'jumlah'        => $jumlah,
