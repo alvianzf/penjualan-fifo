@@ -7,13 +7,13 @@
         <div class="card-body">
 
             <div class="row">
-                <div class="col-xs-12 col-md-4">
+                <div class="col-xs-12 col-md-3">
                     <div class="form-group">
                         <label for="pembeli">Pembeli<sup class="text-danger">*</sup></label>
                         <input id="pembeli" class="form-control" placeholder="nama pembeli">
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-3">
+                <div class="col-xs-12 col-md-2">
                     <div class="form-group">
                         <label for="item">Item<sup class="text-danger">*</sup></label>
                         <select id="item" class="form-control">
@@ -25,9 +25,9 @@
                 </div>
                 <div class="col-xs-12 col-md-1">
                     <label for="stock">Sisa stok</label>
-                    <p id="stock"></p>
+                    <p class="text-success" id="stock"></p>
                 </div>
-                <div class="col-xs-12 col-md-1">
+                <div class="col-xs-12 col-md-2">
                     <label for="harga">Harga</label>
                     <p id="harga"></p>
                 </div>
@@ -37,7 +37,7 @@
                         <input type="number" id="jumlah" class="form-control" placeholder="jumlah pembelian">
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-1">
+                <div class="col-xs-12 col-md-2">
                     <label for="stock">Subtotal</label>
                     <p id="subtotal"></p>
                 </div>
@@ -92,3 +92,48 @@
     </div>
 
 </div>
+
+<script>
+
+var harga = 0;
+var stok = 0;
+var satuan = '';
+
+$('#item').change(() => {
+    $.get("<?= api('transaction/information/') ?>" + $('#item').val()).then((res) => {
+        $('#stock').attr('class', 'text-success').text(`${res.result.stok} ${res.result.satuan}`);
+        $('#harga').text(`Rp. ${res.result.harga},00`);
+
+        harga = res.result.harga;
+        stok = res.result.stok;
+        satuan = res.result.satuan
+
+    }).catch(err => {
+        $('#stock').attr('class', 'text-danger').text('0 Buah');
+    })
+});
+
+$('#jumlah').on('keydown', () => {
+    if (harga) {
+        jumlah = $('#jumlah').val();
+
+        sum = jumlah * harga;
+
+        $('#subtotal').text(`Rp. ${numberWithCommas(sum)},00`);
+
+        sisa = stok - jumlah;
+        if (sisa >= 0) {
+            $('#stock').attr('class', 'text-info').text(`${sisa} ${satuan}`);
+        } else {
+            $('#stock').attr('class', 'text-danger').text('Stok Kosong!');
+
+            toastr.error('Stok Kosong!', 'Peringatan!');
+        }
+    }
+});
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+</script>
