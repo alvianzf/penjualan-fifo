@@ -150,26 +150,28 @@ var sisa = [];
 
 $('#item').change(() => {
     console.log(sisa[$('#item').val()])
-    if (sisa[$('#item').val()] != 0) {
-        if (!sisa[$('#item').val()])
-        {
-            $.get("<?= api('transaction/information/') ?>" + $('#item').val()).then((res) => {
-                $('#stock').attr('class', 'text-success').text(`${res.result.stok} ${res.result.satuan}`);
-                $('#harga').text(`Rp. ${res.result.harga},00`);
+    if (!sisa[$('#item').val()]) {
+        $.get("<?= api('transaction/information/') ?>" + $('#item').val()).then((res) => {
+            $('#stock').attr('class', 'text-success').text(`${res.result.stok} ${res.result.satuan}`);
+            $('#harga').text(`Rp. ${res.result.harga},00`);
 
-                harga[$('#item').val()] = res.result.harga;
-                stok[$('#item').val()] = res.result.stok;
-                satuan[$('#item').val()] = res.result.satuan
+            harga[$('#item').val()] = res.result.harga;
+            stok[$('#item').val()] = res.result.stok;
+            satuan[$('#item').val()] = res.result.satuan
 
-            }).catch(err => {
-                $('#stock').attr('class', 'text-danger').text('0 Buah');
-                $('#harga').text(`Rp. --`)
-            })
-        }
+        }).catch(err => {
+            $('#stock').attr('class', 'text-danger').text('0 Buah');
+            $('#harga').text(`Rp. --`)
+        })
     
     } else {
-        $('#harga').text(`Rp. ${harga[$('#item').val()]},00`);
-        sisa[$('#item').val()] == 0 ? $('#stock').attr('class', 'text-danger').text(`${stok[$('#item').val()]} ${satuan[$('#item').val()]}`) : $('#stock').attr('class', 'text-success').text(`${stok[$('#item').val()]} ${satuan[$('#item').val()]}`)
+        if (sisa[$('#item').val()] == 0) {
+            $('#stock').attr('class', 'text-danger').text(`${stok[$('#item').val()]} ${satuan[$('#item').val()]}`);
+            toastr.error('Stok kosong!');
+        } else {
+            $('#harga').text(`Rp. ${harga[$('#item').val()]},00`);
+            $('#stock').attr('class', 'text-success').text(`${stok[$('#item').val()]} ${satuan[$('#item').val()]}`);
+        }
         
     }
 });
@@ -230,6 +232,8 @@ $('#tambah').click(() => {
 
         stok[$('#item').val()] -= jumlah
 
+        $('#jumlah').val('');
+
     } else {
         toastr.error('Silahkan mengisi form terlebih dahulu', 'Form kosong!');
     }
@@ -238,5 +242,16 @@ $('#tambah').click(() => {
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
+
+$('#clear').click(() => {
+    $('#pembeli').val('');
+    $('#item').val('');
+    $('#jumlah').val('');
+    $('#stock').text('');
+    $('#harga').text('');
+    $('#subtotal').text('');
+
+    $('#table').DataTable().clear().draw();
+})
 
 </script>
