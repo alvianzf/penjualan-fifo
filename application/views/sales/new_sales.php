@@ -146,20 +146,28 @@ var harga = [];
 var stok = [];
 var satuan = [];
 var sum = [];
-sisa = [];
+var sisa = [];
 
 $('#item').change(() => {
-    $.get("<?= api('transaction/information/') ?>" + $('#item').val()).then((res) => {
-        $('#stock').attr('class', 'text-success').text(`${res.result.stok} ${res.result.satuan}`);
-        $('#harga').text(`Rp. ${res.result.harga},00`);
+    console.log(sisa[$('#item').val()])
+    if (!sisa[$('#item').val()])
+    {
+        $.get("<?= api('transaction/information/') ?>" + $('#item').val()).then((res) => {
+            $('#stock').attr('class', 'text-success').text(`${res.result.stok} ${res.result.satuan}`);
+            $('#harga').text(`Rp. ${res.result.harga},00`);
 
-        harga[$('#item').val()] = res.result.harga;
-        stok[$('#item').val()] = res.result.stok;
-        satuan[$('#item').val()] = res.result.satuan
+            harga[$('#item').val()] = res.result.harga;
+            stok[$('#item').val()] = res.result.stok;
+            satuan[$('#item').val()] = res.result.satuan
 
-    }).catch(err => {
-        $('#stock').attr('class', 'text-danger').text('0 Buah');
-    })
+        }).catch(err => {
+            $('#stock').attr('class', 'text-danger').text('0 Buah');
+        })
+    } else {
+        $('#harga').text(harga[$('#item').val()]);
+        $('#stock').attr('class', 'text-success').text(`${stok[$('#item').val()]} ${satuan[$('#item').val()]}`)
+        
+    }
 });
 
 
@@ -191,6 +199,11 @@ var row = (function (){
     }
 })();
 
+$('#search').on('keyup', () => {
+    $('#table').DataTable()
+        .search($('#search').val()).draw();
+});
+
 var counter = 1;
 $('#tambah').click(() => {
     if ($('#jumlah').val()) {
@@ -206,6 +219,8 @@ $('#tambah').click(() => {
         ]).draw(false);
 
         counter++;
+
+        stok[$('#item').val()] -= jumlah
 
     } else {
         toastr.error('Silahkan mengisi form terlebih dahulu', 'Form kosong!');
