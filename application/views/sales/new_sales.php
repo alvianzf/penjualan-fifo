@@ -42,6 +42,12 @@
                     <p id="subtotal"></p>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <button id="tambah" class="btn btn-info">+ Tambah</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -55,7 +61,7 @@
             <h4>Daftar pembelian</h4>
 
             <div class="col-xs-12 col-md-12">
-                <table id="table" class="table table-striped table-condensed table-hover table-collapse" width="100%">
+                <table id="table" class="table-striped table-condensed table-hover table-collapse" width="100%">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -93,6 +99,19 @@
 
 </div>
 
+<div class="hidden">
+    <div id="table-row">
+        <tr>
+            <td>{{ID}}</td>
+            <td id="item-{{ID}}">-</td>
+            <td id="jumlah-{{ID}}">-</td>
+            <td id="harga-{ID}}">-</td>
+            <td id="subtotal-{{ID}}">-</td>
+            <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+        </tr>
+    </div>
+</div>
+
 <script>
 
 var harga = 0;
@@ -113,6 +132,7 @@ $('#item').change(() => {
     })
 });
 
+
 $('#jumlah').on('keydown', () => {
     if (harga) {
         jumlah = $('#jumlah').val();
@@ -131,6 +151,25 @@ $('#jumlah').on('keydown', () => {
         }
     }
 });
+
+var row = (function (){
+    var itemIndex = 1;
+    var itemTemplate = $('#table-row').html();
+
+    return () => {
+        return itemTemplate.replace(/{{ID}}/g, itemIndex++);
+    }
+})();
+
+var t = $('#table').DataTable();
+
+var k = 1;
+$('#tambah').click(() => {
+    if ($('#jumlah').val()) {
+    } else {
+        toastr.error('Silahkan mengisi form terlebih dahulu', 'Form kosong!');
+    }
+})
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");

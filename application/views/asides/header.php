@@ -24,6 +24,12 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
+  <style>
+  .hidden {
+      display: none;
+    }
+  </style>
+
 
   <!-- Custom styles for this template-->
   <link href="<?= assets_url() ?>css/sb-admin-2.min.css" rel="stylesheet">
