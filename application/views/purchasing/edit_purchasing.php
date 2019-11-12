@@ -39,7 +39,7 @@
                         <label for="jumlah_barang">
                             Jumlah Barang
                         </label>
-                        <input id="jumlah_barang" class="form-control form-control-user" placeholder="Jumlah"/>
+                        <input id="jumlah_barang" class="form-control form-control-user" placeholder="Jumlah" value="<?= $data->jumlah ?>"/>
                     </div>
                     <div class="col-md-2 card-body">
                         <label for="satuan">
@@ -60,7 +60,7 @@
                         <label for="harga">
                             Harga
                         </label>
-                        <input id="harga" class="form-control form-control-user" placeholder="Harga" />
+                        <input id="harga" class="form-control form-control-user" placeholder="Harga" value="<?= $data->harga ?>"/>
                     </div>
                 </div>
                 <div class="row">
@@ -82,19 +82,20 @@
 </div>
 <script>
 
-$('#tipe_barang').val("<?=$data->tipe_barang?>")
+$('#tipe_barang').val("<?=  $data->tipe_barang ?>")
+$('#satuan').val("<?=  $data->satuan ?>")
+console.log("<?= $data->tipe_barang ?>")
 
 $('#submit').click(() => {
-    kode_produksi   = $('#kode_barang').val();
     nama_barang     = $('#nama_barang').val();
     tipe_barang     = $('#tipe_barang').val();
     satuan          = $('#satuan').val();
     jumlah          = $('#jumlah_barang').val();
     created_at      = $('#tanggal').val();
     harga           = $('#harga').val();
-    data = {kode_produksi, nama_barang, tipe_barang, jumlah, harga, satuan, created_at}
+    data = {nama_barang, tipe_barang, jumlah, harga, satuan, created_at}
 
-    $.post("<?= api('production/edit/') . $id ?>", data).then(res => {
+    $.post("<?= api('purchasing/edit/') . $id ?>", data).then(res => {
         toastr.success('Berhasil mengubah data item '+ res.result.kode_produksi, res.result.nama_barang);
         window.location.reload(true)
     })
@@ -104,7 +105,7 @@ $('#submit').click(() => {
 })
 
 $('#list').click(function(){
-    window.location.href = "<?= base_url('production/inventaris') ?>";
+    window.location.href = "<?= base_url('purchasing/inventaris') ?>";
 })
 
 $('#reset').click(() => {
@@ -113,7 +114,8 @@ $('#reset').click(() => {
     $('#nama_barang').val('')    
     $('#tipe_barang').val('')    
     $('#jumlah_barang').val('')  
-    $('tanggal').val('') 
+    $('#tanggal').val('');
+    $('#harga').val(''); 
 
     toastr.info('Data berhasil diset ulang', 'reset data');
 })

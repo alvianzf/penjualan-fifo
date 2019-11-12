@@ -36,7 +36,7 @@ class Purchasing extends MY_Controller
       redirect('/', 'refresh');
     }
 
-    $this->load->model(['items_model', 'transactions_model']);
+    $this->load->model(['stock_model', 'transactions_model']);
 
   }
 
@@ -53,7 +53,7 @@ class Purchasing extends MY_Controller
   public function edit_purchasing ($id = null)
   {
     $this->data['id'] = $id;
-    $this->data['data'] = $this->items_model->get($id);
+    $this->data['data'] = $this->stock_model->get($id);
   }
 
   public function inventaris ()
