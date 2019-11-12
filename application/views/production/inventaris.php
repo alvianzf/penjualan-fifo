@@ -113,7 +113,7 @@ $(document).ready(function() {
                 {
                     data: 'id',
                     render: function(id) {
-                        return `<a href="<?= base_url('production/edit/') ?>${id}"><i class="fa fa-edit"></i></a>&nbsp;  <a onclick="deleteData(${id})" href="#"><i class="fa fa-trash"></i></a>`
+                        return `<a class="text-success" href="<?= base_url('production/edit/') ?>${id}"><i class="fa fa-edit"></i></a>&nbsp;  <a class="text-danger" onclick="deleteData(${id})" href="#"><i class="fa fa-trash"></i></a>`
                     }
                 }
 
