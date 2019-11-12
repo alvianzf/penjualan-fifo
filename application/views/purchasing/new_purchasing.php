@@ -36,7 +36,7 @@
                         <input id="jumlah_barang" class="form-control form-control-user" placeholder="Jumlah"/>
                     </div>
                     <div class="col-md-2 card-body">
-                        <label for="tipe_barang">
+                        <label for="satuan">
                             Satuan
                         </label>
                         <select id="satuan" class="form-control form-control-user">
@@ -116,7 +116,9 @@ $('#reset').click(() => {
     $('#nama_barang').val('')    
     $('#tipe_barang').val('')    
     $('#jumlah_barang').val('')  
-    $('tanggal').val('') 
+    $('#satuan').val('');
+    $('#harga').val('');
+    $('#tanggal').val('') 
 
     toastr.info('Data berhasil diset ulang', 'reset data');
 })
