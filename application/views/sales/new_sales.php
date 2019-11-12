@@ -58,7 +58,16 @@
     <div class="card shadow border-left-primary col-md-12">
 
         <div class="card-body">
-            <h4>Daftar pembelian</h4>
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <h4>Daftar pembelian</h4>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <input id="search" placeholder="cari pembelian" class="form-control">
+            </div>
+        </div>
+
+    <hr />
 
             <div class="col-xs-12 col-md-12">
                 <table id="table" class="table-striped table-condensed table-hover table-collapse" width="100%">
@@ -114,18 +123,39 @@
 
 <script>
 
-var harga = 0;
-var stok = 0;
-var satuan = '';
+$(document).ready(() => {
+    var t = $('#table').DataTable({
+        pageLength: 10,
+        lengthChange: false,
+        // searching: false,
+        lengthMenu: [[25,50,100,200], [25,50,100,200]],
+        language: {
+            paginate: {
+                next: '<i class="fas fa-caret-right"></i>',
+                previous: '<i class="fas fa-caret-left"></i>'
+            },
+            info: 'Menunjukkan _START_ sampai _END_ dari _TOTAL_ data'
+        },
+        initComplete: function(settings) {
+            $('.dataTables_filter').hide()
+        }
+    }).draw();
+});
+
+var harga = [];
+var stok = [];
+var satuan = [];
+var sum = [];
+sisa = [];
 
 $('#item').change(() => {
     $.get("<?= api('transaction/information/') ?>" + $('#item').val()).then((res) => {
         $('#stock').attr('class', 'text-success').text(`${res.result.stok} ${res.result.satuan}`);
         $('#harga').text(`Rp. ${res.result.harga},00`);
 
-        harga = res.result.harga;
-        stok = res.result.stok;
-        satuan = res.result.satuan
+        harga[$('#item').val()] = res.result.harga;
+        stok[$('#item').val()] = res.result.stok;
+        satuan[$('#item').val()] = res.result.satuan
 
     }).catch(err => {
         $('#stock').attr('class', 'text-danger').text('0 Buah');
@@ -133,17 +163,17 @@ $('#item').change(() => {
 });
 
 
-$('#jumlah').on('keydown', () => {
+$('#jumlah').on('keyup', () => {
     if (harga) {
         jumlah = $('#jumlah').val();
 
-        sum = jumlah * harga;
+        sum[$('#item').val()] = jumlah * harga[$('#item').val()];
 
-        $('#subtotal').text(`Rp. ${numberWithCommas(sum)},00`);
+        $('#subtotal').text(`Rp. ${numberWithCommas(sum[$('#item').val()])},00`);
 
-        sisa = stok - jumlah;
-        if (sisa >= 0) {
-            $('#stock').attr('class', 'text-info').text(`${sisa} ${satuan}`);
+        sisa[$('#item').val()] = stok[$('#item').val()] - jumlah;
+        if (sisa[$('#item').val()] >= 0) {
+            $('#stock').attr('class', 'text-info').text(`${sisa[$('#item').val()]} ${satuan[$('#item').val()]}`);
         } else {
             $('#stock').attr('class', 'text-danger').text('Stok Kosong!');
 
@@ -161,11 +191,22 @@ var row = (function (){
     }
 })();
 
-var t = $('#table').DataTable();
-
-var k = 1;
+var counter = 1;
 $('#tambah').click(() => {
     if ($('#jumlah').val()) {
+        item = $('#item').val(),
+        jumlah = $('#jumlah').val();
+        $('#table').DataTable().row.add([
+            counter,
+            item,
+            `${numberWithCommas(jumlah)} ${satuan[$('#item').val()]}`,
+            `Rp. ${harga[$('#item').val()]},00`,
+            `Rp. ${numberWithCommas(sum[$('#item').val()])},00`,
+            `<i class="fa fa-trash" onClick="$('#table').DataTable().row($(this).parents('tr')).remove().draw();"></i>`
+        ]).draw(false);
+
+        counter++;
+
     } else {
         toastr.error('Silahkan mengisi form terlebih dahulu', 'Form kosong!');
     }
