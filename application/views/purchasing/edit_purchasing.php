@@ -112,10 +112,11 @@ $('#reset').click(() => {
 
     $('#kode_barang').val('')    
     $('#nama_barang').val('')    
-    $('#tipe_barang').val('')    
+    $('#tipe_barang').val('Pilih')    
     $('#jumlah_barang').val('')  
     $('#tanggal').val('');
     $('#harga').val(''); 
+    $('#satuan').val('Pilih');
 
     toastr.info('Data berhasil diset ulang', 'reset data');
 })
