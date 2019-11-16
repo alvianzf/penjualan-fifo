@@ -98,9 +98,10 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="">Pengguna Baru</a>
-            <a class="collapse-item" href="">Daftar Pengguna</a>
-            <a class="collapse-item" href="">Laporan</a>
+            <a class="collapse-item" href="production-settings">Atur Detil Produksi</a>
+            <a class="collapse-item" href="register">Pengguna Baru</a>
+            <a class="collapse-item" href="user-list">Daftar Pengguna</a>
+            <a class="collapse-item" href="reports">Laporan</a>
           </div>
         </div>
       </li>

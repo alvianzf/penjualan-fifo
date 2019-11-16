@@ -29,11 +29,6 @@ class Migration_create_items extends CI_Migration
                     'constraint'    => 20,
                     'null'          => false
                 ],
-                'nama_barang' => [
-                    'type'          => 'VARCHAR',
-                    'constraint'    => 200,
-                    'null'          => false
-                ],
                 'jumlah' => [
                     'type'          => 'INT',
                     'constraint'    => 11,
@@ -72,11 +67,6 @@ class Migration_create_items extends CI_Migration
                 'tipe_barang' => [
                     'type'          => 'VARCHAR',
                     'constraint'    => 20,
-                    'null'          => false
-                ],
-                'nama_barang' => [
-                    'type'          => 'VARCHAR',
-                    'constraint'    => 200,
                     'null'          => false
                 ],
                 'jumlah' => [

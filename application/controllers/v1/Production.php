@@ -31,7 +31,6 @@ class Production extends REST_Controller
     {
         $kode_produksi = $this->post('kode_produksi');
         $tipe_barang = $this->post('tipe_barang');
-        $nama_barang = $this->post('nama_barang');
         $jumlah      = $this->post('jumlah');
         $satuan      = $this->post('satuan');
         $harga       = $this->post('harga');
@@ -40,7 +39,6 @@ class Production extends REST_Controller
         $items = [
             'kode_produksi' => $kode_produksi,
             'tipe_barang'   =>  $tipe_barang,
-            'nama_barang'   => $nama_barang,
             'jumlah'        => $jumlah,
             'satuan'        => $satuan,
             'harga'         => $harga,
@@ -72,7 +70,6 @@ class Production extends REST_Controller
     {
         $kode_produksi = $this->post('kode_produksi');
         $tipe_barang = $this->post('tipe_barang');
-        $nama_barang = $this->post('nama_barang');
         $jumlah      = $this->post('jumlah');
         $satuan      = $this->post('satuan');
         $harga       = $this->post('harga');
@@ -81,7 +78,6 @@ class Production extends REST_Controller
         $items = [
             'kode_produksi' => $kode_produksi,
             'tipe_barang'   =>  $tipe_barang,
-            'nama_barang'   => $nama_barang,
             'jumlah'        => $jumlah,
             'satuan'        => $satuan,
             'harga'         => $harga,

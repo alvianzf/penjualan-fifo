@@ -17,44 +17,33 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 card-body">
-                        <label for="nama_barang">
-                            Nama Item
-                        </label>
-                        <input id="nama_barang" class="form-control form-control-user" placeholder="Nama Item"/>
-                    </div>
-                    <div class="col-md-2 card-body">
+                    <div class="col-md-3 card-body">
                         <label for="tipe_barang">
                             Tipe Barang
                         </label>
                         <select id="tipe_barang" class="form-control form-control-user">
                             <option value="" disabled selected>Pilih</option>
-                            <option>Bata</option>
-                            <option>Lainnya</option>
+                            <option>Bata 7,5 cm</option>
+                            <option>Bata 10 cm</option>
                         </select>
                     </div>
-                    <div class="col-md-2 card-body">
+                    <div class="col-md-3 card-body">
                         <label for="jumlah_barang">
                             Jumlah Barang
                         </label>
                         <input id="jumlah_barang" class="form-control form-control-user" placeholder="Jumlah"/>
                     </div>
-                    <div class="col-md-2 card-body">
+                    <div class="col-md-3 card-body">
                         <label for="tipe_barang">
                             Satuan
                         </label>
                         <select id="satuan" class="form-control form-control-user">
                             <option value="" disabled selected>Pilih</option> 
                             <option>Buah</option>
-                            <option>Kotak</option>
-                            <option>Lori</option>
-                            <option>Kilogram</option>
-                            <option>Bak</option>
-                            <option>Sak</option>
-                            <option>Lainnya</option>
+                            <option>Paket</option>
                         </select>
                     </div>
-                    <div class="col-md-2 card-body">
+                    <div class="col-md-3 card-body">
                         <label for="harga">
                             Harga
                         </label>
@@ -85,28 +74,27 @@
 
 $('#submit').click(() => {
     kode_produksi   = $('#kode_barang').val();
-    nama_barang     = $('#nama_barang').val();
     tipe_barang     = $('#tipe_barang').val();
-    jumlah          = $('#jumlah_barang').val();
+    jumlah          = $('#satuan').val() == 'Paket' ? $('#jumlah_barang').val() * 100 : $('#jumlah_barang').val();
     satuan          = $('#satuan').val();
     harga           = $('#harga').val();
     created_at      = $('#tanggal').val();
 
 
-    data = {kode_produksi, nama_barang, tipe_barang, jumlah, satuan, harga, created_at}
+    data = {kode_produksi, tipe_barang, jumlah, satuan, harga, created_at}
     
-    if (validate(kode_produksi, "Kode Produksi") && validate(nama_barang, "Nama Barang"), validate(tipe_barang, "Tipe Barang"), validate(jumlah, "Jumlah Barang"), validate(created_at, "Tanggal Produksi"), validate(satuan, "Satuan"), validate(harga, "Harga")) {
+    if (validate(kode_produksi, "Kode Produksi") && validate(tipe_barang, "Tipe Barang") && validate(jumlah, "Jumlah Barang") && validate(created_at, "Tanggal Produksi") && validate(satuan, "Satuan") && validate(harga, "Harga")) {
         $.post("<?= api('production/insert') ?>", data).then(res => {
-            toastr.success('Berhasil menambahkan item '+ res.result.kode_produksi, res.result.nama_barang);
+            toastr.success('Berhasil menambahkan item '+ res.result.kode_produksi, res.result_tipe_barang);
 
             $('#kode_barang').val('')    
-            $('#nama_barang').val('')    
             $('#tipe_barang').val('')    
             $('#jumlah_barang').val('')  
             $('#tanggal').val('')         
         })
         .catch(err => {
             console.log(err.status)
+            toastr.err('Terjadi kesalahan di sistem');
         })
     }
 })
@@ -118,7 +106,6 @@ $('#list').click(function(){
 $('#reset').click(() => {
 
     $('#kode_barang').val('')    
-    $('#nama_barang').val('')    
     $('#tipe_barang').val('')    
     $('#jumlah_barang').val('')  
     $('tanggal').val('') 
@@ -134,5 +121,7 @@ function validate(field, fieldName) {
     toastr.error(`Harap mengisi field yang telah ditentukan!`, `${fieldName} kosong`)
     return false
 }
+
+$('#kode_barang').val(Date.now()).attr('disabled', true);
 
 </script>
