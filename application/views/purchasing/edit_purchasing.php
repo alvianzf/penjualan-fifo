@@ -19,9 +19,9 @@
                 <div class="row">
                     <div class="col-md-4 card-body">
                         <label for="nama_barang">
-                            Nama Item
+                            Merek
                         </label>
-                        <input id="nama_barang" class="form-control form-control-user" placeholder="nama item" value="<?= @$data->nama_barang ?>"/>
+                        <input id="nama_barang" class="form-control form-control-user" placeholder="Merek item" value="<?= @$data->nama_barang ?>"/>
                     </div>
                     <div class="col-md-2 card-body">
                         <label for="tipe_barang">

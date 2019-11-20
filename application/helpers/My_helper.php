@@ -47,7 +47,7 @@ if (!function_exists('api')) {
   function api($string = null)
   {
     // 
-    return base_url() . 'v1/' . $string;
+    return base_url() . 'v1/' . $string . '/';
   }
 }
 

@@ -15,7 +15,8 @@
             <table id="table" class="table table-striped table-collapse table-condensed col-md-12" width="100%">
                 <thead>
                     <tr>
-                        <td>Nama Barang</td>
+                        <td>Kode Pembelian</td>
+                        <td>Merek</td>
                         <td>Tipe Barang</td>
                         <td>Jumlah</td>
                         <td>Harga</td>
@@ -72,6 +73,11 @@ $(document).ready(function() {
                 }],
                 columns: [
                 {
+                    data: 'kode_barang',
+                    searchable: true,
+                    orderable: true
+                },
+                {
                     data: 'nama_barang',
                     searchable: true,
                     orderable: true
@@ -94,7 +100,7 @@ $(document).ready(function() {
                     searchable: true,
                     orderable: true,
                     render: harga => {
-                        return `Rp. ${numberWithCommas(harga)}`
+                        return `Rp. ${numberWithCommas(harga)},00`
                     },
                 },
                 {
@@ -102,7 +108,7 @@ $(document).ready(function() {
                     searchable: true,
                     orderable: true,
                     render: (data) => {
-                        return `Rp. ${numberWithCommas(data.jumlah * data.harga)}`
+                        return `Rp. ${numberWithCommas(data.jumlah * data.harga)},00`
                     }
                 },
                 {
@@ -138,10 +144,6 @@ function deleteData(id){
     }).catch(err => {
         console.log(err)
     })
-}
-
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
 $('#cari').on('keyup', function() {

@@ -64,6 +64,16 @@ class Migration_create_items extends CI_Migration
                     'unsigned'      => true,
                     'auto_increment'=> true
                 ],
+                'kode_barang' => [
+                    'type'          => 'INT',
+                    'constraint'    => 11,
+                    'null'          => false
+                ],
+                'nama_barang' => [
+                    'type'          => 'VARCHAR',
+                    'constraint'    => 20,
+                    'null'          => false
+                ],
                 'tipe_barang' => [
                     'type'          => 'VARCHAR',
                     'constraint'    => 20,

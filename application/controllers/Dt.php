@@ -10,7 +10,7 @@ class Dt extends CI_Controller
 
     public function item()
     {
-        $this->datatables->select('id, kode_produksi, tipe_barang, nama_barang, jumlah, satuan, harga, created_at')->from('production')
+        $this->datatables->select('id, kode_produksi, tipe_barang, jumlah, satuan, harga, created_at')->from('production')
                         ->add_column('tanggal', '$1', 'human_time(created_at)');
 
         $this->output
@@ -22,7 +22,7 @@ class Dt extends CI_Controller
 
     public function purchase()
     {
-        $this->datatables->select('id, tipe_barang, nama_barang, jumlah, satuan, harga, created_at')->from('purchasing')
+        $this->datatables->select('id, kode_barang, tipe_barang, nama_barang, jumlah, satuan, harga, created_at')->from('purchasing')
                         ->add_column('tanggal', '$1', 'human_time(created_at)');
 
         $this->output

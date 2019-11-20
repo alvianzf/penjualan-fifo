@@ -13,9 +13,9 @@
                 <div class="row">
                     <div class="col-md-4 card-body">
                         <label for="nama_barang">
-                            Nama Item
+                            Merek
                         </label>
-                        <input id="nama_barang" class="form-control form-control-user" placeholder="Nama Item"/>
+                        <input id="nama_barang" class="form-control form-control-user" placeholder="Merek Item"/>
                     </div>
                     <div class="col-md-2 card-body">
                         <label for="tipe_barang">
@@ -111,8 +111,7 @@ $('#list').click(function(){
 })
 
 $('#reset').click(() => {
-
-    $('#kode_barang').val('')    
+ 
     $('#nama_barang').val('')    
     $('#tipe_barang').val('')    
     $('#jumlah_barang').val('')  

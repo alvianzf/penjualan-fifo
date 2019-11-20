@@ -16,7 +16,6 @@
                 <thead>
                     <tr>
                         <td>Kode Produksi</td>
-                        <td>Nama Barang</td>
                         <td>Tipe Barang</td>
                         <td>Jumlah</td>
                         <td>Harga</td>
@@ -25,10 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>2</td>
-                    </tr>
+                
                 </tbody>
             </table>
 
@@ -80,11 +76,6 @@ $(document).ready(function() {
                     orderable: true
                 },
                 {
-                    data: 'nama_barang',
-                    searchable: true,
-                    orderable: true
-                },
-                {
                     data: 'tipe_barang',
                     searchable: true,
                     orderable: true
@@ -94,7 +85,7 @@ $(document).ready(function() {
                     searchable: true,
                     orderable: true,
                     render: (data) => {
-                        return `${data.jumlah} ${data.satuan}`
+                        return `${numberWithCommas(data.jumlah)} ${data.satuan}`
                     }
                 },
                 {
@@ -102,7 +93,7 @@ $(document).ready(function() {
                     searchable: true,
                     orderable: true,
                     render: harga => {
-                        return `Rp. ${harga}`
+                        return `Rp. ${numberWithCommas(harga)},00`
                     },
                 },
                 {
