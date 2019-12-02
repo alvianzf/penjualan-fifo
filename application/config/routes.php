@@ -53,17 +53,22 @@ $route['default_controller'] = 'auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+// Production
 $route['production/new'] = 'production/new_production';
 $route['production/edit/(:any)'] = 'production/edit_production/$1';
 $route['production/inventaris'] = 'production/inventaris';
 
+// Purchase
 $route['purchasing/new-purchase'] = 'purchasing/new_purchasing';
 $route['purchasing/edit-purchase/(:any)'] = 'purchasing/edit_purchasing/$1';
 $route['purchasing/stock'] = 'purchasing/inventaris';
 
+// Sales
 $route['sales/new-sales'] = 'sales/new_sales';
 $route['sales/transaksi'] = 'sales/transactions';
 
+// Admin
+$route['user-list']     = 'user/index';
 
 // API
 $route['v1/production']         = 'v1/production';

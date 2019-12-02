@@ -31,4 +31,18 @@ class Dt extends CI_Controller
             ->set_output($this->datatables->generate('json', 'UTF-8', true));
         
     }
+
+    public function user()
+    {
+        $this->datatables->select('A.id, A.username, A.role, B.name, B.position, B.contact_number, A.created_at,')
+                            ->from('users A')
+                            ->join('user_details B', 'B.user_id = A.id')
+                            ->edit_column('created_at', '$1', 'human_time(created_at)');
+
+        $this->output
+                            ->set_content_type('application/json')
+                            ->set_status_header(200)
+                            ->set_output($this->datatables->generate('json', 'UTF-8', true));
+
+    }
 }

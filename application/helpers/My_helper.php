@@ -83,6 +83,20 @@ if (!function_exists('nav')) {
     // 
     return in_array($nav, $array) ? 'active' : null;
   }
+
+
+  if (!function_exists('api_success')) {
+    function api_success($result) {
+      return ['success' => true, 'result' => $result, 'error' => null];
+    }
+  }
+
+
+  if (!function_exists('api_error')) {
+    function api_success($result) {
+      return ['success' => true, 'result' => [], 'error' => "Internal Server error!"];
+    }
+  }
 }
 // ------------------------------------------------------------------------
 
