@@ -38,29 +38,19 @@ class Sales extends MY_Controller
       redirect('/', 'refresh');
     }
 
-    $this->load->model([
-      'user_model',
-      'user_data_model',
-      'items_model',
-      'buyer_model',
-      'transactions_model'
-    ]);
+    $this->load->model(['user_model', 'user_data_model', 'items_model', 'buyer_model', 'transactions_model']);
 
   }
 
   public function index()
   {
-    // 
+
   }
 
   public function new_sales()
   {
-    // 
+
   }
 
 
 }
-
-
-/* End of file Sales.php */
-/* Location: ./application/controllers/Sales.php */

@@ -2,22 +2,6 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 // Don't forget include/define REST_Controller path
 
-/**
- *
- * Controller User
- *
- * This controller for ...
- *
- * @package   CodeIgniter
- * @category  Controller MY
- * @author    Setiawan Jodi <jodisetiawan@fisip-untirta.ac.id>
- * @author    Raul Guerrero <r.g.c@me.com>
- * @link      https://github.com/setdjod/myci-extension/
- * @param     ...
- * @return    ...
- *
- */
-
 class User extends MY_Controller
 {
     
@@ -38,13 +22,7 @@ class User extends MY_Controller
       redirect('/', 'refresh');
     }
 
-    $this->load->model([
-      'user_model',
-      'user_data_model',
-      'items_model',
-      'buyer_model',
-      'transactions_model'
-    ]);
+    $this->load->model(['user_model', 'user_data_model']);
 
   }
 
@@ -64,7 +42,3 @@ class User extends MY_Controller
   }
 
 }
-
-
-/* End of file User.php */
-/* Location: ./application/controllers/User.php */

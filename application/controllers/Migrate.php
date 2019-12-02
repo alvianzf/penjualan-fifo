@@ -1,14 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-// Don't forget include/define REST_Controller path
-
-/**
- *
- * Controller Migrate
- *
- * This controller for migrate the database
- *
- */
 
 class Migrate extends MY_Controller
 {
@@ -23,7 +14,6 @@ class Migrate extends MY_Controller
   {
     //
     if($version = $this->migration->current()) {
-      // check('Migrated successfully to: ' . $version);
       $this->data['version'] = $version;
     } else {
       show_error($this->migration->error_string());
@@ -42,7 +32,3 @@ class Migrate extends MY_Controller
   }
 
 }
-
-
-/* End of file Migrate.php */
-/* Location: ./application/controllers/Migrate.php */

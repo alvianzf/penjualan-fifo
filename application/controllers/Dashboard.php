@@ -1,22 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-// Don't forget include/define REST_Controller path
-
-/**
- *
- * Controller Dashboard
- *
- * This controller for ...
- *
- * @package   CodeIgniter
- * @category  Controller MY
- * @author    Setiawan Jodi <jodisetiawan@fisip-untirta.ac.id>
- * @author    Raul Guerrero <r.g.c@me.com>
- * @link      https://github.com/setdjod/myci-extension/
- * @param     ...
- * @return    ...
- *
- */
 
 class Dashboard extends MY_Controller
 {
@@ -50,7 +33,3 @@ class Dashboard extends MY_Controller
   }
   
 }
-
-
-/* End of file Dashboard.php */
-/* Location: ./application/controllers/Dashboard.php */
