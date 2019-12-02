@@ -4,8 +4,11 @@
             <h4>Daftar Pengguna Aktif</h4>
 
             <div class="row">
-                <div class="col-x-12 col-md-8">
-                
+                <div class="col-xs-12 col-md-5">
+
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <a id="register" href="<?= base_url('admin/register') ?>" class="btn btn-primary btn-block"><span class="fa fa-user"></span> Daftar Baru</a>
                 </div>
                 <div class="col-xs-12 col-md-4">
                     <input id="cari" placeholder="Cari di tabel..." class="form-control" />
@@ -88,7 +91,7 @@ $(document).ready(() => {
                 {
                     data: 'id',
                     render: function(id) {
-                        return `<a class="text-success" href="<?= base_url('purchasing/edit-purchase/') ?>${id}"><i class="fa fa-edit"></i></a>&nbsp;  <a class="text-danger" onclick="deleteData(${id})" href="#"><i class="fa fa-trash"></i></a>`
+                        return `<a class="text-success" href="<?= base_url('admin/form/') ?>${id}"><i class="fa fa-edit"></i></a>&nbsp;  <a class="text-danger" onclick="deleteData(${id})" href="#"><i class="fa fa-trash"></i></a>`
                     }
                 }
 
