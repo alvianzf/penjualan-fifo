@@ -91,17 +91,17 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item <?= nav('admin', $this->uri->segments) ?>">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-user"></i>
           <span>Admin</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="production-settings">Atur Detil Produksi</a>
-            <a class="collapse-item" href="register">Pengguna Baru</a>
-            <a class="collapse-item" href="user-list">Daftar Pengguna</a>
-            <a class="collapse-item" href="reports">Laporan</a>
+            <a class="collapse-item  <?= nav('production-settings', $this->uri->segments) ?>" href="<?= base_url ('admin/production-settings') ?>">Atur Detil Produksi</a>
+            <a class="collapse-item  <?= nav('register', $this->uri->segments) ?>" href="<?= base_url ('admin/register') ?>">Pengguna Baru</a>
+            <a class="collapse-item  <?= nav('user-list', $this->uri->segments) ?>" href="<?= base_url ('admin/user-list') ?>">Daftar Pengguna</a>
+            <a class="collapse-item  <?= nav('reports', $this->uri->segments) ?>" href="<?= base_url ('admin/reports') ?>">Laporan</a>
           </div>
         </div>
       </li>

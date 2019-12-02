@@ -1,20 +1,17 @@
 <div class="row">
-    <div class="car shadow border-left-primary col-md-12">
+    <div class="card shadow border-left-primary col-md-12">
         <div class="card-body">
             <h4>Daftar Pengguna Aktif</h4>
 
-            <div class="table-responsive">
-                <div class="row">
-                    <div class="col-x-12 col-md-8">
-                    
-                    </div>
-                    <div class="col-xs-12 col-md-4">
-                        <input id="cari" placeholder="Cari di tabel..." class="form-control" />
-                    </div>
-                    
+            <div class="row">
+                <div class="col-x-12 col-md-8">
+                
                 </div>
+                <div class="col-xs-12 col-md-4">
+                    <input id="cari" placeholder="Cari di tabel..." class="form-control" />
+                </div>
+                
             </div>
-
 
             <table id="table" class="table table-condensed table-stripe table-hover table-collapse col-md-12" width="100%">
                 <thead>
@@ -54,9 +51,9 @@ $(document).ready(() => {
                 ajax: {
                     url: "<?= site_url('dt/user')?>",
                     type: "POST",
-                    // data: {
-                    //     <?= $this->security->get_csrf_token_name() ?>: <?= json_encode($this->security->get_csrf_hash()) ?>
-                    // }
+                    data: {
+                        <?= $this->security->get_csrf_token_name() ?>: <?= json_encode($this->security->get_csrf_hash()) ?>
+                    }
                 },
                 columnDefs: [{
                     targets: -1,

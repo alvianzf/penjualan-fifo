@@ -49,28 +49,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'auth';
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['default_controller']                        = 'auth';
+$route['404_override']                              = '';
+$route['translate_uri_dashes']                      = FALSE;
 
 // Production
-$route['production/new'] = 'production/new_production';
-$route['production/edit/(:any)'] = 'production/edit_production/$1';
-$route['production/inventaris'] = 'production/inventaris';
+$route['production/new']                            = 'production/new_production';
+$route['production/edit/(:any)']                    = 'production/edit_production/$1';
+$route['production/inventaris']                     = 'production/inventaris';
 
 // Purchase
-$route['purchasing/new-purchase'] = 'purchasing/new_purchasing';
-$route['purchasing/edit-purchase/(:any)'] = 'purchasing/edit_purchasing/$1';
-$route['purchasing/stock'] = 'purchasing/inventaris';
+$route['purchasing/new-purchase']                   = 'purchasing/new_purchasing';
+$route['purchasing/edit-purchase/(:any)']           = 'purchasing/edit_purchasing/$1';
+$route['purchasing/stock']                          = 'purchasing/inventaris';
 
 // Sales
-$route['sales/new-sales'] = 'sales/new_sales';
-$route['sales/transaksi'] = 'sales/transactions';
+$route['sales/new-sales']                           = 'sales/new_sales';
+$route['sales/transaksi']                           = 'sales/transactions';
 
 // Admin
-$route['user-list']     = 'user/index';
+$route['admin/user-list']                           = 'user/index';
+$route['admin/register']                            = 'user/register';
+$route['admin/form']                                = 'user/form';
 
 // API
-$route['v1/production']         = 'v1/production';
-$route['v1/production/insert']  = 'v1/production/insert';
-$route['v1/auth/login']         = 'v1/auth/login';
+$route['v1/production']                             = 'v1/production';
+$route['v1/production/insert']                      = 'v1/production/insert';
+$route['v1/auth/login']                             = 'v1/auth/login';

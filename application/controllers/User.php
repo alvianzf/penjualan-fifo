@@ -50,7 +50,17 @@ class User extends MY_Controller
 
   public function index()
   {
-    // 
+
+  }
+
+  public function register()
+  {
+
+  }
+
+  public function form($id)
+  {
+    $this->data['form_data'] =  $this->user_model->with('user_data')->get($id);
   }
 
 }
