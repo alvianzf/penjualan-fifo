@@ -2,8 +2,12 @@
     <div class="card shadow border-left-primary col-md-12">
         <div class="card-body">
             <div class="row">
-                <div class="col-xs-12 col-md-8">
-                    <h4>Pengguna Baru</h4>
+                <div class="col-xs-12 col-md-6">
+                    <h4>Pengguna Baru 
+                        <span id="user-label" class="text-primary" style="text-align: right;"></span>
+                    </h4>
+                </div>
+                <div class="col-x-12 col-md-6">
                 </div>
             </div>
             
@@ -19,7 +23,7 @@
                 <div class="col-xs-12 col-md-4">
                     <label for="role">Role<sup class="text-danger">*</sup></label>
                     <select id="role" class="form-control">
-                        <option value="" disabled default>Select Role</option>
+                        <option value="" disabled selected>Select Role</option>
                         <option value="admin">Admin</option>
                         <option value="user">User</option>
                     </select>
@@ -29,7 +33,7 @@
             <hr />
             
             <div class="row">
-                <div class="col-xs-12 col-md-12">
+                <div class="col-xs-12 col-md-6">
                     <h5>Biodata Pengguna</h5>
                 </div>
             </div>
@@ -44,3 +48,11 @@
         </div>
     </div>
 </div>
+
+<script>
+
+$('#username').keyup(() => {
+    $('#user-label').text(': ' + $('#username').val())
+})
+
+</script>
