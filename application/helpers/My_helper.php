@@ -40,7 +40,7 @@ if (!function_exists('api_success')) {
 
 
 if (!function_exists('api_error')) {
-  function api_error($result) {
-    return ['success' => true, 'result' => [], 'error' => "Internal Server error!"];
+  function api_error($result = null) {
+    return ['success' => true, 'result' => [], 'error' => @$result ? $result : "Internal Server error!"];
   }
 }
