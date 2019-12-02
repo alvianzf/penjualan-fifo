@@ -68,7 +68,7 @@
                     <button class="btn btn-warning btn-block"><span class="fa fa-list"></span> Reset</button>
                 </div>
                 <div class="col-xs-6 col-md-2">
-                    <button class="btn btn-success btn-block"><span class="fa fa-user"></span> Daftar</button>
+                    <button id="submit" class="btn btn-success btn-block"><span class="fa fa-user"></span> Daftar</button>
                 </div>
             </div>
         </div>
@@ -83,6 +83,23 @@ $('#username').keyup(() => {
 
 $('#name').keyup(() => {
     $('#name-label').text(': ' + $('#name').val());
+});
+
+$('#submit').click(() => {
+    const username = $('#username').val();
+    const password = $('#password').val();
+    const role     = $('#role').val();
+
+    const name = $('#name').val();
+    const contact_number = $('#contact_number').val();
+    const position = $('#position').val();
+
+    $.post("<?= api('user/register') ?>", {username, password, role, name, contact_number, position})
+    .then(res => {
+        toastr.success('User telah berhasil ditambahkan', 'Success');
+        window.location.href = "<?= base_url('admin/user-list') ?>";
+    })
+    .catch(err => toastr.error('Terjadi kesalahan', 'Error'));
 });
 
 </script>

@@ -40,7 +40,7 @@ class User extends REST_Controller
             'role'      => $role,
             'created_at'=> time()
         ])) {
-            $data = ['name' => $name, 'contact_number' => $contact, 'position' => $position,  'created_at' => time()];
+            $data = ['user_id' => $this->db->insert_id(), 'name' => $name, 'contact_number' => $contact, 'position' => $position,  'created_at' => time()];
             if ($this->user_data_model->insert($data)) {
                 return $this->response(api_success($data), 200);
             }
@@ -60,14 +60,14 @@ class User extends REST_Controller
         $position = $this->post('position');
         $contact  = $this->post('contact_number');
 
-        if ($this->user_model->update([
+        if ($this->user_model->update($id, [
             'username'  => $username,
             'password'  => hash('sha1', $password),
             'role'      => $role,
             'created_at'=> time()
         ])) {
             $data = ['name' => $name, 'contact_number' => $contact, 'position' => $position,  'created_at' => time()];
-            if ($this->user_data_model->update($data)) {
+            if ($this->user_data_model->update($id, $data)) {
                 return $this->response(api_success($data), 200);
             }
 
