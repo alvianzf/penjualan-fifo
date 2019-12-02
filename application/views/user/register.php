@@ -62,7 +62,7 @@
 
             <div class="row">
                 <div class="col-xs-12 col-md-8">
-
+                    <!-- only blank space here -->
                 </div>
                 <div class="col-xs-6 col-md-2">
                     <button class="btn btn-warning btn-block"><span class="fa fa-list"></span> Reset</button>
