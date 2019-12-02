@@ -93,7 +93,7 @@ if (!function_exists('nav')) {
 
 
   if (!function_exists('api_error')) {
-    function api_success($result) {
+    function api_error($result) {
       return ['success' => true, 'result' => [], 'error' => "Internal Server error!"];
     }
   }

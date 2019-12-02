@@ -11,6 +11,20 @@ class User extends REST_Controller
 
     }
 
+    public function index_get()
+    {
+        $data = $this->user_model->with('user_data')->get_all();
+
+        return $data ? $this->response(api_success($data), 200) : $this->response(api_error(), 500);
+    }
+
+    public function single_get($id)
+    {
+        $data = $this->user_model->with('user_data')->get($id);
+
+        return $data ? $this->response(api_success($data), 200) : $this->response(api_error(), 500);
+    }
+
     public function register_post()
     {
         $username = $this->post('username');
