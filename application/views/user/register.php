@@ -65,7 +65,7 @@
                     <!-- only blank space here -->
                 </div>
                 <div class="col-xs-6 col-md-2">
-                    <button class="btn btn-warning btn-block"><span class="fa fa-list"></span> Reset</button>
+                    <button id="reset" class="btn btn-warning btn-block"><span class="fa fa-list"></span> Reset</button>
                 </div>
                 <div class="col-xs-6 col-md-2">
                     <button id="submit" class="btn btn-success btn-block"><span class="fa fa-user"></span> Daftar</button>
@@ -100,6 +100,20 @@ $('#submit').click(() => {
         window.location.href = "<?= base_url('admin/user-list') ?>";
     })
     .catch(err => toastr.error('Terjadi kesalahan', 'Error'));
+});
+
+$('#reset').click(() => {
+
+    $('#username').val('');
+    $('#password').val('');
+    $('#role').val('');
+
+    $('#name').val('');
+    $('#contact_number').val('');
+    $('#position').val('');
+
+    $('#user-label').text('');
+    $('#name-label').text('');
 });
 
 </script>

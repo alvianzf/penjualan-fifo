@@ -39,6 +39,7 @@ class User extends MY_Controller
   public function form($id)
   {
     $this->data['data'] =  $this->user_model->with('user_data')->get($id);
+    $this->data['id'] = $id;
   }
 
 }

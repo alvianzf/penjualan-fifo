@@ -66,8 +66,9 @@ class User extends REST_Controller
             'role'      => $role,
             'created_at'=> time()
         ])) {
+            $user_data = $this->user_data_model->get_by('user_id', $id)->id;
             $data = ['name' => $name, 'contact_number' => $contact, 'position' => $position,  'created_at' => time()];
-            if ($this->user_data_model->update($id, $data)) {
+            if ($this->user_data_model->update($user_data, $data)) {
                 return $this->response(api_success($data), 200);
             }
 

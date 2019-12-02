@@ -51,9 +51,9 @@
                     <label for="position">Posisi</label>
                     <select id="position" class="form-control">
                         <option value="" selected disabled>Pilih Posisi</option>
-                        <option value="Owner">Pemilik</option>
-                        <option value="Admin">Kasir</option>
-                        <option value="Operator">Operator</option>
+                        <option value="owner">Pemilik</option>
+                        <option value="admin">Kasir</option>
+                        <option value="operator">Operator</option>
                     </select>
                 </div>
             </div>
@@ -65,10 +65,10 @@
                     <!-- only blank space here -->
                 </div>
                 <div class="col-xs-6 col-md-2">
-                    <button class="btn btn-warning btn-block"><span class="fa fa-list"></span> Reset</button>
+                    <button id="reset" class="btn btn-warning btn-block"><span class="fa fa-list"></span> Reset</button>
                 </div>
                 <div class="col-xs-6 col-md-2">
-                    <button class="btn btn-success btn-block"><span class="fa fa-pencil-alt"></span> Ubah</button>
+                    <button id="submit" class="btn btn-success btn-block"><span class="fa fa-pencil-alt"></span> Ubah</button>
                 </div>
             </div>
         </div>
@@ -87,4 +87,37 @@ $('#name').keyup(() => {
 
 $('#role').val("<?= $data->role ?>");
 $('#position').val("<?= $data->user_data[0]->position ?>");
+
+$('#submit').click(() => {
+    const id = "<?= $id ?>";
+    const username = $('#username').val();
+    const password = $('#password').val();
+    const role     = $('#role').val();
+
+    const name = $('#name').val();
+    const contact_number = $('#contact_number').val();
+    const position = $('#position').val();
+
+    $.post("<?= api('user/edit/') . $id ?>", {username, password, role, name, contact_number, position})
+    .then(res => {
+        toastr.success('Berhasil mengupdate data', 'Success!');
+        window.location.href= "<?= base_url('admin/user-list') ?>";
+    })
+    .catch(err => toastr.error('Internal Server Error', 'Error'));
+});
+
+$('#reset').click(() => {
+
+    $('#username').val("<?= $data->username ?>");
+    $('#password').val('');
+    $('#role').val("<?= $data->role ?>");
+
+    $('#name').val("<?= $data->user_data[0]->name ?>");
+    $('#contact_number').val("<?= $data->user_data[0]->contact_number ?>");
+    $('#position').val("<?= $data->user_data[0]->position ?>");
+
+    $('#user-label').text("<?= $data->username ?>");
+    $('#name-label').text("<?= $data->user_data[0]->name ?>");
+
+});
 </script>
