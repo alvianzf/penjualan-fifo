@@ -40,21 +40,35 @@
 
             <div class="row">
                 <div class="col-xs-12 col-md-4">
-                    <label for="name"></label>
-                    <input id="name" class="form-control" />
+                    <label for="name">Nama Lengkap</label>
+                    <input id="name" class="form-control" placeholder="Nama Lengkap"/>
                 </div>
                 <div class="col-xs-12 col-md-4">
-                    <label for="contact_number"></label>
-                    <input id="contact_number" class="form-control" />
+                    <label for="contact_number">Nomor Kontak</label>
+                    <input id="contact_number" class="form-control" placeholder="Nomor Kontak"/>
                 </div>
                 <div class="col-xs-12 col-md-4">
-                    <label for="position"></label>
+                    <label for="position">Posisi</label>
                     <select id="position" class="form-control">
                         <option value="" selected disabled>Pilih Posisi</option>
                         <option value="owner">Pemilik</option>
                         <option value="kasir">Kasir</option>
                         <option value="operator">Operator</option>
                     </select>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+                <div class="col-xs-12 col-md-8">
+
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <button class="btn btn-warning btn-block"><span class="fa fa-list"></span> Reset</button>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <button class="btn btn-success btn-block"><span class="fa fa-user"></span> Daftar</button>
                 </div>
             </div>
         </div>
