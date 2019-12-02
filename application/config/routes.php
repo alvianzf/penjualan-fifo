@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller']                        = 'auth';
 $route['404_override']                              = '';
-$route['translate_uri_dashes']                      = FALSE;
+$route['translate_uri_dashes']                      = TRUE;
 
 // Production
 $route['production/new']                            = 'production/new_production';
