@@ -51,9 +51,9 @@
                     <label for="position">Posisi</label>
                     <select id="position" class="form-control">
                         <option value="" selected disabled>Pilih Posisi</option>
-                        <option value="owner">Pemilik</option>
-                        <option value="admin">Kasir</option>
-                        <option value="operator">Operator</option>
+                        <option value="Owner">Pemilik</option>
+                        <option value="Admin">Kasir</option>
+                        <option value="Operator">Operator</option>
                     </select>
                 </div>
             </div>
