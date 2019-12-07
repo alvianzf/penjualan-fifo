@@ -18,8 +18,8 @@
                         <label for="item">Item<sup class="text-danger">*</sup></label>
                         <select id="item" class="form-control">
                             <option value="" disabled selected>Pilih</option>
-                            <option>Bata</option>
-                            <option>Lainnya</option>
+                            <option value="bata75">Bata 7.5 cm</option>
+                            <option value="bata10">Bata 10 cm</option>
                         </select>
                     </div>
                 </div>
@@ -161,7 +161,9 @@ $('#item').change(() => {
 
         }).catch(err => {
             $('#stock').attr('class', 'text-danger').text('0 Buah');
-            $('#harga').text(`Rp. --`)
+            $('#harga').text(`Rp. --`);
+
+            toastr.error('Stok Kosong!');
         })
     
     } else {

@@ -23,8 +23,8 @@
                         </label>
                         <select id="tipe_barang" class="form-control form-control-user">
                             <option value="" disabled selected>Pilih</option>
-                            <option>Bata 7,5 cm</option>
-                            <option>Bata 10 cm</option>
+                            <option value="bata75">Bata 7.5 cm</option>
+                            <option value="bata10">Bata 10 cm</option>
                         </select>
                     </div>
                     <div class="col-md-3 card-body">
@@ -93,6 +93,7 @@ $('#submit').click(() => {
             $('#tanggal').val('');
             $('#satuan').val('');
             $('#harga').val('');
+            $('#kode_barang').val(Date.now()).attr('disabled', true);
         })
         .catch(err => {
             console.log(err.status);
@@ -111,6 +112,7 @@ $('#reset').click(() => {
     $('#tipe_barang').val('')    
     $('#jumlah_barang').val('')  
     $('tanggal').val('') 
+    $('#kode_barang').val(Date.now()).attr('disabled', true);
 
     toastr.info('Data berhasil diset ulang', 'reset data');
 })

@@ -23,8 +23,8 @@
                         </label>
                         <select id="tipe_barang" class="form-control form-control-user">
                             <option value="" disabled selected>Pilih</option>
-                            <option>Bata 7,5 cm</option>
-                            <option>Bata 10 cm</option>
+                            <option value="bata75">Bata 7.5 cm</option>
+                            <option value="bata10">Bata 10 cm</option>
                         </select>
                     </div>
                     <div class="col-md-3 card-body">

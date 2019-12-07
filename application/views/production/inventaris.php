@@ -78,7 +78,10 @@ $(document).ready(function() {
                 {
                     data: 'tipe_barang',
                     searchable: true,
-                    orderable: true
+                    orderable: true,
+                    render: tipe_barang => {
+                        return tipe_barang == 'bata75' ? 'Bata 7.5cm' : 'Bata 10cm';
+                    }
                 },
                 {
                     data: null,
