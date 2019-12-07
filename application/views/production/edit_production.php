@@ -72,8 +72,10 @@
 
 <script>
 
-$('#tipe_barang').val("<?=$data->tipe_barang?>")
-$('#satuan').val("<?=$data->satuan?>")
+$('#tipe_barang').val("<?=$data->tipe_barang?>");
+$('#satuan').val("<?=$data->satuan?>");
+$('#jumlah').val("<?=$data->jumlah?>");
+$('#harga').val("<?=$data->harga?>");
 
 $('#submit').click(() => {
     kode_produksi   = $('#kode_barang').val();
@@ -81,12 +83,19 @@ $('#submit').click(() => {
     jumlah          = $('#jumlah_barang').val();
     satuan          = $('#satuan').val();
     harga           = $('#harga').val();
-    created_at      = $('#tanggal').val();
-    data = {kode_produksi, nama_barang, tipe_barang, jumlah, satuan, harga, created_at}
+    tanggal      = $('#tanggal').val();
+    data = {kode_produksi, nama_barang, tipe_barang, jumlah, satuan, harga, tanggal}
 
     $.post("<?= api('production/edit/') . $id ?>", data).then(res => {
         toastr.success('Berhasil mengubah data item '+ res.result.kode_produksi, res.result.tipe_barang);
-        window.location.reload(true)
+        window.location.reload(true);
+
+        $('#kode_barang').val('')    
+        $('#tipe_barang').val('')    
+        $('#jumlah_barang').val('')  
+        $('#satuan').val('');
+        $('#harga').val();
+        $('#tanggal').val('') 
     })
     .catch(err => {
         console.log(err.status)

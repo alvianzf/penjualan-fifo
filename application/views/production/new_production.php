@@ -78,22 +78,24 @@ $('#submit').click(() => {
     jumlah          = $('#satuan').val() == 'Paket' ? $('#jumlah_barang').val() * 100 : $('#jumlah_barang').val();
     satuan          = $('#satuan').val();
     harga           = $('#harga').val();
-    created_at      = $('#tanggal').val();
+    tanggal      = $('#tanggal').val();
 
 
-    data = {kode_produksi, tipe_barang, jumlah, satuan, harga, created_at}
+    data = {kode_produksi, tipe_barang, jumlah, satuan, harga, tanggal}
     
     if (validate(kode_produksi, "Kode Produksi") && validate(tipe_barang, "Tipe Barang") && validate(jumlah, "Jumlah Barang") && validate(created_at, "Tanggal Produksi") && validate(satuan, "Satuan") && validate(harga, "Harga")) {
         $.post("<?= api('production/insert') ?>", data).then(res => {
             toastr.success('Berhasil menambahkan item '+ res.result.kode_produksi, res.result_tipe_barang);
 
-            $('#kode_barang').val('')    
-            $('#tipe_barang').val('')    
-            $('#jumlah_barang').val('')  
-            $('#tanggal').val('')         
+            $('#kode_barang').val('');
+            $('#tipe_barang').val('');
+            $('#jumlah_barang').val('');
+            $('#tanggal').val('');
+            $('#satuan').val('');
+            $('#harga').val('');
         })
         .catch(err => {
-            console.log(err.status)
+            console.log(err.status);
             toastr.err('Terjadi kesalahan di sistem');
         })
     }
