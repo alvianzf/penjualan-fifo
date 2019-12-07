@@ -13,7 +13,7 @@
 
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <input id="cari" class="form-control" />
+                    <input id="cari" class="form-control" placeholder="Cari..."/>
                 </div>
             </div>
 
