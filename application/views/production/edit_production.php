@@ -83,7 +83,7 @@ $('#submit').click(() => {
     jumlah          = $('#jumlah_barang').val();
     satuan          = $('#satuan').val();
     harga           = $('#harga').val();
-    tanggal      = $('#tanggal').val();
+    tanggal         = $('#tanggal').val();
     data = {kode_produksi, nama_barang, tipe_barang, jumlah, satuan, harga, tanggal}
 
     $.post("<?= api('production/edit/') . $id ?>", data).then(res => {

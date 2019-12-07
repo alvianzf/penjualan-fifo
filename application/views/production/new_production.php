@@ -83,7 +83,7 @@ $('#submit').click(() => {
 
     data = {kode_produksi, tipe_barang, jumlah, satuan, harga, tanggal}
     
-    if (validate(kode_produksi, "Kode Produksi") && validate(tipe_barang, "Tipe Barang") && validate(jumlah, "Jumlah Barang") && validate(created_at, "Tanggal Produksi") && validate(satuan, "Satuan") && validate(harga, "Harga")) {
+    if (validate(kode_produksi, "Kode Produksi") && validate(tipe_barang, "Tipe Barang") && validate(jumlah, "Jumlah Barang") && validate(tanggal, "Tanggal Produksi") && validate(satuan, "Satuan") && validate(harga, "Harga")) {
         $.post("<?= api('production/insert') ?>", data).then(res => {
             toastr.success('Berhasil menambahkan item '+ res.result.kode_produksi, res.result_tipe_barang);
 
