@@ -9,6 +9,29 @@ class Migration_create_items extends CI_Migration
     public function up()
     {
 
+        if (! $this->db->table_exists('item_type')) {
+            $this->dbforge->add_key('id', true);
+            $this->dbforge->add_field([
+                    'id' => [
+                    'type'          => 'MEDIUMINT',
+                    'constraint'    => 11,
+                    'unsigned'      => true,
+                    'auto_increment'=> true
+                ],
+                'kode_produksi' => [
+                    'type'          => 'VARCHAR',
+                    'constraint'    => 200,
+                    'null'          => false
+                ],
+                'tipe_barang' => [
+                    'type'          => 'VARCHAR',
+                    'constraint'    => 20,
+                    'null'          => false
+                ],
+
+            ]);
+        }
+
         if (! $this->db->table_exists(('production')))
         {
             $this->dbforge->add_key('id', true);
