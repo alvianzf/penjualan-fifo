@@ -42,4 +42,9 @@ class User extends MY_Controller
     $this->data['id'] = $id;
   }
 
+  public function production_settings()
+  {
+
+  }
+
 }
