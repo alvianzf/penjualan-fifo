@@ -17,7 +17,7 @@
                                 </select>
                             </div>
                             <div class="col-xs-12 col-md-4">
-                                <button class="btn btn-success btn-block"><span class="fa fa-user" data-toggle="tooltip" data-placement="top" title="Tambah pembeli baru"> +</span></button>
+                                <button class="btn btn-success btn-block" data-toggle="modal" data-target="#pembeliModal"><span class="fa fa-user" data-toggle="tooltip" data-placement="top" title="Tambah pembeli baru"> +</span></button>
                             </div>
                         </div>
                     </div>
@@ -131,8 +131,8 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="pembeliModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -141,11 +141,30 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="form-group">
+                    <label for="nama_pembeli">Nama<sup class="text-danger">*</sup></label>
+                    <input id="nama_pembeli" class="form-control" placeholder="Nama"/>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="form-group">
+                    <label for="perusahaan_pembeli">Perusahaan<sup class="text-danger">*</sup></label>
+                    <input id="perusahaan_pembeli" class="form-control" placeholder="Perusahaan"/>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="form-group">
+                    <label for="kontak_pembeli">Nomor Kontak<sup class="text-danger">*</sup></label>
+                    <input id="kontak_pembeli" class="form-control" placeholder="Nomor Kontak"/>
+                </div>
+            </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times"></span> Tutup</button>
+        <button type="button" class="btn btn-success"><span class="fa fa-user"> + </span> Tambah Pembeli</button>
       </div>
     </div>
   </div>
