@@ -24,5 +24,19 @@
                 </div>
             </div>
         </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="table" class="table table-hover table-condensed table-striped table-collapse">
+                        <thead>
+                            <th>Tipe Barang</th>
+                            <th>Harga Barang</th>
+                            <th><span class="fa fa-cog"></span></th>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
