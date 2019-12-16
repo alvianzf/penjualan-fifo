@@ -41,10 +41,14 @@ class Transaction extends REST_Controller
     public function buyer_post()
     {
 
+        $nama           = $this->post('nama');
+        $perusahaan     = $this->post('perusahaan');
+        $nomor_kontak   = $this->post('kontak');
+
         $post = [
-            'nama'           => $this-post('nama'),
-            'perusahaan'     => $this->post('perusahaan'),
-            'nomor_kontak'   => $this->post('kontak'),
+            'nama'           => $nama,
+            'perusahaan'     => $perusahaan,
+            'nomor_kontak'   => $nomor_kontak,
             'created_at'     => time()
         ];
 

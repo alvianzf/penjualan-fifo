@@ -167,7 +167,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times"></span> Tutup</button>
-        <button type="button" class="btn btn-success"><span class="fa fa-user"> + </span> Tambah Pembeli</button>
+        <button id="add_buyer" type="button" class="btn btn-success"><span class="fa fa-user"> + </span> Tambah Pembeli</button>
       </div>
     </div>
   </div>
@@ -306,6 +306,30 @@ $('#clear').click(() => {
     $('#subtotal').text('');
 
     $('#table').DataTable().clear().draw();
-})
+});
+
+$('#add_buyer').click(() => {
+    const nama = $('#nama_pembeli').val();
+    const perusahaan = $('#perusahaan_pembeli').val();
+    const kontak = $('#kontak_pembeli').val();
+
+    const data = {nama, perusahaan, kontak}
+
+    $.post("<?= api('transaction/buyer') ?>", data).done(res => {
+        toastr.success(`Berhasil menambahkan pembeli ${nama}`, "Sukses!");
+        window.location.reload(true);
+        })
+    .catch(err => toastr.error('Gagal menambahkan pembeli!'));
+});
+
+$.get("<?= api('transaction/buyer_list') ?>").then(res => {
+    console.log(res)
+    $.each(res.result, (i, data) => {
+        $('#pembeli').append(`<option value="${data.id}">${data.nama} - ${data.perusahaan}</option>`)
+    })
+}).catch(err => {
+    toastr.error('Gagal mengambil data pembeli!');
+    console.log(err)
+});
 
 </script>
