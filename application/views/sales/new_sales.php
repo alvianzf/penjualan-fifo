@@ -157,7 +157,10 @@
             <div class="col-xs-12 col-md-4">
                 <div class="form-group">
                     <label for="kontak_pembeli">Nomor Kontak<sup class="text-danger">*</sup></label>
-                    <input id="kontak_pembeli" class="form-control" placeholder="Nomor Kontak"/>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="country_code">+62</span>
+                        <input type="number" id="kontak_pembeli" class="form-control" placeholder="Nomor Kontak" aria-describedy="country_code"/>
+                    </div>
                 </div>
             </div>
         </div>

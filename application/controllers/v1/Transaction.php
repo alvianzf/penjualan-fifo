@@ -7,7 +7,7 @@ class Transaction extends REST_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(['user_model', 'items_model']);
+        $this->load->model(['user_model', 'items_model', 'buyer_model']);
 
     }
 
@@ -36,6 +36,34 @@ class Transaction extends REST_Controller
 
         return $this->response(['success' =>  false, 'query' => $query, 'result' => [], 'status' => 500], 500);
 
+    }
+
+    public function buyer_post()
+    {
+
+        $post = [
+            'nama'           => $this-post('nama'),
+            'perusahaan'     => $this->post('perusahaan'),
+            'nomor_kontak'   => $this->post('kontak'),
+            'created_at'     => time()
+        ];
+
+        if ($this->buyer_model->insert($post)) {
+            return $this->response(api_success($post));
+        }
+
+        return $this->response(api_error($post));
+    }
+
+    public function buyer_list_get()
+    {
+        $data = $this->buyer_model->get_all();
+
+        if ($data) {
+            return $this->response(api_success($data));
+        }
+
+        return $this->response(api_error($data));
     }
 
 }
