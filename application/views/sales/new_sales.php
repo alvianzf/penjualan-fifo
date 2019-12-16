@@ -329,7 +329,6 @@ $.get("<?= api('transaction/buyer_list') ?>").then(res => {
     })
 }).catch(err => {
     toastr.error('Gagal mengambil data pembeli!');
-    console.log(err)
 });
 
 </script>

@@ -89,10 +89,57 @@ class Migration_create_transactions extends CI_Migration
             $this->dbforge->create_table('transactions', true);
         }
 
+        if (! $this->db->table_exists(('payment')))
+        {
+            $this->dbforge->add_key('id', true);
+            $this->dbforge->add_field([
+                'id' => [
+                    'type'          => 'MEDIUMINT',
+                    'constraint'    => 11,
+                    'unsigned'      => true,
+                    'auto_increment'=> true
+                ],
+                'transaction_id' => [
+                    'type'          => 'MEDIUMINT',
+                    'constraint'    => 11,
+                    'unsigned'      => true,
+                ],
+                'tanggal' => [
+                    'type'          => 'INT',
+                    'constraint'    => 11,
+                    'null'          => false
+                ],
+                'qty' => [
+                    'type'          => 'INT',
+                    'constraint'    => 11,
+                    'null'          => false
+                ],
+                'nominal' => [
+                    'type'          => 'INT',
+                    'constraint'    => 11,
+                    'null'          => false
+                ],
+                'keterangan' => [
+                    'type'          => 'VARCHAR',
+                    'constraint'    => 200,
+                    'null'          => false
+                ],
+                'created_at' => [
+                    'type'          => 'INT',
+                    'constraint'    => 11,
+                    'null'          => false
+                ]
+            ]);
+
+            $this->dbforge->create_table('payment', true);
+        }
+
     }
 
     public function down()
     {
         $this->dbforge->drop_table('buyer', true);
+        $this->dbforge->drop_table('transactions', true);
+        $this->dbforge->drop_table('payment', true);
     }
 }
