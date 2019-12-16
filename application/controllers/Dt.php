@@ -39,10 +39,18 @@ class Dt extends CI_Controller
                             ->join('user_details B', 'B.user_id = A.id')
                             ->edit_column('created_at', '$1', 'human_time(created_at)');
 
-        $this->output
-                            ->set_content_type('application/json')
+        $this->output->set_content_type('application/json')
                             ->set_status_header(200)
                             ->set_output($this->datatables->generate('json', 'UTF-8', true));
 
+    }
+
+    public function tipe_barang()
+    {
+        $this->datatables->select('tipe_barang, harga_barang')->from('item_type');
+
+        $this->output->set_content_type('application/json')
+                        ->set_status_header(200)
+                        ->set_output($this->datatables->generate('json', 'UTF-8', true));
     }
 }

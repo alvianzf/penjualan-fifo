@@ -7,8 +7,8 @@
         <div class="card-body">
             <div class="row">
                 <div class="form-group col-md-6 col-xs-12">
-                    <label for="type">Tipe Barang</label>
-                    <input id="type" class="form-control" placeholder="Tipe Barang" />
+                    <label for="tipe">Tipe Barang</label>
+                    <input id="tipe" class="form-control" placeholder="Tipe Barang" />
                 </div>
                 <div class="form-group col-md-6 col-xs-12">
                     <label for="harga">Harga Barang</label>
@@ -40,3 +40,24 @@
         </div>
     </div>
 </div>
+
+<script>
+
+$('#add-btn').click(() => {
+    const tipe_barang   = $('#tipe').val();
+    const harga_barang  = $('#harga').val();
+
+    const data = {tipe_barang, harga_barang}
+
+    if (tipe_barang) {
+        $.post("<?= api('settings/production_insert') ?>", data).done(res => {
+            toastr.success('Berhasil memasukkan tipe baru');
+            window.location.reload(false);
+        })
+        .catch(err =>{
+            toastr.error('Gagal memasukkan data!', 'Error!');
+        });
+    }
+})
+
+</script>
