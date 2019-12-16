@@ -41,6 +41,6 @@ if (!function_exists('api_success')) {
 
 if (!function_exists('api_error')) {
   function api_error($result = null) {
-    return ['success' => true, 'result' => [], 'error' => @$result ? $result : "Internal Server error!"];
+    return ['success' => false, 'result' => [], 'error' => @$result ? $result : "Internal Server error!"];
   }
 }
