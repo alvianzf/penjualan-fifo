@@ -35,6 +35,8 @@ class Migration_create_items extends CI_Migration
                 ],
 
             ]);
+
+            $this->dbforge->create_table('item_type', true);
         }
 
         if (! $this->db->table_exists(('production')))
@@ -138,5 +140,6 @@ class Migration_create_items extends CI_Migration
     {
         $this->dbforge->drop_table('production', true);
         $this->dbforge->drop_table('purchasing', true);
+        $this->dbforge->drop_table('item_type', true);
     }
 }
