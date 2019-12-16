@@ -1,4 +1,4 @@
-<div class="row"></div>
+<div class="row">
     <div class="card shadow border-left-primary col-md-12 col-xs-12">
         <div class="card-body">
             <h4>Laporan</h4>
@@ -33,6 +33,28 @@
                 </div>
                 <div class="col-md-4 col-xs-12">
                     <button class="btn btn-info btn-block" ><span class="fa fa-file"></span> Cetak</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <table id="table" class="table table-condensed table-hover table-striped table-collapse">
+                        <thead>
+                            <th>Tanggal Transaksi</th>
+                            <th>Kode Barang</th>
+                            <th>Qty</th>
+                            <th>Pembeli</th>
+                            <th>Jumlah</th>
+                            <th>Pembayaran</th>
+                            <th><span class="fa fa-cog"></span></th>
+                        </thead>
+
+                        <tbody>
+                        
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
