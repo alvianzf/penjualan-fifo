@@ -23,8 +23,7 @@
                         </label>
                         <select id="tipe_barang" class="form-control form-control-user">
                             <option value="" disabled selected>Pilih</option>
-                            <option value="bata75">Bata 7.5 cm</option>
-                            <option value="bata10">Bata 10 cm</option>
+                            <!-- Tipe barang list -->
                         </select>
                     </div>
                     <div class="col-md-3 card-body">
@@ -128,4 +127,12 @@ function validate(field, fieldName) {
 
 $('#kode_barang').val(Date.now()).attr('disabled', true);
 
+$.get("<?= api('settings/production') ?>")
+.then(res => {
+    $.each(res.result, (i, data) => {
+        $('#tipe_barang').append(`<option value="${data.id}">${data.tipe_barang}</option>`);
+    });
+}).catch(err => {
+    toastr.error('Gagal mengambil tipe barang dari database!');
+})
 </script>
