@@ -12,19 +12,24 @@ class Migration_create_items extends CI_Migration
         if (! $this->db->table_exists('item_type')) {
             $this->dbforge->add_key('id', true);
             $this->dbforge->add_field([
-                    'id' => [
+                'id' => [
                     'type'          => 'MEDIUMINT',
                     'constraint'    => 11,
                     'unsigned'      => true,
                     'auto_increment'=> true
                 ],
-                'kode_produksi' => [
+                'tipe_barang' => [
                     'type'          => 'VARCHAR',
                     'constraint'    => 200,
                     'null'          => false
                 ],
-                'tipe_barang' => [
-                    'type'          => 'VARCHAR',
+                'harga_barang' => [
+                    'type'          => 'INT',
+                    'constraint'    => 20,
+                    'null'          => false
+                ],
+                'created_at' => [
+                    'type'          => 'INT',
                     'constraint'    => 20,
                     'null'          => false
                 ],
