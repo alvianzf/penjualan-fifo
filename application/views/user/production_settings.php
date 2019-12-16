@@ -58,6 +58,69 @@ $('#add-btn').click(() => {
             toastr.error('Gagal memasukkan data!', 'Error!');
         });
     }
-})
+});
 
+$(document).ready(() => {
+    
+    $('#table').DataTable({
+        processing: true,
+                responsive: true,
+                order: [0,'asc'],
+                pageLength: 10,
+                lengthChange: false,
+                // searching: false,
+                lengthMenu: [[25,50,100,200], [25,50,100,200]],
+                language: {
+                    paginate: {
+                        next: '<i class="fas fa-caret-right"></i>',
+                        previous: '<i class="fas fa-caret-left"></i>'
+                    },
+                    info: 'Menunjukkan _START_ sampai _END_ dari _TOTAL_ data'
+                },
+                ajax: {
+                    url: "<?= site_url('dt/tipe_barang')?>",
+                    type: "POST",
+                    data: {
+                        <?= $this->security->get_csrf_token_name() ?>: <?= json_encode($this->security->get_csrf_hash()) ?>
+                    }
+                },
+                columnDefs: [{
+                    targets: -1,
+                    orderable: false
+                }],
+                columns: [
+                {
+                    data: 'tipe_barang',
+                    searchable: true,
+                    orderable: true
+                },
+                {
+                    data: 'harga_barang',
+                    searchable: true,
+                    orderable: true,
+                    render: function(harga) {
+                        return `Rp. ${numberWithCommas(harga)}`
+                    }
+                },
+                {
+                    data: 'id',
+                    render: function(id) {
+                        return `<a class="text-danger" onclick="deleteData(${id})" href="#"><i class="fa fa-trash"></i></a>`
+                    }
+                }
+
+            ],
+        initComplete: function(settings) {
+            $('.dataTables_filter').hide();
+        }
+    }).draw();
+});
+
+function deleteData(id)
+{
+    $.get("<?= api('settings/production_delete') ?>" + id).then(res => {
+        toastr.success('Berhasil mengapus item');
+        window.location.reload(false);
+    }).catch(err => {toastr.error('Gagal menghapus item')});
+}
 </script>

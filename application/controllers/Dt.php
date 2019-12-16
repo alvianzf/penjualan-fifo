@@ -47,7 +47,7 @@ class Dt extends CI_Controller
 
     public function tipe_barang()
     {
-        $this->datatables->select('tipe_barang, harga_barang')->from('item_type');
+        $this->datatables->select('id, tipe_barang, harga_barang')->from('item_type');
 
         $this->output->set_content_type('application/json')
                         ->set_status_header(200)
