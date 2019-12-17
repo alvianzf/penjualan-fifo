@@ -130,7 +130,7 @@ $('#password').on('keypress', (e) => {
 </script>
 
 <style>
-/* Custom CSS by me */
+/* Custom CSS by Saya Sendiri */
 
 .toast-error {
   background-color: red;

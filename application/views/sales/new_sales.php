@@ -201,7 +201,6 @@ var sum = [];
 var sisa = [];
 
 $('#item').change(() => {
-    console.log(sisa[$('#item').val()])
     if (!sisa[$('#item').val()]) {
         $.get("<?= api('transaction/information/') ?>" + $('#item').val()).then((res) => {
             $('#stock').attr('class', 'text-success').text(`${res.result.stok} ${res.result.satuan}`);
@@ -269,27 +268,45 @@ $('#search').on('keyup', () => {
 });
 
 var counter = 1;
+let pembelian = [];
 $('#tambah').click(() => {
-    if ($('#jumlah').val() && stok[$('#item').val()] >=0) {
-        item = $('#item').val(),
-        jumlah = $('#jumlah').val();
-        $('#table').DataTable().row.add([
-            counter,
-            item,
-            `${numberWithCommas(jumlah)} ${satuan[$('#item').val()]}`,
-            `Rp. ${harga[$('#item').val()]},00`,
-            `Rp. ${numberWithCommas(sum[$('#item').val()])},00`,
-            `<i class="fa fa-trash" onClick="$('#table').DataTable().row($(this).parents('tr')).remove().draw();"></i>`
-        ]).draw(false);
+    if ($('#pembeli').val()) {
+        if ($('#jumlah').val() && stok[$('#item').val()] >=0) {
+            item = $('#item').val(),
+            jumlah = $('#jumlah').val();
+            $('#table').DataTable().row.add([
+                counter,
+                item,
+                `${numberWithCommas(jumlah)} ${satuan[$('#item').val()]}`,
+                `Rp. ${harga[$('#item').val()]},00`,
+                `Rp. ${numberWithCommas(sum[$('#item').val()])},00`,
+                `<i class="fa fa-trash" onClick="$('#table').DataTable().row($(this).parents('tr')).remove().draw();"></i>`
+            ]).draw(false);
+    
+            counter++;
 
-        counter++;
+            stok[$('#item').val()] -= jumlah
 
-        stok[$('#item').val()] -= jumlah
+            const filtered = pembelian.filter(a => a.item == item);
 
-        $('#jumlah').val('');
+            if (filtered.length > 0) {
+                const index = pembelian.indexOf(filtered[0]);
+                total = parseInt(pembelian[index].jumlah) + parseInt(jumlah);
 
+                pembelian[index].jumlah = total;
+
+            } else {
+                pembelian.push({item, jumlah});
+            }
+
+            $('#jumlah').val('');
+            $('#pembeli').attr('disabled', true);
+    
+        } else {
+            toastr.error('Silahkan mengisi form terlebih dahulu', 'Form kosong!');
+        }
     } else {
-        toastr.error('Silahkan mengisi form terlebih dahulu', 'Form kosong!');
+        toastr.error('Silahkan memilih pembeli atau daftarkan pembeli baru', 'Pembeli kosong!');
     }
 })
 
@@ -323,7 +340,6 @@ $('#add_buyer').click(() => {
 });
 
 $.get("<?= api('transaction/buyer_list') ?>").then(res => {
-    console.log(res)
     $.each(res.result, (i, data) => {
         $('#pembeli').append(`<option value="${data.id}">${data.nama} - ${data.perusahaan}</option>`)
     })
