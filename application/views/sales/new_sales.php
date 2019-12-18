@@ -302,7 +302,7 @@ $('#tambah').click(() => {
                 pembelian[index].nominal    = subtotal;
 
             } else {
-                pembelian.push({buyer_id, item, jumlah, nominal});
+                pembelian.push({buyer_id, 'keterangan': item, jumlah, nominal});
             }
 
             $('#jumlah').val('');
@@ -332,6 +332,9 @@ $('#ok').click(() => {
                     $('#table').DataTable().clear().draw();
                     $('#pembeli').val('').attr('disabled', false);
                     $('#item').val('');
+                    $('#stock').text('');
+                    $('#harga').text('');
+                    $('#subtotal').text('');
                 });
         })
     } else {
@@ -340,14 +343,21 @@ $('#ok').click(() => {
 })
 
 $('#clear').click(() => {
-    $('#pembeli').val('');
-    $('#item').val('');
-    $('#jumlah').val('');
-    $('#stock').text('');
-    $('#harga').text('');
-    $('#subtotal').text('');
+    if ($('#pembeli').val()) {
+        $('#pembeli').val('');
+        $('#item').val('');
+        $('#jumlah').val('');
+        $('#stock').text('');
+        $('#harga').text('');
+        $('#subtotal').text('');
 
-    $('#table').DataTable().clear().draw();
+        $('#table').DataTable().clear().draw();
+
+        toastr.info('Formulir berhasil dibersihkan');
+    } else {
+        toastr.error('Tidak ada yang harus dibersihkan!');
+    }
+        
 });
 
 $('#add_buyer').click(() => {
