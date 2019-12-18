@@ -26,6 +26,8 @@
                     <th>Item</th>
                     <th>Jumlah</th>
                     <th>Total</th>
+                    <th>Transaksi Terakhir</th>
+                    <th>Bayar</th>
                 </thead>
                 <tbody>
 

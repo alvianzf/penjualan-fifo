@@ -51,19 +51,25 @@ class Sales extends REST_Controller
         // Pengurangan FIFO
         $penjualan = $this->items_model->get_many_by('tipe_barang', $keterangan);
 
+        $jum = $qty;
         foreach($penjualan as $i => $v) {
-            if ($v->qty > $qty) {
-                $qty = $v->qty - $qty;
-            } else {
-                $qty = $qty - $v->qty;
+
+            if ($jum > 0) {
+                if ($v->jumlah > $jum) {
+                    $sisa = $v->jumlah - $jum;
+                    $jum = 0;
+                } else {
+                    $jum = $jum - $v->jumlah;
+                    $sisa = 0;
+                }
+    
+                $updated = [
+                    'jumlah'        =>  $sisa,
+                    'created_at'    => time()
+                ];
+    
+                $this->items_model->update($v->id, $updated);
             }
-
-            $updated = [
-                'qty'       =>  $qty,
-                'created_at'=> time()
-            ];
-
-            $this->transactions_model->update($v->id, $updated);
         }
 
         if ($this->transactions_model->insert($data))
