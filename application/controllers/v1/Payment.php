@@ -14,6 +14,10 @@ class Payment extends REST_Controller
     {
         $data = $this->payment_model->get_by('transaction_id', $id);
 
+        $tanggal = date('d M Y', $data->tanggal);
+        $data->tanggal = $tanggal;
+
+
         if ($data)
             return $this->response(api_success($data), 200);
 
@@ -46,7 +50,6 @@ class Payment extends REST_Controller
         if ($sisa == 0) {
             $this->transactions_model->update($id, ['selesai' => 1]);
         }
-
 
         if ($this->payment_model->insert($data))
             return $this->response(api_success($data), 200);

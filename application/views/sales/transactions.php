@@ -224,15 +224,15 @@ function bayarCicil(data) {
     $.get("<?= api('sales/single_transaction/') ?>" + id)
     .then(res => {
 
-        $.get("<?= api('payment/data') ?>").then(payment => {
-
+        $.get("<?= api('payment/data/') ?>" + id).then(payment => {
+            $('#bayar-cicil-table').append(`<tr><td>${payment.result.tanggal}</td><td>${numberWithCommas(payment.result.nominal)}</td></tr>`);
+            $('#sisa').text(`${numberWithCommas(payment.result.sisa)}`)
         }).catch(err => {
             $('#bayar-cicil-table').append('<tr><td>Belum ada pembayaran cicilan</td><td></td></tr>')
         });
 
         $('#id_cicilan').val(res.result.buyer_id);
         $('#qty_cicilan').val(res.result.qty);
-        $('#bayar-cicil').val(res.result.nominal).attr('disabled', true);
 
         $('#total-cicil').text(`Total Bayar: Rp.${res.result.nominal}`);
     }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
@@ -255,4 +255,23 @@ $('#save-full').click(function (e) {
         toastr.error('Gagal menyimpan pembayaran', 'server error!');
     })
 });
+
+$('#save-cicil').click(function (e) { 
+    const transaction_id    =   $('#id_cicilan').val();
+    const qty               =   $('#qty_cicilan').val();
+    const nominal           =   $('#bayar-cicil').val();
+    const keterangan        =   $('#keterangan_cicilan').val();
+
+    $.post("<?= api('payment/pay') ?>", {transaction_id, qty, nominal, keterangan})
+    .then(res => {
+        toastr.success('Berhasil melakukan pembayaran!');
+
+        window.location.reload(false);
+
+    })
+    .catch(err => {
+        toastr.error('Gagal menyimpan pembayaran', 'server error!');
+    })
+});
+
 </script>
