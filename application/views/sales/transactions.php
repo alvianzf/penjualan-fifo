@@ -101,7 +101,7 @@ $(document).ready(() => {
                 {
                     data: 'id',
                     render: function(id) {
-                        return `<button id="pay" data-id="${id}" class="btn btn-success btn-block"><span class="fa fa-money-bill-alt"></span> Bayar</button>`
+                        return `<button id="pay" data-id="${id}" class="btn btn-success col-md-6 col-xs-12"><span class="fa fa-money-bill-alt"></span> Full</button><button id="credit" data-id="${id}" class="btn btn-warning col-md-6 col-xs-12"><span class="fa fa-receipt"></span> Cicil</button>`
                     }
                 }
 
