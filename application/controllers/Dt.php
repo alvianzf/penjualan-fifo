@@ -67,4 +67,19 @@ class Dt extends CI_Controller
                         ->set_status_header(200)
                         ->set_output($this->datatables->generate('json', 'UTF-8', true));
     }
+
+    public function receipts()
+    {
+        $this->datatables->select('A.tanggal, A.created_at, A.sisa, A.nominal, B.nominal total_bayar, B.keterangan, C.nama')
+                ->from('transactions B')
+                ->where('selesai', 0)
+                ->join('buyer C', 'B.buyer_id = C.id')
+                ->join('payment A', 'A.transaction_id = B.id')
+                ->edit_column('tanggal', '$1', 'human_time(tanggal)')
+                ->edit_column('created_at', '$1', 'human_time(created_at)');
+
+        $this->output->set_content_type('application/json')
+                        ->set_status_header(200)
+                        ->set_output($this->datatables->generate('json', 'UTF-8', true));
+    }
 }
