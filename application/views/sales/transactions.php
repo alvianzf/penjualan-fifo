@@ -1,7 +1,7 @@
 <div class="row">
     <div class="card shadow border-left-primary col-md-12 col-xs-12">
         <div class="card-body">
-            <h4>Daftar Transaksi</h4>
+            <h4>Daftar Penjualan</h4>
 
             <div class="row">
                 <div class="col-md-4 col-xs-12">
