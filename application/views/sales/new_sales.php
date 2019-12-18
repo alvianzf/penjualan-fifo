@@ -280,7 +280,7 @@ $('#tambah').click(() => {
                 `${numberWithCommas(jumlah)} ${satuan[$('#item').val()]}`,
                 `Rp. ${harga[$('#item').val()]},00`,
                 `Rp. ${numberWithCommas(sum[$('#item').val()])},00`,
-                `<i class="fa fa-trash" onClick="$('#table').DataTable().row($(this).parents('tr')).remove().draw();"></i>`
+                `<i class="fa fa-trash" onClick="deleteItem($(this), ${item}, ${jumlah})"></i>`
             ]).draw(false);
     
             counter++;
@@ -346,5 +346,9 @@ $.get("<?= api('transaction/buyer_list') ?>").then(res => {
 }).catch(err => {
     toastr.error('Gagal mengambil data pembeli!');
 });
+
+function deleteItem(rowData, item, jumlah) {
+    $('#table').DataTable().row(rowData.parents('tr')).remove().draw();
+}
 
 </script>
