@@ -65,7 +65,7 @@
             </div>
         </div>
 
-        <table id="bayar-full" class="table table-condensed table-hover table-striped table-collapse">
+        <table id="bayar-full-table" class="table table-condensed table-hover table-striped table-collapse">
             <thead>
                 <th>Tanggal Pembayaran</th>
                 <th>Jumlah (Rp.)</th>
@@ -110,7 +110,7 @@
             </div>
         </div>
 
-        <table id="bayar-full" class="table table-condensed table-hover table-striped table-collapse">
+        <table id="bayar-cicil-table" class="table table-condensed table-hover table-striped table-collapse">
             <thead>
                 <th>Tanggal Pembayaran</th>
                 <th>Jumlah (Rp.)</th>
@@ -191,7 +191,7 @@ $(document).ready(() => {
                 {
                     data: 'id',
                     render: function(id) {
-                        return `<button id="pay" data-id="${id}" class="btn btn-success col-md-6 col-xs-12" data-toggle="modal" data-target="#fullModal"><span class="fa fa-money-bill-alt"></span> Full</button><button id="credit" data-id="${id}" class="btn btn-warning col-md-6 col-xs-12" data-toggle="modal" data-target="#cicilModal"><span class="fa fa-receipt"></span> Cicil</button>`
+                        return `<button id="pay" data-id="${id}" class="btn btn-success col-md-6 col-xs-12" data-toggle="modal" data-target="#fullModal" onClick="bayarFull($(this))"><span class="fa fa-money-bill-alt"></span> Full</button><button id="credit" data-id="${id}" class="btn btn-warning col-md-6 col-xs-12" data-toggle="modal" data-target="#cicilModal" onClick="bayarCicil($this))"><span class="fa fa-receipt"></span> Cicil</button>`
                     }
                 }
 
@@ -200,5 +200,25 @@ $(document).ready(() => {
             $('.dataTables_filter').hide()
         }
     })
-})
+});
+
+function bayarFull(data) {
+    const id = data.attr('data-id');
+    $.get("<?= api('sales/single_transaction') ?>")
+    .then(res => {
+        $('#bayar-full-table').append(`
+            <tr>
+                <td></td>
+            </tr>`
+        );
+    }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
+}
+
+function bayarCicil(data) {
+    const id = data.attr('data-id');
+    $.get("<?= api('sales/single_transaction') ?>")
+    .then(res => {
+
+    }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
+}
 </script>

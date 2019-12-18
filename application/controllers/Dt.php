@@ -58,6 +58,7 @@ class Dt extends CI_Controller
     {
         $this->datatables->select('A.id, B.nama, tanggal, qty, nominal, keterangan, A.created_at')
                 ->from('transactions A')
+                ->where('selesai', 0)
                 ->join('buyer B', 'A.buyer_id = B.id')
                 ->edit_column('tanggal', '$1', 'human_time(tanggal)')
                 ->edit_column('created_at', '$1', 'human_time(created_at)');

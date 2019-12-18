@@ -77,4 +77,13 @@ class Sales extends REST_Controller
 
         return $this->reponse(api_error($data), 500);
     }
+
+    public function single_transaction_get($id) {
+        $data = $this->transactions_model->get($id);
+
+        if ($data)
+            return $this->response(api_success($data), 200);
+
+        return $this->response(api_error($data), 500);
+    }
 }

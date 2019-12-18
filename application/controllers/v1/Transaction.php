@@ -7,7 +7,7 @@ class Transaction extends REST_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(['user_model', 'items_model', 'buyer_model']);
+        $this->load->model(['user_model', 'items_model', 'buyer_model', 'transactions_model']);
 
     }
 

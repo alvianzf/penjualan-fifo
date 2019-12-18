@@ -83,6 +83,12 @@ class Migration_create_transactions extends CI_Migration
                     'type'          => 'INT',
                     'constraint'    => 11,
                     'null'          => false
+                ],
+                'selesai' => [
+                    'type'          => 'INT',
+                    'constraint'    => 1,
+                    'null'          => false,
+                    'default'       => 0
                 ]
             ]);
 
