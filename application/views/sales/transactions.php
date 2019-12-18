@@ -49,7 +49,6 @@
         </button>
       </div>
       <div class="modal-body">
-        <h6>Daftar Pembayaran:</h6>
 
         <div class="row">
             <div class="col-xs-12 col-md-8">
@@ -67,16 +66,6 @@
                 <button class="btn btn-success btn-block" id="save-full" ><span class="fa fa-money-bill-alt"></span> Bayar Sekarang</button>
             </div>
         </div>
-
-        <table id="bayar-full-table" class="table table-condensed table-hover table-striped table-collapse">
-            <thead>
-                <th>Tanggal Pembayaran</th>
-                <th>Jumlah (Rp.)</th>
-            </thead>
-            <tbody>
-            
-            </tbody>
-        </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
@@ -124,6 +113,10 @@
             <tbody>
             
             </tbody>
+            <tfoot>
+                <th>Sisa</th>
+                <th id="sisa">0</th>
+            </tfoot>
         </table>
       </div>
       <div class="modal-footer">
@@ -197,7 +190,7 @@ $(document).ready(() => {
                 {
                     data: 'id',
                     render: function(id) {
-                        return `<button id="pay" data-id="${id}" class="btn btn-success col-md-6 col-xs-12" data-toggle="modal" data-target="#fullModal" onClick="bayarFull($(this))"><span class="fa fa-money-bill-alt"></span> Full</button><button id="credit" data-id="${id}" class="btn btn-warning col-md-6 col-xs-12" data-toggle="modal" data-target="#cicilModal" onClick="bayarCicil($this))"><span class="fa fa-receipt"></span> Cicil</button>`
+                        return `<button id="pay" data-id="${id}" class="btn btn-success col-md-6 col-xs-12" data-toggle="modal" data-target="#fullModal" onClick="bayarFull($(this))"><span class="fa fa-money-bill-alt"></span> Full</button><button id="credit" data-id="${id}" class="btn btn-warning col-md-6 col-xs-12" data-toggle="modal" data-target="#cicilModal" onClick="bayarCicil($(this))"><span class="fa fa-receipt"></span> Cicil</button>`
                     }
                 }
 
@@ -210,21 +203,28 @@ $(document).ready(() => {
 
 function bayarFull(data) {
     const id = data.attr('data-id');
-    $.get("<?= api('sales/single_transaction') ?>")
+    $.get("<?= api('sales/single_transaction/') ?>" + id)
     .then(res => {
-        $('#bayar-full-table').append(`
-            <tr>
-                <td></td>
-            </tr>`
-        );
+        $('#id').val(res.result.buyer_id);
+        $('#qty').val(res.result.qty);
+        $('#bayar-full').val(res.result.nominal).attr('disabled', true);
     }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
 }
 
 function bayarCicil(data) {
     const id = data.attr('data-id');
-    $.get("<?= api('sales/single_transaction') ?>")
+    $.get("<?= api('sales/single_transaction/') ?>" + id)
     .then(res => {
 
+        $.get("<?= api('payment/data') ?>").then(payment => {
+
+        }).catch(err => {
+            $('#bayar-cicil-table').append('<tr><td>Belum ada pembayaran cicilan</td><td></td></tr>')
+        });
+
+        $('#id_cicilan').val(res.result.buyer_id);
+        $('#qty_cicilan').val(res.result.qty);
+        $('#bayar-cicil').val(res.result.nominal).attr('disabled', true);
     }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
 }
 </script>
