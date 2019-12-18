@@ -37,6 +37,96 @@
     </div>
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="fullModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pembayaran Penuh</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6>Daftar Pembayaran:</h6>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <div class="form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="currency">Rp.</span>
+                        <input id="bayar-full" class="form-control" placeholder="Masukkan nominal" aria-describedby="currency"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <button class="btn btn-success btn-block" id="save-full" ><span class="fa fa-money-bill-alt"></span> Bayar Sekarang</button>
+            </div>
+        </div>
+
+        <table id="bayar-full" class="table table-condensed table-hover table-striped table-collapse">
+            <thead>
+                <th>Tanggal Pembayaran</th>
+                <th>Jumlah (Rp.)</th>
+            </thead>
+            <tbody>
+            
+            </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="cicilModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pembayaran Bertahap</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6>Daftar Pembayaran:</h6>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <div class="form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="currency">Rp.</span>
+                        <input id="bayar-cicil" class="form-control" placeholder="Masukkan nominal" aria-describedby="currency"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <button class="btn btn-warning btn-block" id="save-cicil" ><span class="fa fa-money-bill-alt"></span> Bayar Bertahap</button>
+            </div>
+        </div>
+
+        <table id="bayar-full" class="table table-condensed table-hover table-striped table-collapse">
+            <thead>
+                <th>Tanggal Pembayaran</th>
+                <th>Jumlah (Rp.)</th>
+            </thead>
+            <tbody>
+            
+            </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 
 $(document).ready(() => {
@@ -101,7 +191,7 @@ $(document).ready(() => {
                 {
                     data: 'id',
                     render: function(id) {
-                        return `<button id="pay" data-id="${id}" class="btn btn-success col-md-6 col-xs-12"><span class="fa fa-money-bill-alt"></span> Full</button><button id="credit" data-id="${id}" class="btn btn-warning col-md-6 col-xs-12"><span class="fa fa-receipt"></span> Cicil</button>`
+                        return `<button id="pay" data-id="${id}" class="btn btn-success col-md-6 col-xs-12" data-toggle="modal" data-target="#fullModal"><span class="fa fa-money-bill-alt"></span> Full</button><button id="credit" data-id="${id}" class="btn btn-warning col-md-6 col-xs-12" data-toggle="modal" data-target="#cicilModal"><span class="fa fa-receipt"></span> Cicil</button>`
                     }
                 }
 
