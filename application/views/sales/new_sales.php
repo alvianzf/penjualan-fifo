@@ -49,6 +49,7 @@
                 <div class="col-xs-12 col-md-2">
                     <label for="stock">Subtotal</label>
                     <p id="subtotal"></p>
+                    <input id="sub" style="display: none">
                 </div>
             </div>
 
@@ -237,6 +238,7 @@ $('#jumlah').on('keyup', () => {
         sum[$('#item').val()] = jumlah * harga[$('#item').val()];
 
         $('#subtotal').text(`Rp. ${numberWithCommas(sum[$('#item').val()])},00`);
+        $('#sub').val(sum[$('#item').val()]);
 
         sisa[$('#item').val()] = stok[$('#item').val()] - jumlah;
         if (sisa[$('#item').val()] >= 0) {
@@ -272,8 +274,10 @@ let pembelian = [];
 $('#tambah').click(() => {
     if ($('#pembeli').val()) {
         if ($('#jumlah').val() && stok[$('#item').val()] >=0) {
-            item = $('#item').val(),
-            jumlah = $('#jumlah').val();
+            item    = $('#item').val();
+            jumlah  = $('#jumlah').val();
+            buyer_id= $('#pembeli').val();
+            nominal = $('#sub').val();
             $('#table').DataTable().row.add([
                 counter,
                 item,
@@ -291,12 +295,14 @@ $('#tambah').click(() => {
 
             if (filtered.length > 0) {
                 const index = pembelian.indexOf(filtered[0]);
-                total = parseInt(pembelian[index].jumlah) + parseInt(jumlah);
+                total   = parseInt(pembelian[index].jumlah) + parseInt(jumlah);
+                subtotal = parseInt(pembelian[index].nominal) + parseInt(nominal);
 
-                pembelian[index].jumlah = total;
+                pembelian[index].jumlah     = total;
+                pembelian[index].nominal    = subtotal;
 
             } else {
-                pembelian.push({item, jumlah});
+                pembelian.push({buyer_id, item, jumlah, nominal});
             }
 
             $('#jumlah').val('');
@@ -315,12 +321,17 @@ function numberWithCommas(x) {
 }
 
 $('#ok').click(() => {
+    console.log($('#pembeli').val());
+    console.log(pembelian)
     if (pembelian.length) {
         $.each(pembelian, (i, data) => {
             $.post("<?= api('sales/data')?>", data)
                 .catch(err=> {toastr.error('gagal memasukkan data!')})
-                .finally(res => {
-                    toastr('Berhasil memasukkan data')
+                .then(res => {
+                    toastr.success('Berhasil memasukkan data');
+                    $('#table').DataTable().clear().draw();
+                    $('#pembeli').val('').attr('disabled', false);
+                    $('#item').val('');
                 });
         })
     } else {

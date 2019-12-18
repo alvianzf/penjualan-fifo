@@ -35,7 +35,7 @@ class Sales extends REST_Controller
         $buyer_id   =   $this->post('buyer_id');
         $tanggal    =   time();
         $qty        =   $this->post('jumlah');
-        $nominal    =   $this->post('harga');
+        $nominal    =   $this->post('nominal');
         $created_at =   time();
 
         $data = [
