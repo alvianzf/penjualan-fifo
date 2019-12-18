@@ -50,6 +50,8 @@
       </div>
       <div class="modal-body">
 
+      <h6 id="total-full"></h6>
+
         <div class="row">
             <div class="col-xs-12 col-md-8">
                 <div class="form-group">
@@ -86,7 +88,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <h6>Daftar Pembayaran:</h6>
+        <h6 id="total-cicil"></h6>
 
         <div class="row">
             <div class="col-xs-12 col-md-8">
@@ -104,6 +106,10 @@
                 <button class="btn btn-warning btn-block" id="save-cicil" ><span class="fa fa-money-bill-alt"></span> Bayar Bertahap</button>
             </div>
         </div>
+
+        <hr />
+
+        <h6>Daftar Pembayaran:</h6>
 
         <table id="bayar-cicil-table" class="table table-condensed table-hover table-striped table-collapse">
             <thead>
@@ -208,6 +214,8 @@ function bayarFull(data) {
         $('#id').val(res.result.buyer_id);
         $('#qty').val(res.result.qty);
         $('#bayar-full').val(res.result.nominal).attr('disabled', true);
+
+        $('#total-full').text(`Total Bayar: Rp.${res.result.nominal}`);
     }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
 }
 
@@ -224,7 +232,26 @@ function bayarCicil(data) {
 
         $('#id_cicilan').val(res.result.buyer_id);
         $('#qty_cicilan').val(res.result.qty);
-        $('#bayar-cicil').val(res.result.nominal).attr('disabled', true);
+
+        $('#total-cicil').text(`Total Bayar: Rp.${res.result.nominal}`);
     }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
 }
+
+$('#save-full').click(function (e) { 
+    const transaction_id    =   $('#id').val();
+    const qty               =   $('#qty').val();
+    const nominal           =   $('#bayar-full').val();
+    const keterangan        =   $('#keterangan').val();
+
+    $.post("<?= api('payment/pay') ?>", {transaction_id, qty, nominal, keterangan})
+    .then(res => {
+        toastr.success('Berhasil melakukan pembayaran!');
+
+        window.location.reload(false);
+
+    })
+    .catch(err => {
+        toastr.error('Gagal menyimpan pembayaran', 'server error!');
+    })
+});
 </script>
