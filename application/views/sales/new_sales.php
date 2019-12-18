@@ -314,6 +314,14 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
+$('#ok').click(() => {
+    if (pembelian.length) {
+        $.post("<?=?>")
+    } else {
+        toastr.error('Tidak ada data yang tersimpan!');
+    }
+})
+
 $('#clear').click(() => {
     $('#pembeli').val('');
     $('#item').val('');
@@ -326,11 +334,11 @@ $('#clear').click(() => {
 });
 
 $('#add_buyer').click(() => {
-    const nama = $('#nama_pembeli').val();
-    const perusahaan = $('#perusahaan_pembeli').val();
-    const kontak = $('#kontak_pembeli').val();
+    const nama          = $('#nama_pembeli').val();
+    const perusahaan    = $('#perusahaan_pembeli').val();
+    const kontak        = $('#kontak_pembeli').val();
 
-    const data = {nama, perusahaan, kontak}
+    const data          = {nama, perusahaan, kontak}
 
     $.post("<?= api('transaction/buyer') ?>", data).done(res => {
         toastr.success(`Berhasil menambahkan pembeli ${nama}`, "Sukses!");
