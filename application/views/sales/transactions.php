@@ -53,6 +53,59 @@ $(document).ready(() => {
             },
             info: 'Menunjukkan _START_ sampai _END_ dari _TOTAL_ data'
         },
+        ajax: {
+                    url: "<?= site_url('dt/transactions')?>",
+                    type: "POST",
+                },
+                columnDefs: [{
+                    targets: -1,
+                    orderable: false
+                }],
+                columns: [
+                {
+                    data: 'tanggal',
+                    searchable: true,
+                    orderable: true,
+                },
+                {
+                    data: 'nama',
+                    searchable: true,
+                    orderable: true,
+                },
+                {
+                    data: 'keterangan',
+                    searchable: true,
+                    orderable: true,
+                    render: function(keterangan) {
+                        return keterangan == 'bata10' ? 'Bata 10 cm' : 'Bata 7,5 cm';
+                    }
+                },
+                {
+                    data: 'qty',
+                    searchable: true,
+                    orderable: true,
+                },
+                {
+                    data: 'nominal',
+                    searchable: true,
+                    orderable: true,
+                    render: function(nominal) {
+                        return `Rp. ${numberWithCommas(nominal)}`;
+                    }
+                },
+                {
+                    data: 'created_at',
+                    searchable: true,
+                    orderable: true,
+                },
+                {
+                    data: 'id',
+                    render: function(id) {
+                        return `<button id="pay" data-id="${id}" class="btn btn-success btn-block"><span class="fa fa-money-bill-alt"></span> Bayar</button>`
+                    }
+                }
+
+            ],
         initComplete: settings => {
             $('.dataTables_filter').hide()
         }
