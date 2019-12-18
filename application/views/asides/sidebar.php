@@ -99,7 +99,7 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item  <?= nav('production-settings', $this->uri->segments) ?>" href="<?= base_url ('admin/production-settings') ?>">Atur Detil Produksi</a>
+            <!-- <a class="collapse-item  <?= nav('production-settings', $this->uri->segments) ?>" href="<?= base_url ('admin/production-settings') ?>">Atur Detil Produksi</a> -->
             <a class="collapse-item  <?= nav('register', $this->uri->segments) ?>" href="<?= base_url ('admin/register') ?>">Pengguna Baru</a>
             <a class="collapse-item  <?= nav('user-list', $this->uri->segments) ?>" href="<?= base_url ('admin/user-list') ?>">Daftar Pengguna</a>
             <a class="collapse-item  <?= nav('reports', $this->uri->segments) ?>" href="<?= base_url ('admin/reports') ?>">Laporan</a>
