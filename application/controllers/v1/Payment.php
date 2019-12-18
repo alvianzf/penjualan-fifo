@@ -25,7 +25,6 @@ class Payment extends REST_Controller
         $id     = $this->post('transaction_id');
         $nominal= $this->post('jumlah');
         $qty    = $this->post('qty');
-        $nominal= $this->post('nominal');
         $ket    = $this->post('keterangan');
 
         $data = [

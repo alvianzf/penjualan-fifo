@@ -57,6 +57,9 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="currency">Rp.</span>
                         <input id="bayar-full" class="form-control" placeholder="Masukkan nominal" aria-describedby="currency"/>
+                        <input id="id" class="hidden">
+                        <input id="qty" class="hidden">
+                        <input id="keterangan" class="hidden" value="penuh">
                     </div>
                 </div>
             </div>
@@ -102,6 +105,9 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="currency">Rp.</span>
                         <input id="bayar-cicil" class="form-control" placeholder="Masukkan nominal" aria-describedby="currency"/>
+                        <input id="id_cicilan" class="hidden">
+                        <input id="qty_cicilan" class="hidden">
+                        <input id="keterangan_cicilan" class="hidden" value="cicilan">
                     </div>
                 </div>
             </div>
