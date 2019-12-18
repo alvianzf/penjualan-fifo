@@ -88,7 +88,7 @@ $(document).ready(function() {
                     searchable: true,
                     orderable: true,
                     render: (data) => {
-                        return `${numberWithCommas(data.jumlah)} ${data.satuan}`
+                        return `${numberWithCommas(data.jumlah)} Buah`
                     }
                 },
                 {

@@ -125,6 +125,11 @@ class Migration_create_transactions extends CI_Migration
                     'constraint'    => 11,
                     'null'          => false
                 ],
+                'sisa' => [
+                    'type'          => 'INT',
+                    'constraint'    => 11,
+                    'null'          => false
+                ],
                 'keterangan' => [
                     'type'          => 'VARCHAR',
                     'constraint'    => 200,
