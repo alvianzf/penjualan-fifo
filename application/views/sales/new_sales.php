@@ -316,7 +316,13 @@ function numberWithCommas(x) {
 
 $('#ok').click(() => {
     if (pembelian.length) {
-        $.post("<?=?>")
+        $.each(pembelian, (i, data) => {
+            $.post("<?= api('sales/data')?>", data)
+                .catch(err=> {toastr.error('gagal memasukkan data!')})
+                .finally(res => {
+                    toastr('Berhasil memasukkan data')
+                });
+        })
     } else {
         toastr.error('Tidak ada data yang tersimpan!');
     }
