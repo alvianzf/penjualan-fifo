@@ -106,7 +106,7 @@
                 <button class="btn btn-warning btn-block" id="save-cicil" ><span class="fa fa-money-bill-alt"></span> Bayar Bertahap</button>
             </div>
         </div>
-
+        
         <hr />
 
         <h6>Daftar Pembayaran:</h6>
@@ -232,6 +232,7 @@ function bayarCicil(data) {
 
         $('#id_cicilan').val(res.result.buyer_id);
         $('#qty_cicilan').val(res.result.qty);
+        $('#bayar-cicil').val(res.result.nominal).attr('disabled', true);
 
         $('#total-cicil').text(`Total Bayar: Rp.${res.result.nominal}`);
     }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
