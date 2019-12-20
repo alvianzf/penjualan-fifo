@@ -25,6 +25,7 @@
                         <option value="10">Bulan Oktober</option>
                         <option value="11">Bulan November</option>
                         <option value="12">Bulan Desember</option>
+                        <option value="tahunan">Tahunan</option>
                     </select>
                 </div>
                 <div class="col-md-4 col-xs-12">
@@ -64,8 +65,13 @@
 
 $('#btn-print').click(() => {
 
-    const bulan = $('#month').val();
-    window.location.href= "<?= base_url('reports/print_bulan/') ?>" + bulan;
+    if ($('#month').val()  != 'tahunan') {
+        const bulan = $('#month').val();
+        window.location.href= "<?= base_url('reports/print_bulan/') ?>" + bulan;
+    } else {
+        dt = new Date();
+        window.location.href= "<?= base_url('reports/print_tahun/') ?>" + dt.getFullYear();
+    }
 
 });
 
@@ -166,6 +172,8 @@ $('#lihat').click(() => {
         case "11" : $('#table').DataTable().search("Nov").draw();
                     break;
         case "12" : $('#table').DataTable().search("Dec").draw();
+                    break;
+        case "tahunan" : $('#table').DataTable().search('2019').draw();
                     break;
     }
 });

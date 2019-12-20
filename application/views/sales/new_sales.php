@@ -110,7 +110,7 @@
                     <button id="clear" class="btn btn-warning btn-block"><i class="fa fa-list"></i> Clear</button>
                 </div> 
                 <div class="col-xs-12 col-md-3">
-                    <a id="list" class="btn btn-info btn-block" href="<?= base_url('sales/transaksi') ?>"><i class="fa fa-money"></i> Daftar Transaksi</a>
+                    <a id="list" class="btn btn-info btn-block" href="<?= base_url('sales/transaksi') ?>"><i class="fa fa-money"></i> Daftar Penjualan</a>
                 </div> 
             </div>
         </div>

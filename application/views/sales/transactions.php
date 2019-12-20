@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <a class="btn btn-info" href="<?= base_url('sales/new-sales') ?>" >
-                        <span class="fa fa-plus"> Transaksi Baru</span>
+                        <span class="fa fa-plus"> Penjualan Baru</span>
                     </a>
                 </div>
                 <div class="col-md-4 col-xs-12">
