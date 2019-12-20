@@ -1,0 +1,144 @@
+<div class="row">
+    <div class="card shadow border-left-primary col-md-12 col-xs-12">
+        <div class="card-body">
+            <h4>Laporan</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    Cetak laporan:
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
+                    <select class="form-control" id="month">
+                        <option value="" disabled selected>Pilih Bulan</option>
+                        <option value="01">Bulan Januari</option>
+                        <option value="02">Bulan Februari</option>
+                        <option value="03">Bulan Maret</option>
+                        <option value="04">Bulan April</option>
+                        <option value="05">Bulan Mei</option>
+                        <option value="06">Bulan Juni</option>
+                        <option value="07">Bulan Juli</option>
+                        <option value="08">Bulan Agustus</option>
+                        <option value="09">Bulan September</option>
+                        <option value="10">Bulan Oktober</option>
+                        <option value="11">Bulan November</option>
+                        <option value="12">Bulan Desember</option>
+                        <!-- <option value="all">Tahun ini</option> -->
+                    </select>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <button class="btn btn-success btn-block"><span class="fa fa-list"></span> Lihat Data</button>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <button id="btn-print" class="btn btn-info btn-block" ><span class="fa fa-file"></span> Cetak</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <table id="table" class="table table-condensed table-hover table-striped table-collapse">
+                        <thead>
+                            <th>Tanggal Transaksi</th>
+                            <th>Kode Barang</th>
+                            <!-- <th>Qty</th> -->
+                            <th>Pembeli</th>
+                            <th>Jumlah</th>
+                            <th>Pembayaran</th>
+                            <!-- <th><span class="fa fa-cog"></span></th> -->
+                        </thead>
+
+                        <tbody>
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+$('#btn-print').click(() => {
+
+    const bulan = $('#month').val();
+    window.location.href= "<?= base_url('reports/print_bulan/') ?>" + bulan;
+
+});
+
+$(document).ready(() => {
+    
+  $('#table').DataTable({
+                processing: true,
+                responsive: true,
+                order: [0,'asc'],
+                pageLength: 10,
+                lengthChange: false,
+                // searching: false,
+                lengthMenu: [[25,50,100,200], [25,50,100,200]],
+                language: {
+                    paginate: {
+                        next: '<i class="fas fa-caret-right"></i>',
+                        previous: '<i class="fas fa-caret-left"></i>'
+                    },
+                    info: 'Menunjukkan _START_ sampai _END_ dari _TOTAL_ data'
+                },
+                ajax: {
+                    url: "<?= site_url('dt/receipts')?>",
+                    type: "POST",
+                    // data: {
+                    //     <?= $this->security->get_csrf_token_name() ?>: <?= json_encode($this->security->get_csrf_hash()) ?>
+                    // }
+                },
+                columnDefs: [{
+                    targets: -1,
+                    orderable: false
+                }],
+                columns: [
+                {
+                    data: 'tanggal',
+                    searchale: true,
+                    orderable: true
+                },
+                {
+                    data: 'keterangan',
+                    searchable: true,
+                    orderable: true,
+                    render: tipe_barang => {
+                        return tipe_barang == 'bata75' ? 'Bata 7.5cm' : 'Bata 10cm';
+                    }
+                },
+                {
+                    data: 'nama',
+                    searchale: true,
+                    orderable: true
+                },
+                {
+                    data: null,
+                    searchable: true,
+                    orderable: true,
+                    render: (data) => {
+                        return `Rp. ${numberWithCommas(data.total_bayar)}`
+                    }
+                },
+                {
+                    data: 'nominal',
+                    searchable: true,
+                    orderable: true,
+                    render: nominal => {
+                        return `Rp. ${numberWithCommas(nominal)},00`
+                    },
+                },
+
+            ],
+            initComplete: function(settings) {
+                $('.dataTables_filter').hide()
+            }
+            })
+            .draw();
+});
+</script>

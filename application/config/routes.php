@@ -70,7 +70,7 @@ $route['sales/transaksi']                           = 'sales/transactions';
 // Admin
 $route['admin/user-list']                           = 'user/index';
 $route['admin/register']                            = 'user/register';
-$route['admin/reports']                             = 'reports';
+$route['admin/reports']                             = 'form';
 $route['admin/production-settings']                 = 'user/production_settings';
 $route['admin/form/(:any)']                         = 'user/form/$1';
 
