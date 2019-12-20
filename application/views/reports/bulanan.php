@@ -12,34 +12,28 @@
         <div class="card-body">
             <table id="table" class="table table-condensed table-collapse table-striped">
                 <thead>
-                    <th>Tanggal Transaksi</th>
-                    <th>Jumlah</th>
-                    <th>Nominal</th>
-                    <th>Sisa</th>
-                    <th>Keterangan</th>
+                    <tr>
+                        <th>Tanggal Transaksi</th>
+                        <th>Jumlah</th>
+                        <th>Nominal</th>
+                        <th>Sisa</th>
+                        <th>Keterangan</th>
+                    </tr>
                 </thead>
+                <tbody>
+                    <?php foreach($result as $v) {
+                        ?>
+                        <tr>
+                            <td><?= $v->tanggal ?></td>
+                            <td><?= $v->qty ?></td>
+                            <td><?= $v->nominal ?></td>
+                            <td><?= $v->sisa ?></td>
+                            <td><?= $v->keterangan ?></td>
+                        </tr>
+                    <?php
+                    } ?>
+                </tbody>
             </table>
         </div>
     </div>
 </div>
-
-<script>
-
-$.get("<?= api('reports/bulan/' . $bulan ) ?>").then(res => {
-
-    $.each(res.result, (i, data) => {
-        $('#table').append(
-            `
-                <tr>
-                    <td>${data.tanggal}</td>
-                    <td>${data.qty}</td>
-                    <td>${data.nominal}</td>
-                    <td>${data.sisa}</td>
-                    <td>${data.keterangan == 'cicilan' ? '<span class="text-warning">'+data.keterangan+'</span>' : '<span class="text-success">'+data.keterangan+'</span>'}</td>
-                </tr>
-            `
-        );
-    })
-});
-
-</script>

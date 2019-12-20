@@ -74,6 +74,10 @@ $route['admin/reports']                             = 'reports';
 $route['admin/production-settings']                 = 'user/production_settings';
 $route['admin/form/(:any)']                         = 'user/form/$1';
 
+// Reports
+
+$route['reports/(:any)/bulanan']                    = 'reports/bulanan/$1';
+
 // API
 $route['v1/production']                             = 'v1/production';
 $route['v1/production/insert']                      = 'v1/production/insert';

@@ -14,7 +14,7 @@ class Reports extends MY_Controller
         redirect('/', 'refresh');
         }
 
-        $this->load->model(['stock_model', 'transactions_model']);
+        $this->load->model(['stock_model', 'payment_model']);
     }
 
     public function index()
@@ -30,6 +30,19 @@ class Reports extends MY_Controller
         $dt                  = DateTime::createFromFormat('!m', $bulan);
         $this->data['bulan_lap'] = $dt->format('F');
 
+
+        $start = strtotime('2019/'.$bulan.'01');
+        $end   = strtotime('2019'.$bulan.'31');
+
+        $data = $this->payment_model->get_many_by(['tanggal >' => $start, 'tanggal <' => $end]);
+        
+        foreach ($data as $i => $v) {
+            $data[$i]->bulan    = $dt->format('F');
+            $data[$i]->tanggal = date('d/m/Y', $v->tanggal);
+        }
+
+        $this->data['result'] = $data;
+
     }
 
     public function pembeli ($nama = null)
@@ -42,4 +55,28 @@ class Reports extends MY_Controller
         $tahun = @$tahun ? $tahun : date('Y');
     }
 
+    public function print_bulan ($bulan)
+    {
+
+        $bulan = @$bulan ? $bulan : date ('m');
+
+        $dt                  = DateTime::createFromFormat('!m', $bulan);
+        $bulan_lap           = $dt->format('F');
+
+        $start = strtotime('2019/'.$bulan.'01');
+        $end   = strtotime('2019'.$bulan.'31');
+
+        $data = $this->payment_model->get_many_by(['tanggal >' => $start, 'tanggal <' => $end]);
+        
+        foreach ($data as $i => $v) {
+            $data[$i]->bulan    = $dt->format('F');
+            $data[$i]->tanggal = date('d/m/Y', $v->tanggal);
+        }
+
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('reports/bulanan', ['bulan_lap' => $bulan_lap, 'result' => $data],true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output(); // opens in browser
+        //$mpdf->Output('arjun.pdf','D'); // it downloads the file into the user system, with give name
+    }
 }
