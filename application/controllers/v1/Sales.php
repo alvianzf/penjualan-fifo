@@ -7,7 +7,7 @@ class Sales extends REST_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(['user_model', 'buyer_model', 'items_model', 'transactions_model']);
+        $this->load->model(['user_model', 'buyer_model', 'items_model', 'transactions_model', 'payment_model']);
     }
 
     public function list_get()
@@ -48,6 +48,7 @@ class Sales extends REST_Controller
             'created_at'    =>  $created_at
         ];
 
+
         // Pengurangan FIFO
         $penjualan = $this->items_model->get_many_by('tipe_barang', $keterangan);
 
@@ -72,8 +73,26 @@ class Sales extends REST_Controller
             }
         }
 
-        if ($this->transactions_model->insert($data))
+        if ($this->transactions_model->insert($data)) {
+
+            $transaction_id = $this->db->insert_id();
+
+            if (!$this->payment_model->get_many_by('transaction_id', $transaction_id)) {
+                $payment = [
+                    'transaction_id'    =>  $transaction_id,
+                    'tanggal'           =>  time(),
+                    'qty'               =>  $qty,
+                    'nominal'           =>  0,
+                    'sisa'              =>  $nominal,
+                    'keterangan'        =>  '-',
+                    'created_at'        => time()
+                ];
+
+                $this->payment_model->insert($payment);
+            }
+
             return $this->response(api_success($data), 200);
+        }
 
         return $this->reponse(api_error($data), 500);
     }
