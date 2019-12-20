@@ -87,7 +87,7 @@ $(document).ready(() => {
                     info: 'Menunjukkan _START_ sampai _END_ dari _TOTAL_ data'
                 },
                 ajax: {
-                    url: "<?= site_url('dt/receipts')?>",
+                    url: "<?= site_url('dt/receipts_all')?>",
                     type: "POST",
                     // data: {
                     //     <?= $this->security->get_csrf_token_name() ?>: <?= json_encode($this->security->get_csrf_hash()) ?>
