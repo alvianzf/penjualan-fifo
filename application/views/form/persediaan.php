@@ -5,13 +5,13 @@
                 <h4>Laporan Pembelian</h4>
             </div>
             <div class="col-xs-12 col-md-3">
-                <a href="#" class="text-muted"><span class="fa fa-money-bill-wave"></span> Transaksi</a>
+                <a href="<?= base_url('form') ?>" class="text-success"><span class="fa fa-money-bill-wave"></span> Transaksi</a>
             </div>
             <div class="col-xs-12 col-md-3">
                 <a href="<?= base_url('form/produksi') ?>" class="text-primary"><span class="fa fa-industry"></span> Produksi</a>
             </div>
             <div class="col-xs-12 col-md-3">
-                <a href="<?= base_url('form/persediaan') ?>" class="text-info"><span class="fa fa-chart-bar"></span> Persediaan</a>
+                <a href="#" class="text-muted"><span class="fa fa-chart-bar"></span> Persediaan</a>
             </div>    
         </div>
         <div class="card-body">
