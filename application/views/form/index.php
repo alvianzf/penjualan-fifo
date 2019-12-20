@@ -29,7 +29,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <button class="btn btn-success btn-block"><span class="fa fa-list"></span> Lihat Data</button>
+                    <button id="lihat" class="btn btn-success btn-block"><span class="fa fa-list"></span> Lihat Data</button>
                 </div>
                 <div class="col-md-4 col-xs-12">
                     <button id="btn-print" class="btn btn-info btn-block" ><span class="fa fa-file"></span> Cetak</button>
@@ -141,4 +141,35 @@ $(document).ready(() => {
             })
             .draw();
 });
+
+$('#lihat').click(() => {
+    switch ($('#month').val()) {
+        case "01" : $('#table').DataTable().search("Jan").draw();
+                    break;
+        case "02" : $('#table').DataTable().search("Feb").draw();
+                    break;
+        case "03" : $('#table').DataTable().search("Mar").draw();
+                    break;
+        case "04" : $('#table').DataTable().search("Apr").draw();
+                    break;
+        case "05" : $('#table').DataTable().search("May").draw();
+                    break;
+        case "06" : $('#table').DataTable().search("Jun").draw();
+                    break;
+        case "07" : $('#table').DataTable().search("Jul").draw();
+                    break;
+        case "08" : $('#table').DataTable().search("Aug").draw();
+                    break;
+        case "09" : $('#table').DataTable().search("Sep").draw();
+                    break;
+        case "10" : $('#table').DataTable().search("Oct").draw();
+                    break;
+        case "11" : $('#table').DataTable().search("Nov").draw();
+                    break;
+        case "12" : $('#table').DataTable().search("Dec").draw();
+                    break;
+    }
+
+});
+
 </script>
