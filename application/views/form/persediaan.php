@@ -2,7 +2,7 @@
     <div class="card shadow border-left-primary col-md-12 col-xs-12">
     <div class="card-body row">
             <div class="col-xs-12 col-md-3">
-                <h4>Laporan Pembelian</h4>
+                <h4>Laporan Pembelian Persediaan</h4>
             </div>
             <div class="col-xs-12 col-md-3">
                 <a href="<?= base_url('form') ?>" class="text-success"><span class="fa fa-money-bill-wave"></span> Transaksi</a>
@@ -53,13 +53,13 @@
                 <div class="col-md-12 col-xs-12">
                     <table id="table" class="table table-condensed table-hover table-striped table-collapse">
                         <thead>
-                            <th>Tanggal Transaksi</th>
-                            <th>Kode Barang</th>
-                            <!-- <th>Qty</th> -->
-                            <th>Pembeli</th>
-                            <th>Jumlah</th>
-                            <th>Pembayaran</th>
-                            <!-- <th><span class="fa fa-cog"></span></th> -->
+                            <td>Kode Pembelian</td>
+                            <td>Merek</td>
+                            <td>Tipe Barang</td>
+                            <td>Jumlah</td>
+                            <td>Harga</td>
+                            <td>Total</td>
+                            <td>Tanggal Produksi</td>
                         </thead>
 
                         <tbody>
@@ -78,17 +78,18 @@ $('#btn-print').click(() => {
 
     if ($('#month').val()  != 'tahunan') {
         const bulan = $('#month').val();
-        window.location.href= "<?= base_url('reports/print_bulan/') ?>" + bulan;
+        window.location.href= "<?= base_url('reports/print_persediaan_bulan/') ?>" + bulan;
     } else {
         dt = new Date();
-        window.location.href= "<?= base_url('reports/print_tahun/') ?>" + dt.getFullYear();
+        window.location.href= "<?= base_url('reports/print_persediaan_tahun/') ?>" + dt.getFullYear();
     }
 
 });
 
 $(document).ready(() => {
     
-  $('#table').DataTable({
+ 
+    $('#table').DataTable({
                 processing: true,
                 responsive: true,
                 order: [0,'asc'],
@@ -104,7 +105,7 @@ $(document).ready(() => {
                     info: 'Menunjukkan _START_ sampai _END_ dari _TOTAL_ data'
                 },
                 ajax: {
-                    url: "<?= site_url('dt/receipts_all')?>",
+                    url: "<?= site_url('dt/purchase')?>",
                     type: "POST",
                     // data: {
                     //     <?= $this->security->get_csrf_token_name() ?>: <?= json_encode($this->security->get_csrf_hash()) ?>
@@ -116,21 +117,18 @@ $(document).ready(() => {
                 }],
                 columns: [
                 {
-                    data: 'tanggal',
-                    searchale: true,
+                    data: 'kode_barang',
+                    searchable: true,
                     orderable: true
                 },
                 {
-                    data: 'keterangan',
+                    data: 'nama_barang',
                     searchable: true,
-                    orderable: true,
-                    render: tipe_barang => {
-                        return tipe_barang == 'bata75' ? 'Bata 7.5cm' : 'Bata 10cm';
-                    }
+                    orderable: true
                 },
                 {
-                    data: 'nama',
-                    searchale: true,
+                    data: 'tipe_barang',
+                    searchable: true,
                     orderable: true
                 },
                 {
@@ -138,17 +136,30 @@ $(document).ready(() => {
                     searchable: true,
                     orderable: true,
                     render: (data) => {
-                        return `Rp. ${numberWithCommas(data.total_bayar)}`
+                        return `${numberWithCommas(data.jumlah)} ${data.satuan}`
                     }
                 },
                 {
-                    data: 'nominal',
+                    data: 'harga',
                     searchable: true,
                     orderable: true,
-                    render: nominal => {
-                        return `Rp. ${numberWithCommas(nominal)},00`
+                    render: harga => {
+                        return `Rp. ${numberWithCommas(harga)},00`
                     },
                 },
+                {
+                    data: null,
+                    searchable: true,
+                    orderable: true,
+                    render: (data) => {
+                        return `Rp. ${numberWithCommas(data.jumlah * data.harga)},00`
+                    }
+                },
+                {
+                    data: 'tanggal',
+                    searchable: true,
+                    orderable: true
+                }
 
             ],
             initComplete: function(settings) {

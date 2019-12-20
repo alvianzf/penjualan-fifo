@@ -14,7 +14,7 @@ class Reports extends MY_Controller
         redirect('/', 'refresh');
         }
 
-        $this->load->model(['stock_model', 'payment_model', 'items_model']);
+        $this->load->model(['stock_model', 'payment_model', 'items_model', 'stock_model']);
     }
 
     public function index()
@@ -207,6 +207,55 @@ class Reports extends MY_Controller
 
         $mpdf = new \Mpdf\Mpdf();
         $html = $this->load->view('reports/produksi_tahunan', ['bulan_lap' => $bulan_lap, 'result' => $data],true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output(); // opens in browser
+        //$mpdf->Output('arjun.pdf','D'); // it downloads the file into the user system, with give name
+    }
+
+    public function print_persediaan_bulan ($bulan)
+    {
+
+        $bulan = @$bulan ? $bulan : date ('m');
+
+        $dt                  = DateTime::createFromFormat('!m', $bulan);
+        $bulan_lap           = $dt->format('F');
+
+        $start = strtotime('2019/'.$bulan.'01');
+        $end   = strtotime('2019'.$bulan.'31');
+
+        $data = $this->stock_model->get_many_by(['created_at >' => $start, 'created_at <' => $end]);
+        
+        foreach ($data as $i => $v) {
+            $data[$i]->bulan        = $dt->format('F');
+            $data[$i]->created_at   = date('d/m/Y', $v->created_at);
+        }
+
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('reports/pembelian_bulanan', ['bulan_lap' => $bulan_lap, 'result' => $data],true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output(); // opens in browser
+        //$mpdf->Output('arjun.pdf','D'); // it downloads the file into the user system, with give name
+    }
+
+    public function print_persediaan_tahun ($bulan)
+    {
+
+        $bulan = @$bulan ? $bulan : date ('m');
+
+        $bulan_lap              = date('Y');
+
+        $start = strtotime($bulan.'/01/01');
+        $end   = strtotime($bulan.'/12/31');
+
+        $data = $this->stock_model->get_many_by(['created_at >' => $start, 'created_at <' => $end]);
+        
+        foreach ($data as $i => $v) {
+            $data[$i]->bulan    = date('Y');
+            $data[$i]->created_at = date('d/m/Y', $v->created_at);
+        }
+
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('reports/pembelian_tahunan', ['bulan_lap' => $bulan_lap, 'result' => $data],true);
         $mpdf->WriteHTML($html);
         $mpdf->Output(); // opens in browser
         //$mpdf->Output('arjun.pdf','D'); // it downloads the file into the user system, with give name
