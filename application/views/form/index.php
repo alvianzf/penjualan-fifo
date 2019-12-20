@@ -169,7 +169,6 @@ $('#lihat').click(() => {
         case "12" : $('#table').DataTable().search("Dec").draw();
                     break;
     }
-
 });
 
 </script>
