@@ -4,7 +4,6 @@ function numberWithCommas(x) {
 }
 
 $('#cari').on('keyup', function() {
-
     $('#table').DataTable()
         .search($('#cari').val()).draw();
 })

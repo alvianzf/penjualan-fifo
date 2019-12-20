@@ -37,3 +37,11 @@
         </div>
     </div>
 </div>
+
+<script>
+
+$(document).ready(() => {
+    toastr.success('Sukses!');
+})
+
+</script>
