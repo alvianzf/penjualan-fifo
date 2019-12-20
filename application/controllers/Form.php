@@ -19,6 +19,16 @@ class Form extends MY_Controller
 
     public function index()
     {
+
+    }
+
+    public function persediaan()
+    {
+        
+    }
+
+    public function produksi()
+    {
         
     }
 }

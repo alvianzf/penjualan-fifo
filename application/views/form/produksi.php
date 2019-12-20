@@ -1,8 +1,8 @@
 <div class="row">
     <div class="card shadow border-left-primary col-md-12 col-xs-12">
-        <div class="card-body row">
+    <div class="card-body row">
             <div class="col-xs-12 col-md-3">
-                <h4>Laporan Transaksi Penjualan</h4>
+                <h4>Laporan Sisa Produksi</h4>
             </div>
             <div class="col-xs-12 col-md-3">
                 <a href="#" class="text-muted"><span class="fa fa-money-bill-wave"></span> Transaksi</a>
