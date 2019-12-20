@@ -25,7 +25,6 @@
                         <option value="10">Bulan Oktober</option>
                         <option value="11">Bulan November</option>
                         <option value="12">Bulan Desember</option>
-                        <!-- <option value="all">Tahun ini</option> -->
                     </select>
                 </div>
                 <div class="col-md-4 col-xs-12">
