@@ -5,10 +5,6 @@ class Reports extends MY_Controller
     protected $asides = [
       'header'  => 'asides/header',
       'footer'  => 'asides/footer',
-      'logout'  => 'asides/logout',
-      'sidebar'  => 'asides/sidebar',
-      'topbar'  => 'asides/topbar',
-      'sticky_footer'  => 'asides/sticky_footer'
     ];
 
     public function __construct()
@@ -30,7 +26,10 @@ class Reports extends MY_Controller
     {
         $bulan = @$bulan ? $bulan : date ('m');
 
-        // $data = $this->
+        $this->data['bulan'] = $bulan;
+        $dt                  = DateTime::createFromFormat('!m', $bulan);
+        $this->data['bulan_lap'] = $dt->format('F');
+
     }
 
     public function pembeli ($nama = null)
