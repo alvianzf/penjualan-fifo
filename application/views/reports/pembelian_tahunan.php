@@ -31,6 +31,7 @@
                             <td><?= $v->tipe_barang ?></td>
                             <td><?= $v->jumlah ?></td>
                             <td>Rp. <?= $v->harga ?></td>
+                            <td>Rp. <?= $v->harga * $v->jumlah ?></td>
                             <td><?= $v->created_at ?></td>
                         </tr>
                     <?php
