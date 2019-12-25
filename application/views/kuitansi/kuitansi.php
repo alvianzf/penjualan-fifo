@@ -1,5 +1,5 @@
-<center><h1>Kuitansi Pembayaran</h1></center>
-<center><h5><?= date('d F Y') ?></h5></center>
+<div class="center"><h1>Kuitansi Pembayaran</h1></div>
+<div class="center"><h5><?= date('d F Y') ?></h5></div>
 
 <table>
 <tr>
@@ -19,15 +19,22 @@
 </table>
 
 <style>
-    center {
+    .center {
+        display: inline-block;
         text-align: center;
     }
 
-    table {
+    table{
+        border-collapse: collapse;
         width: 100%;
         padding: 5px;
         margin: 0;
-        border: 1px black;
+        border: 1px solid black;
         text-align: center;
+    }
+
+    th {
+        height: 50%;
+        vertical-align: middle;
     }
 </style>
