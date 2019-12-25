@@ -1,5 +1,6 @@
 <div class="center"><h1>Kuitansi Pembayaran</h1></div>
 <div class="center"><h5><?= date('d F Y') ?></h5></div>
+<div class="left">ID: <?= time() ?></div>
 
 <table>
 <tr>
@@ -13,12 +14,21 @@
     <td><?= $data->tanggal ?></td>
     <td><?= ucfirst($data->keterangan) ?></td>
     <td><?= $data->qty ?></td>
-    <td><?= $data->nominal ?></td>
+    <td class="right">Rp. <?= $data->nominal ?>,00</td>
 </tr>
 
 </table>
 
 <style>
+
+    .right {
+            display: inline-block;
+            text-align: right;
+        }
+    .left {
+        display: inline-block;
+        text-align: left;
+    }
     .center {
         display: inline-block;
         text-align: center;
