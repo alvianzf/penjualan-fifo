@@ -244,12 +244,13 @@ $('#save-full').click(function (e) {
     const nominal           =   $('#bayar-full').val();
     const keterangan        =   $('#keterangan').val();
 
-    $.post("<?= api('payment/pay') ?>", {transaction_id, qty, nominal, keterangan})
+    const transaction = {transaction_id, qty, nominal, keterangan};
+
+    $.post("<?= api('payment/pay') ?>", transaction)
     .then(res => {
         toastr.success('Berhasil melakukan pembayaran!');
 
-        window.location.reload(false);
-
+        window.location.href = "<?= base_url('sales/kuitansi/') ?>" + res.result.payment_id;
     })
     .catch(err => {
         toastr.error('Gagal menyimpan pembayaran', 'server error!');

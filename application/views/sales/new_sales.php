@@ -322,7 +322,6 @@ function numberWithCommas(x) {
 
 $('#ok').click(() => {
     console.log($('#pembeli').val());
-    console.log(pembelian)
     if (pembelian.length) {
         $.each(pembelian, (i, data) => {
             $.post("<?= api('sales/data')?>", data)
@@ -336,7 +335,7 @@ $('#ok').click(() => {
                     $('#harga').text('');
                     $('#subtotal').text('');
                 });
-        })
+        });
     } else {
         toastr.error('Tidak ada data yang tersimpan!');
     }

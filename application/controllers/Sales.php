@@ -38,7 +38,7 @@ class Sales extends MY_Controller
       redirect('/', 'refresh');
     }
 
-    $this->load->model(['user_model', 'user_data_model', 'items_model', 'buyer_model', 'transactions_model']);
+    $this->load->model(['user_model', 'user_data_model', 'items_model', 'buyer_model', 'transactions_model', 'payment_model']);
 
   }
 
@@ -60,6 +60,16 @@ class Sales extends MY_Controller
   public function receipts()
   {
     
+  }
+
+  public function kuitansi ($payment_id)
+  {
+    $data = $this->payment_model->get($payment_id);
+
+    $mpdf = new \Mpdf\Mpdf();
+    $html = $this->load->view('reports/kuitansi', ['data' => $data],true);
+    $mpdf->WriteHTML($html);
+    $mpdf->Output('Kuitansi_' . time());
   }
 
 }

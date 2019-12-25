@@ -73,8 +73,6 @@ class Sales extends REST_Controller
             }
         }
 
-        $this->kuitansi($penjualan);
-
         if ($this->transactions_model->insert($data)) {
 
             $transaction_id = $this->db->insert_id();
@@ -105,14 +103,5 @@ class Sales extends REST_Controller
             return $this->response(api_success($data), 200);
 
         return $this->response(api_error($data), 500);
-    }
-
-    public function kuitansi($data)
-    {
-        $mpdf = new \Mpdf\Mpdf();
-        $html = $this->load->view('reports/kuitansi', ['data' => $data ],true);
-        $mpdf->WriteHTML($html);
-        $mpdf->Output(); // opens in browser
-        //$mpdf->Output('arjun.pdf','D'); // it downloads the file into the user system, with give name
     }
 }
