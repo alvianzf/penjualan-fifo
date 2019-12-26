@@ -187,4 +187,9 @@ $('#lihat').click(() => {
     }
 });
 
+var d = new Date();
+var n = d.getMonth();
+
+$('#month').val(00+n+1);
+
 </script>
