@@ -32,16 +32,16 @@ class Payment extends REST_Controller
         $nominal= $this->post('nominal');
         $qty    = $this->post('qty');
         $ket    = $this->post('keterangan');
-        $sisa   = $this->transactions_model->get($id)->nominal;
+        $sisa   = $this->payment_model->order_by('id', 'desc')->limit(1)->get_by('transaction_id', $id)->sisa;
         $jum_awal = $sisa;
 
         if ($ket == 'cicilan') {
             $sisa = @$this->payment_model->order_by('id', 'desc')->limit(1)->get_by('transaction_id', $id) ? $this->payment_model->order_by('id', 'desc')->limit(1)->get_by('transaction_id', $id)->nominal : $sisa;
 
-            $sisa = $sisa[0] == 0 ? $jum_awal : $sisa[0];
+            $sisa = $sisa == 0 ? $jum_awal : $sisa[0];
         }
+
         $sisa = $sisa - (int) $nominal;
-        
         
         $data = [
             'transaction_id'    => $id,

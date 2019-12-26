@@ -98,14 +98,9 @@ class Sales extends REST_Controller
 
     public function single_transaction_get($id) {
 
-        $payment = $this->payment_model->get_many_by('transaction_id', $id);
-
-        if (count($payment) > 1) {
-            $sisa = $this->payment_model->order_by('id', 'desc')->limit(1)->get_by('transaction_id', $id)->sisa;
-        }
+        $sisa = $this->payment_model->order_by('id', 'desc')->limit(1)->get_by('transaction_id', $id)->sisa;
 
         // check($sisa);exit;
-
         $data = $this->transactions_model->get($id);
         $data->nominal = $sisa;
 

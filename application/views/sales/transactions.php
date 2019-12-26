@@ -272,9 +272,9 @@ $('#save-full').click(function (e) {
     .then(res => {
         toastr.success('Berhasil melakukan pembayaran!');
 
-        window.location.href = "<?= base_url('kuitansi/kuitansi/') ?>" + res.result.payment_id;
+        // window.location.href = "<?= base_url('kuitansi/kuitansi/') ?>" + res.result.payment_id;
         // window.location.reload(false);
-        $('#fullModal').modal('toggle');
+        // $('#fullModal').modal('toggle');
     })
     .catch(err => {
         toastr.error('Gagal menyimpan pembayaran', 'server error!');
