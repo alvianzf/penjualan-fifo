@@ -57,7 +57,7 @@ class Payment extends REST_Controller
         if ($sisa == 0) {
             $this->transactions_model->update($id, ['selesai' => 1]);
             $this->payment_model->insert($data);
-            $data['payment_id'] = $id;
+            $data['payment_id'] = $this->db->insert_id();
             
             return $this->response(api_success($data), 200);
         } else {

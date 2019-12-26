@@ -271,7 +271,6 @@ $('#save-full').click(function (e) {
     $.post("<?= api('payment/pay') ?>", transaction)
     .then(res => {
         toastr.success('Berhasil melakukan pembayaran!');
-
         window.location.href = "<?= base_url('kuitansi/kuitansi/') ?>" + res.result.payment_id;
         // window.location.reload(false);
         $('#fullModal').modal('toggle');
@@ -290,7 +289,7 @@ $('#save-cicil').click(function (e) {
     $.post("<?= api('payment/pay') ?>", {transaction_id, qty, nominal, keterangan})
     .then(res => {
         toastr.success('Berhasil melakukan pembayaran!');
-        window.location.href = "<?= base_url('kuitansi/kuitansi/') ?>" + res.result.payment_id;
+        // window.location.href = "<?= base_url('kuitansi/kuitansi/') ?>" + res.result.payment_id;
         // window.location.reload(false);
         $('#cicilModal').modal('toggle');
     })
