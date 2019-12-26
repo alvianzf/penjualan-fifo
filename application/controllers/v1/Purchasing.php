@@ -37,7 +37,7 @@ class Purchasing extends REST_Controller
         $time        = strtotime($this->post('created_at'));
 
         $items = [
-            'kode_barang'   => 'INV ' + time(),
+            'kode_barang'   => 'INV ' . time(),
             'tipe_barang'   =>  $tipe_barang,
             'nama_barang'   => $nama_barang,
             'jumlah'        => $jumlah,
