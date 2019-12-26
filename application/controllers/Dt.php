@@ -56,7 +56,7 @@ class Dt extends CI_Controller
 
     public function transactions()
     {
-        $this->datatables->select('A.id, B.nama, tanggal, qty, nominal, keterangan, A.created_at')
+        $this->datatables->select('A.id, B.nama, tanggal, qty, A.nominal, keterangan, A.created_at')
                 ->from('transactions A')
                 ->where('selesai', 0)
                 ->join('buyer B', 'A.buyer_id = B.id')

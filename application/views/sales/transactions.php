@@ -214,7 +214,7 @@ function bayarFull(data) {
         if (res.result) {
             $.get("<?= api('sales/single_transaction/') ?>" + id)
             .then(res => {
-                $('#id').val(res.result.buyer_id);
+                $('#id').val(res.result.id);
                 $('#qty').val(res.result.qty);
                 $('#bayar-full').val(res.result.nominal).attr('disabled', true);
 
@@ -223,13 +223,13 @@ function bayarFull(data) {
         }
 
         if (res.result == false) {
-            $('#cicilModal').modal('toggle');
+            $('#bayarFull').modal('toggle');
             toastr.warning('Harap melakukan pelunasan cicilan!');
         }
     }).catch(err => {
         $.get("<?= api('sales/single_transaction/') ?>" + id)
             .then(res => {
-                $('#id').val(res.result.buyer_id);
+                $('#id').val(res.result.id);
                 $('#qty').val(res.result.qty);
                 $('#bayar-full').val(res.result.nominal).attr('disabled', true);
 
@@ -240,17 +240,18 @@ function bayarFull(data) {
 
 function bayarCicil(data) {
     const id = data.attr('data-id');
+    $('#bayar-cicil-table > tbody > tr').detach();
     $.get("<?= api('sales/single_transaction/') ?>" + id)
     .then(res => {
 
         $.get("<?= api('payment/data/') ?>" + id).then(payment => {
-            $('#bayar-cicil-table').append(`<tr><td>${payment.result.tanggal}</td><td>${numberWithCommas(payment.result.nominal)}</td></tr>`);
+            $('#bayar-cicil-table').append(`<tr><td>${payment.result.tanggal}</td><td>${payment.result.nominal != 0 ? numberWithCommas(payment.result.nominal) : "Belum ada pembayaran"}</td></tr>`);
             $('#sisa').text(`${numberWithCommas(payment.result.sisa)}`)
         }).catch(err => {
             $('#bayar-cicil-table').append('<tr><td>Belum ada pembayaran cicilan</td><td></td></tr>')
         });
 
-        $('#id_cicilan').val(res.result.buyer_id);
+        $('#id_cicilan').val(res.result.id);
         $('#qty_cicilan').val(res.result.qty);
 
         $('#total-cicil').text(`Total Bayar: Rp.${res.result.nominal}`);
@@ -269,8 +270,9 @@ $('#save-full').click(function (e) {
     .then(res => {
         toastr.success('Berhasil melakukan pembayaran!');
 
-        // window.location.href = "<?= base_url('kuitansi/kuitansi/') ?>" + res.result.payment_id;
+        window.location.href = "<?= base_url('kuitansi/kuitansi/') ?>" + res.result.payment_id;
         // window.location.reload(false);
+        $('#fullModal').modal('toggle');
     })
     .catch(err => {
         toastr.error('Gagal menyimpan pembayaran', 'server error!');
@@ -286,8 +288,9 @@ $('#save-cicil').click(function (e) {
     $.post("<?= api('payment/pay') ?>", {transaction_id, qty, nominal, keterangan})
     .then(res => {
         toastr.success('Berhasil melakukan pembayaran!');
-
-        window.location.reload(false);
+        window.location.href = "<?= base_url('kuitansi/kuitansi/') ?>" + res.result.payment_id;
+        // window.location.reload(false);
+        $('#cicilModal').modal('toggle');
 
     })
     .catch(err => {
