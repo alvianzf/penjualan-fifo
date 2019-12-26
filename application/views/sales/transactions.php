@@ -221,6 +221,17 @@ function bayarFull(data) {
                 $('#total-full').text(`Total Bayar: Rp.${res.result.nominal}`);
             }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
         }
+
+        if (res.result == false) {
+            $.get("<?= api('sales/single_transaction/') ?>" + id)
+            .then(res => {
+                $('#id').val(res.result.id);
+                $('#qty').val(res.result.qty);
+                $('#bayar-full').val(res.result.nominal).attr('disabled', true);
+
+                $('#total-full').text(`Total Bayar: Rp.${res.result.nominal}`);
+            }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
+        }
     }).then(res => {
     }).catch(err => {
         console.log(err)
