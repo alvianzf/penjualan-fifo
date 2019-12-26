@@ -50,7 +50,7 @@ class Sales extends REST_Controller
 
 
         // Pengurangan FIFO
-        $penjualan = $this->items_model->get_many_by('tipe_barang', $keterangan);
+        $penjualan = $this->items_model->order_by('created_at', 'desc')->get_many_by('tipe_barang', $keterangan);
 
         $jum = $qty;
         foreach ($penjualan as $i => $v) {
