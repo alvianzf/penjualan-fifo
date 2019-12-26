@@ -42,7 +42,7 @@ class Production extends REST_Controller
             'jumlah'        => $jumlah,
             'satuan'        => $satuan,
             'harga'         => $harga,
-            'created_at'    => time()
+            'created_at'    => $time
         ];
         
         $code = 200;
@@ -81,7 +81,7 @@ class Production extends REST_Controller
             'jumlah'        => $jumlah,
             'satuan'        => $satuan,
             'harga'         => $harga,
-            'created_at'    => time()
+            'created_at'    => $time
         ];
         
         $code = 200;

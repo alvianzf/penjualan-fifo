@@ -43,7 +43,7 @@ class Purchasing extends REST_Controller
             'jumlah'        => $jumlah,
             'satuan'        => $satuan,
             'harga'         => $harga,
-            'created_at'    => time()
+            'created_at'    => $time
         ];
         
         $code = 200;
@@ -82,7 +82,7 @@ class Purchasing extends REST_Controller
             'jumlah'        => $jumlah,
             'satuan'        => $satuan,
             'harga'         => $harga,
-            'created_at'    => time()
+            'created_at'    => $time
         ];
         
         $code = 200;

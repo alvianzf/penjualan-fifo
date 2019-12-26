@@ -62,14 +62,4 @@ class Sales extends MY_Controller
     
   }
 
-  public function kuitansi ($payment_id)
-  {
-    $data = $this->payment_model->get($payment_id);
-
-    $mpdf = new \Mpdf\Mpdf();
-    $html = $this->load->view('reports/kuitansi', ['data' => $data],true);
-    $mpdf->WriteHTML($html);
-    $mpdf->Output('Kuitansi_' . time());
-  }
-
 }
