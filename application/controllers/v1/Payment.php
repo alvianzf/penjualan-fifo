@@ -32,6 +32,11 @@ class Payment extends REST_Controller
         $ket    = $this->post('keterangan');
         $sisa   = $this->transactions_model->get($id)->nominal;
 
+        check($sisa);
+        check($id);
+
+        exit;
+
         if ($ket == 'cicilan') {
             $sisa = @$this->payment_model->order_by('id', 'desc')->limit(1)->get_by('transaction_id', $id) ? $this->payment_model->order_by('id', 'desc')->limit(1)->get_by('transaction_id', $id) : $sisa;
         }

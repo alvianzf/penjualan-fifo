@@ -34,7 +34,7 @@ class Purchasing extends REST_Controller
         $jumlah      = $this->post('jumlah');
         $satuan      = $this->post('satuan');
         $harga       = $this->post('harga');
-        $time        = strtotime($this->post('tanggal'));
+        $time        = strtotime($this->post('created_at'));
 
         $items = [
             'kode_barang'   => 'INV ' + time(),
@@ -74,7 +74,7 @@ class Purchasing extends REST_Controller
         $jumlah      = $this->post('jumlah');
         $satuan      = $this->post('satuan');
         $harga       = $this->post('harga');
-        $time        = strtotime($this->post('tanggal'));
+        $time        = strtotime($this->post('created_at'));
 
         $items = [
             'tipe_barang'   =>  $tipe_barang,

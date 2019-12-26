@@ -88,7 +88,7 @@ $('#table').DataTable({
                 orderable: true,
                 render: nominal => {
                     // return nominal == 0 ? `Rp. ${numberWithCommas(parseInt(nominal))},00` : "Belum ada pembayaran";
-                    return nominal != 0 ? `Rp. ${numberWithCommas(parseInt(nominal))}` : "Belum ada pembayaran";
+                    return nominal != 0 ? `Rp. ${numberWithCommas(parseInt(nominal))}` : `<span class="text-warning">Belum ada pembayaran</span>`;
                 },
             },
             {
