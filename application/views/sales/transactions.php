@@ -272,8 +272,11 @@ $('#save-full').click(function (e) {
     .then(res => {
         toastr.success('Berhasil melakukan pembayaran!');
         window.location.href = "<?= base_url('kuitansi/kuitansi/') ?>" + res.result.payment_id;
-        // window.location.reload(false);
         $('#fullModal').modal('toggle');
+
+        if(res.result.sisa == 0) {
+            window.location.reload(false);
+        }
     })
     .catch(err => {
         toastr.error('Gagal menyimpan pembayaran', 'server error!');
@@ -289,9 +292,12 @@ $('#save-cicil').click(function (e) {
     $.post("<?= api('payment/pay') ?>", {transaction_id, qty, nominal, keterangan})
     .then(res => {
         toastr.success('Berhasil melakukan pembayaran!');
-        // window.location.href = "<?= base_url('kuitansi/kuitansi/') ?>" + res.result.payment_id;
-        // window.location.reload(false);
+        window.location.href = "<?= base_url('kuitansi/kuitansi/') ?>" + res.result.payment_id;
         $('#cicilModal').modal('toggle');
+
+        if(res.result.sisa == 0) {
+            window.location.reload(false);
+        }
     })
     .catch(err => {
         toastr.error('Gagal menyimpan pembayaran', 'server error!');
