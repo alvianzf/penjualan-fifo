@@ -185,7 +185,7 @@ $(document).ready(() => {
                     searchable: true,
                     orderable: true,
                     render: function(nominal) {
-                        return nominal ? `Rp. ${numberWithCommas(nominal)} :"Belum ada pembayaran"`;
+                        return nominal ? `Rp. ${numberWithCommas(nominal)}` :"Belum ada pembayaran";
                     }
                 },
                 {
