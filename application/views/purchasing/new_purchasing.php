@@ -93,11 +93,12 @@ $('#submit').click(() => {
         $.post("<?= api('purchasing/insert') ?>", data).then(res => {
             toastr.success('Berhasil menambahkan item '+ res.result.nama_barang, res.result.nama_barang);
 
-            $('#kode_barang').val('')    
-            $('#nama_barang').val('')    
-            $('#tipe_barang').val('')    
-            $('#jumlah_barang').val('')  
-            $('#tanggal').val('')         
+            $('#kode_barang').val('');   
+            $('#nama_barang').val('');   
+            $('#tipe_barang').val('');
+            $('#jumlah_barang').val('');
+            $('#tanggal').val('');      
+            $('#harga').val('');        
         })
         .catch(err => {
             console.log(err.status)
@@ -117,7 +118,7 @@ $('#reset').click(() => {
     $('#jumlah_barang').val('')  
     $('#satuan').val('');
     $('#harga').val('');
-    $('#tanggal').val('') 
+    $('#tanggal').val('');
 
     toastr.info('Data berhasil diset ulang', 'reset data');
 })
