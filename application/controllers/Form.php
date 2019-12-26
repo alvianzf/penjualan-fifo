@@ -14,6 +14,9 @@ class Form extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+        if (!@$this->session->userdata['is_logged_in']) {
+          redirect('/', 'refresh');
+        }
         $this->load->model(['']);
     }
 
