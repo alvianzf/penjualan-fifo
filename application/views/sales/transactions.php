@@ -209,14 +209,33 @@ $(document).ready(() => {
 
 function bayarFull(data) {
     const id = data.attr('data-id');
-    $.get("<?= api('sales/single_transaction/') ?>" + id)
-    .then(res => {
-        $('#id').val(res.result.buyer_id);
-        $('#qty').val(res.result.qty);
-        $('#bayar-full').val(res.result.nominal).attr('disabled', true);
 
-        $('#total-full').text(`Total Bayar: Rp.${res.result.nominal}`);
-    }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
+    $.get("<?= api('payment/check_payment/') ?>" + id).then(res => {
+        if (res.result) {
+            $.get("<?= api('sales/single_transaction/') ?>" + id)
+            .then(res => {
+                $('#id').val(res.result.buyer_id);
+                $('#qty').val(res.result.qty);
+                $('#bayar-full').val(res.result.nominal).attr('disabled', true);
+
+                $('#total-full').text(`Total Bayar: Rp.${res.result.nominal}`);
+            }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
+        }
+
+        if (res.result == false) {
+            $('#cicilModal').modal('toggle');
+            toastr.warning('Harap melakukan pelunasan cicilan!');
+        }
+    }).catch(err => {
+        $.get("<?= api('sales/single_transaction/') ?>" + id)
+            .then(res => {
+                $('#id').val(res.result.buyer_id);
+                $('#qty').val(res.result.qty);
+                $('#bayar-full').val(res.result.nominal).attr('disabled', true);
+
+                $('#total-full').text(`Total Bayar: Rp.${res.result.nominal}`);
+            }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
+    })
 }
 
 function bayarCicil(data) {
@@ -250,7 +269,8 @@ $('#save-full').click(function (e) {
     .then(res => {
         toastr.success('Berhasil melakukan pembayaran!');
 
-        window.location.href = "<?= base_url('sales/kuitansi/') ?>" + res.result.payment_id;
+        // window.location.href = "<?= base_url('kuitansi/kuitansi/') ?>" + res.result.payment_id;
+        // window.location.reload(false);
     })
     .catch(err => {
         toastr.error('Gagal menyimpan pembayaran', 'server error!');

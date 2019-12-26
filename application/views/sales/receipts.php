@@ -87,7 +87,8 @@ $('#table').DataTable({
                 searchable: true,
                 orderable: true,
                 render: nominal => {
-                    return nominal ? `Rp. ${numberWithCommas(nominal)},00` : "Belum ada pembayaran";
+                    // return nominal == 0 ? `Rp. ${numberWithCommas(parseInt(nominal))},00` : "Belum ada pembayaran";
+                    return nominal != 0 ? `Rp. ${numberWithCommas(parseInt(nominal))}` : "Belum ada pembayaran";
                 },
             },
             {

@@ -59,9 +59,18 @@ class Payment extends REST_Controller
             $data['payment_id'] = $this->db->insert_id();
             return $this->response(api_success($data), 200);
         }
-
-
         return $this->response(api_error($data), 500);
+    }
+
+    public function check_payment_get($id) {
+        if (count($this->payment_model->get_many_by('transaction_id', $id)) > 1) {
+            return $this->response(api_success(true), 200);
+        }
+        if (count($this->payment_model->get_many_by('transaction_id', $id)) == 1) {
+            return $this->response(api_success(false, 200));
+        }
+
+        return $this->response(api_error(), 500);
 
     }
 
