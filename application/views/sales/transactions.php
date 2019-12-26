@@ -221,20 +221,9 @@ function bayarFull(data) {
                 $('#total-full').text(`Total Bayar: Rp.${res.result.nominal}`);
             }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
         }
-
-        if (res.result == false) {
-            $('#bayarFull').modal('toggle');
-            toastr.warning('Harap melakukan pelunasan cicilan!');
-        }
+    }).then(res => {
     }).catch(err => {
-        $.get("<?= api('sales/single_transaction/') ?>" + id)
-            .then(res => {
-                $('#id').val(res.result.id);
-                $('#qty').val(res.result.qty);
-                $('#bayar-full').val(res.result.nominal).attr('disabled', true);
-
-                $('#total-full').text(`Total Bayar: Rp.${res.result.nominal}`);
-            }).catch(err=> toastr.error('Data tidak dapat ditampilkan', 'server error!'));
+        console.log(err)
     })
 }
 
@@ -244,9 +233,11 @@ function bayarCicil(data) {
     $.get("<?= api('sales/single_transaction/') ?>" + id)
     .then(res => {
 
-        $.get("<?= api('payment/data/') ?>" + id).then(payment => {
-            $('#bayar-cicil-table').append(`<tr><td>${payment.result.tanggal}</td><td>${payment.result.nominal != 0 ? numberWithCommas(payment.result.nominal) : "Belum ada pembayaran"}</td></tr>`);
-            $('#sisa').text(`${numberWithCommas(payment.result.sisa)}`)
+        $.get("<?= api('payment/data/') ?>" + id).then(data => {
+            $.each(data.result, (i, payment) => {
+                $('#bayar-cicil-table').append(`<tr><td>${payment.tanggal}</td><td>Rp. ${payment.nominal != 0 ? numberWithCommas(payment.nominal) : "<span class='text-warning'>Belum ada pembayaran</span>"}</td></tr>`);
+                $('#sisa').text(`Rp. ${numberWithCommas(payment.sisa)}`)
+            })
         }).catch(err => {
             $('#bayar-cicil-table').append('<tr><td>Belum ada pembayaran cicilan</td><td></td></tr>')
         });

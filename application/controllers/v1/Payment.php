@@ -12,11 +12,13 @@ class Payment extends REST_Controller
 
     public function data_get($id)
     {
-        $data = $this->payment_model->get_by('transaction_id', $id);
+        $transaction = $this->payment_model->get_many_by('transaction_id', $id);
 
-        $tanggal = date('d M Y', $data->tanggal);
-        $data->tanggal = $tanggal;
-
+        $data = $transaction;
+        foreach ($transaction as $i => $v) {
+            $tanggal = date('d M Y', $v->tanggal);
+            $data[$i]->tanggal = $tanggal;
+        }
 
         if ($data)
             return $this->response(api_success($data), 200);
@@ -69,12 +71,11 @@ class Payment extends REST_Controller
     }
 
     public function check_payment_get($id) {
-        if (count($this->payment_model->get_many_by('transaction_id', $id)) > 0) {
+        if (count($this->payment_model->get_many_by('transaction_id', $id)) < 2) {
             return $this->response(api_success(true), 200);
         }
 
-        return $this->response(api_error(), 500);
-
+        return $this->response(api_success(false), 200);
     }
 
 }

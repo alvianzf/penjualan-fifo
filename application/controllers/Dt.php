@@ -72,7 +72,7 @@ class Dt extends CI_Controller
     {
         $this->datatables->select('A.tanggal, A.created_at, A.sisa, A.nominal, B.nominal total_bayar, B.keterangan, C.nama')
                 ->from('transactions B')
-                // ->where('selesai', 0)
+                ->where('selesai', 0)
                 ->join('buyer C', 'B.buyer_id = C.id')
                 ->join('payment A', 'A.transaction_id = B.id')
                 ->edit_column('tanggal', '$1', 'human_time(tanggal)')
