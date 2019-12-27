@@ -116,7 +116,7 @@ $('#reset').click(() => {
     $('#jumlah_barang').val('')  
     $('#tanggal').val('');
     $('#harga').val(''); 
-    $('#satuan').val('Pilih');
+    $('#satuan').val('');
 
     toastr.info('Data berhasil diset ulang', 'reset data');
 })

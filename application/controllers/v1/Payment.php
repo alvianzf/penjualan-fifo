@@ -41,7 +41,6 @@ class Payment extends REST_Controller
             $sisa = $sisa == 0 ? $jum_awal : $sisa;
         }
 
-
         $sisa = $sisa - (int) $nominal;
         
         $data = [

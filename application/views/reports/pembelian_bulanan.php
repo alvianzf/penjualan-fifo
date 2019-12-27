@@ -49,3 +49,34 @@ $(document).ready(() => {
 })
 
 </script>
+
+
+<style>
+
+    .right {
+            display: inline-block;
+            text-align: right;
+        }
+    .left {
+        display: inline-block;
+        text-align: left;
+    }
+    .center {
+        display: inline-block;
+        text-align: center;
+    }
+
+    table{
+        border-collapse: collapse;
+        width: 100%;
+        padding: 5px;
+        margin: 0;
+        border: 1px solid black;
+        text-align: center;
+    }
+
+    th {
+        height: 50%;
+        vertical-align: middle;
+    }
+</style>
