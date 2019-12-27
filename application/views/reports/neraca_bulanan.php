@@ -109,7 +109,7 @@
                     Rp. <?= $total_bayar ?>
                 </td>
                 <td>
-                    Rp. <?= $total_beli + $total_bayar ?>
+                    Rp. <?= $total_bayar - $total_beli ?>
                 </td>
             </tr>
         </tbody>
