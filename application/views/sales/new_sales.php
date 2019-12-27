@@ -97,11 +97,11 @@
 
             <div class="row">
                 <div class="col-xs-12 col-md-3">
-                    <select id="tipe" class="form-control" >
+                    <!-- <select id="tipe" class="form-control" >
                         <option value="" selected disabled>Tipe Pembayaran</option>
                         <option>Tunai</option>
                         <option>Bertahap</option>
-                    </select>
+                    </select> -->
                 </div> 
                 <div class="col-xs-12 col-md-3">
                     <button id="ok" class="btn btn-success btn-block"><i class="fa fa-check"></i> OK</button>
