@@ -5,16 +5,16 @@
                 <h4>Laporan Pembelian Persediaan</h4>
             </div>
             <div class="col-xs-12 col-md-2">
-                <a href="<?= base_url('form') ?>" class="text-success"><span class="fa fa-money-bill-wave"></span> Transaksi</a>
+                <a href="<?= base_url('form') ?>" class="btn btn-link text-success"><span class="fa fa-money-bill-wave"></span> Transaksi</a>
             </div>
             <div class="col-xs-12 col-md-2">
-                <a href="<?= base_url('form/produksi') ?>" class="text-primary"><span class="fa fa-industry"></span> Produksi</a>
+                <a href="<?= base_url('form/produksi') ?>" class="btn btn-link text-primary"><span class="fa fa-industry"></span> Produksi</a>
             </div>
             <div class="col-xs-12 col-md-2">
-                <a href="#" class="btn btn-outline-success"><span class="fa fa-chart-bar"></span> Persediaan</a>
+                <a href="#" class="btn btn-outline-info"><span class="fa fa-chart-bar"></span> Persediaan</a>
             </div>    
             <div class="col-xs-12 col-md-2">
-                <a href="<?= base_url('form/neraca') ?>" class="text-warning"><span class="fa fa-balance-scale-right"></span> Neraca</a>
+                <a href="<?= base_url('form/neraca') ?>" class="btn btn-link text-warning"><span class="fa fa-balance-scale-right"></span> Neraca</a>
             </div> 
         </div>
         <div class="card-body">
