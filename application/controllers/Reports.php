@@ -261,7 +261,7 @@ class Reports extends MY_Controller
         //$mpdf->Output('arjun.pdf','D'); // it downloads the file into the user system, with give name
     }
 
-    public function neraca_bulanan ($month) {
+    public function neraca_bulanan ($bulan) {
         $bulan = @$bulan ? $bulan : date ('m');
 
         $bulan_lap              = date('F');
@@ -292,7 +292,6 @@ class Reports extends MY_Controller
     }
 
     public function neraca_tahun ($tahun) {
-        $bulan = @$bulan ? $bulan : date ('m');
 
         $bulan_lap              = date('Y');
 
