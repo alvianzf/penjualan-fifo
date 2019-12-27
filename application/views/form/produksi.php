@@ -1,18 +1,21 @@
 <div class="row">
     <div class="card shadow border-left-primary col-md-12 col-xs-12">
     <div class="card-body row">
-            <div class="col-xs-12 col-md-3">
+            <div class="col-xs-12 col-md-4">
                 <h4>Laporan Sisa Produksi</h4>
             </div>
-            <div class="col-xs-12 col-md-3">
+            <div class="col-xs-12 col-md-2">
                 <a href="<?= base_url('form') ?>" class="text-success"><span class="fa fa-money-bill-wave"></span> Transaksi</a>
             </div>
-            <div class="col-xs-12 col-md-3">
-                <a href="#" class="text-muted"><span class="fa fa-industry"></span> Produksi</a>
+            <div class="col-xs-12 col-md-2">
+                <a href="#" class="btn btn-outline-success"><span class="fa fa-industry"></span> Produksi</a>
             </div>
-            <div class="col-xs-12 col-md-3">
+            <div class="col-xs-12 col-md-2">
                 <a href="<?= base_url('form/persediaan') ?>" class="text-info"><span class="fa fa-chart-bar"></span> Persediaan</a>
             </div>    
+            <div class="col-xs-12 col-md-2">
+                <a href="<?= base_url('form/neraca') ?>" class="text-warning"><span class="fa fa-balance-scale-right"></span> Neraca</a>
+            </div> 
         </div>
         <div class="card-body">
             <div class="row">

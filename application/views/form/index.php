@@ -5,7 +5,7 @@
                 <h4>Laporan Transaksi Penjualan</h4>
             </div>
             <div class="col-xs-12 col-md-2">
-                <a href="#" class="text-muted"><span class="fa fa-money-bill-wave"></span> Transaksi</a>
+                <a href="#" class="btn btn-outline-success"><span class="fa fa-money-bill-wave"></span> Transaksi</a>
             </div>
             <div class="col-xs-12 col-md-2">
                 <a href="<?= base_url('form/produksi') ?>" class="text-primary"><span class="fa fa-industry"></span> Produksi</a>

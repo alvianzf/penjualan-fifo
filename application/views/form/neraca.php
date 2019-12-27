@@ -14,7 +14,7 @@
                 <a href="<?= base_url('form/persediaan') ?>" class="text-info"><span class="fa fa-chart-bar"></span> Persediaan</a>
             </div>
             <div class="col-xs-12 col-md-2">
-                <a href="#" class="text-muted"><span class="fa fa-balance-scale-right"></span> Neraca</a>
+                <a href="#" class="btn btn-outline-success"><span class="fa fa-balance-scale-right"></span> Neraca</a>
             </div>      
         </div>
         <div class="card-body">
