@@ -62,7 +62,7 @@
                 <tr>
                     <td><?= $v->tanggal ?></td>
                     <td><?= $v->qty ?></td>
-                    <td>Rp. <?= $v->nominal == 0 ? "Pembelian awal" : $v->nominal ?></td>
+                    <td><?= $v->nominal == 0 ? "Pembelian awal" : "Rp." . $v->nominal ?></td>
                     <td><?= $v->sisa ?></td>
                     <td><?= $v->keterangan == '-' ? null : $v->keterangan ?></td>
                 </tr>
@@ -82,7 +82,7 @@
     $total_bayar = 0;
 
     foreach($result['beli'] as $v) {
-        $total_beli = $total_beli + $v->harga;
+        $total_beli = $total_beli + ($v->harga * $v->jumlah);
     }
 
     foreach($result['bayar'] as $v) {

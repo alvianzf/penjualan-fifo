@@ -82,7 +82,7 @@
     $total_bayar = 0;
 
     foreach($result['beli'] as $v) {
-        $total_beli = $total_beli + $v->harga;
+        $total_beli = $total_beli + ($v->harga * $v->jumlah);
     }
 
     foreach($result['bayar'] as $v) {
