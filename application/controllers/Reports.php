@@ -278,14 +278,14 @@ class Reports extends MY_Controller
         }
 
         foreach ($data_bayar as $i => $v) {
-            $data_bayar[$i]->bulan    = $dt->format('F');
+            $data_bayar[$i]->bulan   = date('F');
             $data_bayar[$i]->tanggal = date('d/m/Y', $v->tanggal);
         }
 
         $data = ['beli' => $data_beli, 'bayar' => $data_bayar];
 
         $mpdf = new \Mpdf\Mpdf();
-        $html = $this->load->view('reports/neraca_bulan', ['bulan_lap' => $bulan_lap, 'result' => $data],true);
+        $html = $this->load->view('reports/neraca_bulanan', ['bulan_lap' => $bulan_lap, 'result' => $data],true);
         $mpdf->WriteHTML($html);
         $mpdf->Output(); // opens in browser
         //$mpdf->Output('arjun.pdf','D'); // it downloads the file into the user system, with give name

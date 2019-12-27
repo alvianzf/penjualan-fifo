@@ -34,4 +34,9 @@ class Form extends MY_Controller
     {
         
     }
+
+    public function neraca()
+    {
+        
+    }
 }
