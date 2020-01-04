@@ -15,7 +15,7 @@
             </div>
             <div class="col-xs-12 col-md-2">
                 <a href="<?= base_url('form/neraca') ?>" class="btn btn-link text-warning"><span class="fa fa-balance-scale-right"></span> Neraca</a>
-            </div>      
+            </div>
         </div>
         <div class="card-body">
             <div class="row">
@@ -39,7 +39,8 @@
                         <option value="10">Bulan Oktober</option>
                         <option value="11">Bulan November</option>
                         <option value="12">Bulan Desember</option>
-                        <option value="tahunan">Tahunan</option>
+                        <option value="tahunlalu">Tahun Lalu</option>
+                        <option value="tahunan">Tahun Ini</option>
                     </select>
                 </div>
                 <div class="col-md-4 col-xs-12">
@@ -66,7 +67,7 @@
                         </thead>
 
                         <tbody>
-                        
+
                         </tbody>
                     </table>
                 </div>
@@ -84,13 +85,18 @@ $('#btn-print').click(() => {
         window.location.href= "<?= base_url('reports/print_bulan/') ?>" + bulan;
     } else {
         dt = new Date();
-        window.location.href= "<?= base_url('reports/print_tahun/') ?>" + dt.getFullYear();
+
+          if($('#month').val() == 'tahunlalu') {
+            window.location.href= "<?= base_url('reports/print_tahun/') ?>" + (dt.getFullYear() - 1);
+          } else {
+            window.location.href= "<?= base_url('reports/print_tahun/') ?>" + dt.getFullYear();
+          }
     }
 
 });
 
 $(document).ready(() => {
-    
+
   $('#table').DataTable({
                 processing: true,
                 responsive: true,

@@ -72,8 +72,8 @@ class Reports extends MY_Controller
         $dt = DateTime::createFromFormat('!m', $bulan);
         $bulan_lap = $dt->format('F');
 
-        $start = strtotime('2019/'.$bulan.'/01');
-        $end   = strtotime('2019/'.$bulan.'/31');
+        $start = strtotime($bulan.'/01/2019');
+        $end   = strtotime($bulan.'/31/2019');
 
         $data = $this->payment_model->get_many_by(['tanggal >' => $start, 'tanggal <' => $end]);
 
@@ -94,8 +94,8 @@ class Reports extends MY_Controller
         $dt = DateTime::createFromFormat('!m', $bulan);
         $bulan_lap = $dt->format('F');
 
-        $start = strtotime($bulan.'/01/01');
-        $end   = strtotime($bulan.'/12/31');
+        $start = strtotime('01/01/'.$bulan);
+        $end   = strtotime('12/31/'.$bulan);
 
         $data = $this->payment_model->get_many_by(['tanggal >' => $start, 'tanggal <' => $end]);
 
@@ -122,8 +122,8 @@ class Reports extends MY_Controller
         $this->data['bulan_lap'] = $dt->format('F');
 
 
-        $start = strtotime('2019/'.$bulan.'01');
-        $end   = strtotime('2019/'.$bulan.'31');
+        $start = strtotime($bulan.'/01/2019');
+        $end   = strtotime($bulan.'/31/2019');
 
         $data = $this->payment_model->get_many_by(['tanggal >' => $start, 'tanggal <' => $end]);
 
@@ -141,12 +141,11 @@ class Reports extends MY_Controller
         $bulan = @$bulan ? $bulan : date ('Y');
 
         $this->data['bulan'] = $bulan;
-        $dt                  = DateTime::createFromFormat('!Y', $bulan);
-        $this->data['bulan_lap'] = $dt->format('F');
+        $this->data['bulan_lap'] = $tahun;
 
 
-        $start = strtotime($bulan.'/01/01');
-        $end   = strtotime($bulan.'/12/31');
+        $start = strtotime('01/01/' . $bulan);
+        $end   = strtotime('12/31/' . $bulan);
 
         $data = $this->payment_model->get_many_by(['tanggal >' => $start, 'tanggal <' => $end]);
 
@@ -160,16 +159,15 @@ class Reports extends MY_Controller
 
     public function print_produksi_bulan ($bulan)
     {
-
         $bulan = @$bulan ? $bulan : date ('m');
 
         $dt                  = DateTime::createFromFormat('!m', $bulan);
         $bulan_lap           = $dt->format('F');
 
-        $start = strtotime('2019/'.$bulan.'01');
-        $end   = strtotime('2019'.$bulan.'31');
+        $start = strtotime($bulan.'/01/2019');
+        $end   = strtotime($bulan.'/31/2019');
 
-        $data = $this->items_model->get_many_by(['created_at >' => $start, 'created_at <' => $end]);
+        $data = $this->items_model->get_many_by(['created_at BETWEEN ' . $start . ' AND ' . $end]);
 
         foreach ($data as $i => $v) {
             $data[$i]->bulan        = $dt->format('F');
@@ -179,18 +177,18 @@ class Reports extends MY_Controller
         $mpdf = new \Mpdf\Mpdf();
         $html = $this->load->view('reports/produksi_bulanan', ['bulan_lap' => $bulan_lap, 'result' => $data],true);
         $mpdf->WriteHTML($html);
-        $mpdf->Output(); // opens in browser
+        $mpdf->Output('Produksi_bulan-' . $bulan_lap, 'D'); // opens in browser
         // $mpdf->Output('arjun.pdf','D'); // it downloads the file into the user system, with give name
     }
 
     public function print_produksi_tahun ($bulan)
     {
 
-        $dt = DateTime::createFromFormat('!m', $bulan);
-        $bulan_lap = $dt->format('F');
+        $dt = DateTime::createFromFormat('!Y', $bulan);
+        $bulan_lap = $bulan;
 
-        $start = strtotime($bulan.'/01/01');
-        $end   = strtotime($bulan.'/12/31');
+        $start = strtotime('01/01/'.$bulan);
+        $end   = strtotime('12/31/'.$bulan);
 
         $data = $this->items_model->get_many_by(['created_at >' => $start, 'created_at <' => $end]);
 
@@ -212,8 +210,8 @@ class Reports extends MY_Controller
         $dt                  = DateTime::createFromFormat('!m', $bulan);
         $bulan_lap           = $dt->format('F');
 
-        $start = strtotime('2019/'.$bulan.'01');
-        $end   = strtotime('2019'.$bulan.'31');
+        $start = strtotime($bulan.'/01/2019');
+        $end   = strtotime($bulan.'/31/2019');
 
         $data = $this->stock_model->get_many_by(['created_at >' => $start, 'created_at <' => $end]);
 
@@ -231,11 +229,11 @@ class Reports extends MY_Controller
 
     public function print_persediaan_tahun ($bulan)
     {
-        $dt                  = DateTime::createFromFormat('!m', $bulan);
-        $bulan_lap           = $dt->format('F');
+        $dt                  = DateTime::createFromFormat('!Y', $bulan);
+        $bulan_lap           = $bulan;
 
-        $start = strtotime($bulan.'/01/01');
-        $end   = strtotime($bulan.'/12/31');
+        $start = strtotime('01/01/' . $bulan);
+        $end   = strtotime('12/31/' . $bulan);
 
         $data = $this->stock_model->get_many_by(['created_at >' => $start, 'created_at <' => $end]);
 
@@ -256,8 +254,8 @@ class Reports extends MY_Controller
         $dt                  = DateTime::createFromFormat('!m', $bulan);
         $bulan_lap           = $dt->format('F');
 
-        $start = strtotime('2019/'.$bulan.'/01');
-        $end   = strtotime('2019/'.$bulan.'/31');
+        $start = strtotime($bulan.'/01/2019');
+        $end   = strtotime($bulan.'/31/2019');
 
         $data_beli = $this->stock_model->get_many_by(['created_at >' => $start, 'created_at <' => $end]);
         $data_bayar= $this->payment_model->get_many_by(['tanggal >' => $start, 'tanggal <' => $end]);
@@ -277,17 +275,17 @@ class Reports extends MY_Controller
         $mpdf = new \Mpdf\Mpdf();
         $html = $this->load->view('reports/neraca_bulanan', ['bulan_lap' => $bulan_lap, 'result' => $data],true);
         $mpdf->WriteHTML($html);
-        $mpdf->Output(); // opens in browser
+        // $mpdf->Output(); // opens in browser
         //$mpdf->Output('arjun.pdf','D'); // it downloads the file into the user system, with give name
     }
 
     public function neraca_tahun ($tahun) 
     {
-        $dt                  = DateTime::createFromFormat('!m', $bulan);
-        $bulan_lap           = $dt->format('F');
+        $dt                  = DateTime::createFromFormat('!Y', $tahun);
+        $bulan_lap           = $bulan;
 
-        $start = strtotime($tahun.'/01/01');
-        $end   = strtotime($tahun.'/12/31');
+        $start = strtotime('01/01/' . $tahun);
+        $end   = strtotime('12/31/' . $tahun);
 
         $data_beli = $this->stock_model->get_many_by(['created_at >' => $start, 'created_at <' => $end]);
         $data_bayar= $this->payment_model->get_many_by(['tanggal >' => $start, 'tanggal <' => $end]);

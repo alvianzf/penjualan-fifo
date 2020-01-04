@@ -12,10 +12,10 @@
             </div>
             <div class="col-xs-12 col-md-2">
                 <a href="<?= base_url('form/persediaan') ?>" class="btn btn-link text-info"><span class="fa fa-chart-bar"></span> Persediaan</a>
-            </div>    
+            </div>
             <div class="col-xs-12 col-md-2">
                 <a href="<?= base_url('form/neraca') ?>" class="btn btn-link text-warning"><span class="fa fa-balance-scale-right"></span> Neraca</a>
-            </div> 
+            </div>
         </div>
         <div class="card-body">
             <div class="row">
@@ -39,6 +39,7 @@
                         <option value="10">Bulan Oktober</option>
                         <option value="11">Bulan November</option>
                         <option value="12">Bulan Desember</option>
+                        <option value="tahunlalu">Tahun Lalu</option>
                         <option value="tahunan">Tahunan</option>
                     </select>
                 </div>
@@ -64,7 +65,7 @@
                         </thead>
 
                         <tbody>
-                        
+
                         </tbody>
                     </table>
                 </div>
@@ -88,7 +89,7 @@ $('#btn-print').click(() => {
 });
 
 $(document).ready(() => {
-  
+
     $('#table').DataTable({
                 processing: true,
                 responsive: true,

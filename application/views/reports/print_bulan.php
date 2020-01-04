@@ -1,11 +1,19 @@
+<div style="position:absolute">
+		<img src="BBA.jpeg" height="200" height="100" />
+
+</div>
 <div class="row">
     <div class="card shadow col-md-12 col-xs-12">
         <div class="card-body">
             <center>
+				<div class="center">
+				<h2>PT.BINTAN BERSATU ABADI</h2>
+				<h5>Jln.Karya Praja RT001/RW001 Tanjung Uban Selatan</h5>
                 <h4>Laporan Penjualan Bulan <span id="bulan"><?= $bulan_lap ?></span></h4>
                 <h6><?= date('d F Y') ?></h6>
+				</div>
             </center>
-        </div>
+		</div>
 
     <hr />
 
@@ -38,6 +46,16 @@
     </div>
 </div>
 
+<div class="right">
+		<h5>Penanggung Jawab</h5>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<h5><?php echo($this->session->userdata['user_detail']->user_data[0]->name) ?></h5>
+
+</div>
 <script>
 
 $(document).ready(() => {
