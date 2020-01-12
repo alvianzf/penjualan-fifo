@@ -275,7 +275,7 @@ class Reports extends MY_Controller
         $mpdf = new \Mpdf\Mpdf();
         $html = $this->load->view('reports/neraca_bulanan', ['bulan_lap' => $bulan_lap, 'result' => $data],true);
         $mpdf->WriteHTML($html);
-        // $mpdf->Output(); // opens in browser
+        $mpdf->Output('Neraca-bulanan-' . time(), 'D'); // opens in browser
         //$mpdf->Output('arjun.pdf','D'); // it downloads the file into the user system, with give name
     }
 
@@ -305,7 +305,7 @@ class Reports extends MY_Controller
         $mpdf = new \Mpdf\Mpdf();
         $html = $this->load->view('reports/neraca_tahun', ['bulan_lap' => $bulan_lap, 'result' => $data],true);
         $mpdf->WriteHTML($html);
-        $mpdf->Output(); // opens in browser
+        $mpdf->Output('Neraca-tahunan-' . time(), 'D'); // opens in browser
         //$mpdf->Output('arjun.pdf','D'); // it downloads the file into the user system, with give name
     }
 }
