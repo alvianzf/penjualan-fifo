@@ -1,6 +1,13 @@
+<div style="position:absolute">
+		<img src="BBA.jpeg" height="200" height="100" />
+
+</div>
+
 <div class="center">
-        <h3>Neraca Transaksi Perusahaan Bulan <?= $bulan_lap ?></h3>
-        <h5><?= date('d F Y') ?></h5>
+		<h2>PT.BINTAN BERSATU ABADI</h2>
+		<h5>Jln.Karya Praja RT001/RW001 Tanjung Uban Selatan</h5>
+		<h5>Neraca Transaksi Perusahaan Bulan <?= $bulan_lap ?></h5>
+		<h5><?= date('d F Y') ?></h5>
 </div>
 
 <hr />
@@ -115,7 +122,17 @@
         </tbody>
     </table>
 </div>
+<br>
+<div class="right">
+		<h5>Penanggung Jawab</h5>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<h5><?php echo($this->session->userdata['user_detail']->user_data[0]->name) ?></h5>
 
+</div>
 
 <style>
 
