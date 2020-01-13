@@ -54,7 +54,8 @@
         });
     });
     
-    var _harga = 0
+    var _harga = 0;
+    var _sisa = 0;
     $('#item').change(() => { 
         const item = $('#item').val();
 
@@ -62,22 +63,29 @@
             $('#stock').text(res.result.jumlah)
             $('#harga').text(`Rp.${numberWithCommas(res.result.harga)}`)
             _harga = res.result.harga;
+            _sisa = res.result.jumlah;
         })
     });
 
     $('#jumlah').on('keyup', function (e) { 
         const jumlah = $('#jumlah').val();
         const harga = $('#harga').text();
-        console.log(harga)
-        const total = jumlah * _harga;
-        $('#subtotal').text(_harga && `Rp.${numberWithCommas(total)}`)
+
+        sisa = _sisa - jumlah
+        if (sisa >= 0) {
+            const total = jumlah * _harga;
+            $('#subtotal').text(_harga && `Rp.${numberWithCommas(total)}`)
+            $('#stock').text(sisa)
+        } else {
+            toastr.error('Stok tidak cukup!')
+        }
     });
 
     $('#tambah').click(() => {
         const jumlah = $('#jumlah').val()
         const item = $('#item').val()
 
-        $.post("<?= api('purchasing/reduction/') ?>" + item).then((res) => {
+        $.post("<?= api('purchasing/reduction/') ?>" + item, {jumlah}).then((res) => {
             if (res.success) {
                 toastr.success('Berhasil mengurangi stok')
                 window.location.href = "<?= base_url('purchasing/stock') ?>"
