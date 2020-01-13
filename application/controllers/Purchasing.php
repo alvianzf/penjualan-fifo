@@ -20,7 +20,6 @@ class Purchasing extends MY_Controller
     }
 
     $this->load->model(['stock_model', 'transactions_model']);
-
   }
 
   public function index()
@@ -42,6 +41,11 @@ class Purchasing extends MY_Controller
   public function inventaris ()
   {
 
+  }
+
+  public function reduction ()
+  {
+    
   }
 
 }

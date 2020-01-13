@@ -62,6 +62,7 @@ $route['production/inventaris']                     = 'production/inventaris';
 $route['purchasing/new-purchase']                   = 'purchasing/new_purchasing';
 $route['purchasing/edit-purchase/(:any)']           = 'purchasing/edit_purchasing/$1';
 $route['purchasing/stock']                          = 'purchasing/inventaris';
+$route['purchasing/pengambilan-stok']               = 'purchasing/reduction';
 
 // Sales
 $route['sales/new-sales']                           = 'sales/new_sales';

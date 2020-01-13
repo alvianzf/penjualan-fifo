@@ -54,6 +54,7 @@
             <h6 class="collapse-header">Pembelian Bahan Baku</h6>
             <a class="collapse-item <?= nav('new-purchase', $this->uri->segments) ?> <?= nav('edit-purchase', $this->uri->segments) ?>" href="<?= base_url('purchasing/new-purchase') ?>">Pembelian Baru</a>
             <a class="collapse-item <?= nav('stock', $this->uri->segments) ?>" href="<?= base_url('purchasing/stock') ?>">Stok</a>
+            <a class="collapse-item <?= nav('pengambilan-stok', $this->uri->segments) ?>" href="<?= base_url('purchasing/pengambilan-stok') ?>">Pengambilan Stok</a>
           </div>
         </div>
       </li>
