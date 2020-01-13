@@ -43,12 +43,12 @@ class Purchasing extends REST_Controller
         $total = $item - $jumlah;
 
         if ($total > 0) {
-            $this->stock_model->update($id, ['jumlah' => $total, 'updated_at' => time()]);
+            $this->stock_model->update($id, ['jumlah' => $total]);
 
-            return $this->response(api_success(), 200);
+            return $this->response(api_success($id), 200);
         }
 
-        return $this->response(api_error(), 500);
+        return $this->response(api_error($id), 500);
     }
 
     public function insert_post()

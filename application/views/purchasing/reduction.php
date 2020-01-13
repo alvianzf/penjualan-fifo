@@ -77,10 +77,10 @@
         const jumlah = $('#jumlah').val()
         const item = $('#item').val()
 
-        $.post("<?= api('purchasing/reduction/') ?>" + item).then(() => {
-            if (!res.error) {
+        $.post("<?= api('purchasing/reduction/') ?>" + item).then((res) => {
+            if (res.success) {
                 toastr.success('Berhasil mengurangi stok')
-                window.location.href = "<?= base_url('purchasing/stokc') ?>"
+                window.location.href = "<?= base_url('purchasing/stock') ?>"
             } else {
                 toastr.error('Gagal mengurangi stok')
             }
