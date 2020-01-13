@@ -27,7 +27,7 @@
                         <label for="item">Item<sup class="text-danger">*</sup></label>
                         <select id="item" class="form-control">
                             <option value="" disabled selected>Pilih</option>
-                            <option value="bata75">Bata 7.5 cm</option>
+                            <option value="bata75">Bata 7,5 cm</option>
                             <option value="bata10">Bata 10 cm</option>
                         </select>
                     </div>

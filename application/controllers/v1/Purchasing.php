@@ -16,13 +16,13 @@ class Purchasing extends REST_Controller
         $items = $this->stock_model->get_all();
         foreach($items as $item) {
             $item->tanggal = Date('m/d/Y', $item->created_at);
-            
-            $response = [
-                'success'   => true,
-                'result'    => $item,
-                'error'     => null
-            ];
         }
+        
+        $response = [
+            'success'   => true,
+            'result'    => $items,
+            'error'     => null
+        ];
         
         return $this->response($response, 200);
     }

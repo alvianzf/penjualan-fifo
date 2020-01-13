@@ -6,13 +6,11 @@
         <div class="card-body">
 
             <div class="row">
-                <div class="col-xs-12 col-md-2">
+                <div class="col-xs-12 col-md-4">
                     <div class="form-group">
                         <label for="item">Item<sup class="text-danger">*</sup></label>
                         <select id="item" class="form-control">
                             <option value="" disabled selected>Pilih</option>
-                            <option value="bata75">Bata 7.5 cm</option>
-                            <option value="bata10">Bata 10 cm</option>
                         </select>
                     </div>
                 </div>
@@ -39,7 +37,7 @@
 
             <div class="row">
                 <div class="col-xs-12 col-md-12">
-                    <button id="tambah" class="btn btn-info">+ Tambah Penjualan</button>
+                    <button id="tambah" class="btn btn-info"><i class="fa fa-plus"></i> Ambil Stok</button>
                 </div>
             </div>
         </div>
@@ -48,4 +46,12 @@
 
 <script>
 
+    $.get("<?= api('purchasing') ?>").then(res => {
+        const items = res.result
+
+        $.each(items, (i, data) => {
+            console.log(data)
+            $('#item').append(`<option value="${data.id}">${data.kode_barang} - ${data.nama_barang}</option>`)
+        });
+    })
 </script>
