@@ -62,4 +62,8 @@
             $('#harga').text(`Rp.${numberWithCommas(res.result.harga)}`)
         })
     });
+
+    $('#jumlah').on('keyup', function (e) { 
+        console.log($('#jumlah').val())
+    });
 </script>
