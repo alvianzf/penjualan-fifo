@@ -72,4 +72,18 @@
         const total = jumlah * _harga;
         $('#subtotal').text(_harga && `Rp.${numberWithCommas(total)}`)
     });
+
+    $('#tambah').click(() => {
+        const jumlah = $('#jumlah').val()
+        const item = $('#item').val()
+
+        $.post("<?= api('purchasing/reduction/') ?>" + item).then(() => {
+            if (!res.error) {
+                toastr.success('Berhasil mengurangi stok')
+                window.location.href = "<?= base_url('purchasing/stokc') ?>"
+            } else {
+                toastr.error('Gagal mengurangi stok')
+            }
+        })
+    })
 </script>

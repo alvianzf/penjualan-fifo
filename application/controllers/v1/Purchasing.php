@@ -36,6 +36,21 @@ class Purchasing extends REST_Controller
         return $this->response(api_success($items), 200);
     }
 
+    public function reduction_post($id)
+    {
+        $item = $this->stock_model->get($id)->jumlah;
+        $jumlah = $this->post('jumlah');
+        $total = $item - $jumlah;
+
+        if ($total > 0) {
+            $this->stock_model->update($id, ['jumlah' => $total, 'updated_at' => time()]);
+
+            return $this->response(api_success(), 200);
+        }
+
+        return $this->response(api_error(), 500);
+    }
+
     public function insert_post()
     {
         $tipe_barang = $this->post('tipe_barang');
