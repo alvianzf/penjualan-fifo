@@ -50,8 +50,16 @@
         const items = res.result
 
         $.each(items, (i, data) => {
-            console.log(data)
             $('#item').append(`<option value="${data.id}">${data.kode_barang} - ${data.nama_barang}</option>`)
         });
-    })
+    });
+
+    $('#item').change(() => { 
+        const item = $('#item').val();
+
+        $.get("<?= api('purchasing/item/') ?>" + item).then(res => {
+            $('#stock').text(res.result.jumlah)
+            $('#harga').text(`Rp.${numberWithCommas(res.result.harga)}`)
+        })
+    });
 </script>

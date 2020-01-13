@@ -17,7 +17,7 @@ class Purchasing extends REST_Controller
         foreach($items as $item) {
             $item->tanggal = Date('m/d/Y', $item->created_at);
         }
-        
+
         $response = [
             'success'   => true,
             'result'    => $items,
@@ -25,6 +25,15 @@ class Purchasing extends REST_Controller
         ];
         
         return $this->response($response, 200);
+    }
+
+    public function item_get ($id)
+    {
+        $response = [];
+        $items = $this->stock_model->get($id);
+        $items->tanggal = Date('m/d/Y', $items->created_at);
+        
+        return $this->response(api_success($items), 200);
     }
 
     public function insert_post()
