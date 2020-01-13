@@ -67,6 +67,7 @@ $route['purchasing/pengambilan-stok']               = 'purchasing/reduction';
 // Sales
 $route['sales/new-sales']                           = 'sales/new_sales';
 $route['sales/transaksi']                           = 'sales/transactions';
+$route['sales/pengembalian']                        = 'sales/return';
 
 // Admin
 $route['admin/user-list']                           = 'user/index';

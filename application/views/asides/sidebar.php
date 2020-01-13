@@ -77,6 +77,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item  <?= nav('new-sales', $this->uri->segments) ?>"  href="<?= base_url('sales/new-sales') ?>">Penjualan Baru</a>
             <a class="collapse-item <?= nav('transaksi', $this->uri->segments) ?>" href="<?= base_url('sales/transaksi') ?>">Daftar Penjualan</a>
+            <a class="collapse-item <?= nav('pengembalian', $this->uri->segments) ?>" href="<?= base_url('sales/pengembalian') ?>">Pengembalian<sup class="text-danger">(return)</sup></a>
             <a class="collapse-item <?= nav('receipts', $this->uri->segments) ?>" href="<?= base_url('sales/receipts') ?>">Daftar Transaksi</a>
           </div>
         </div>
