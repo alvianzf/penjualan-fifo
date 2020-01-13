@@ -53,17 +53,23 @@
             $('#item').append(`<option value="${data.id}">${data.kode_barang} - ${data.nama_barang}</option>`)
         });
     });
-
+    
+    var _harga = 0
     $('#item').change(() => { 
         const item = $('#item').val();
 
         $.get("<?= api('purchasing/item/') ?>" + item).then(res => {
             $('#stock').text(res.result.jumlah)
             $('#harga').text(`Rp.${numberWithCommas(res.result.harga)}`)
+            _harga = res.result.harga;
         })
     });
 
     $('#jumlah').on('keyup', function (e) { 
-        console.log($('#jumlah').val())
+        const jumlah = $('#jumlah').val();
+        const harga = $('#harga').text();
+        console.log(harga)
+        const total = jumlah * _harga;
+        $('#subtotal').text(_harga && `Rp.${numberWithCommas(total)}`)
     });
 </script>
